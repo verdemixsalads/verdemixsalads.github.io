@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verde Mix Salads</title>
+
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-dark: #1b5e20;
+            --bg-color: #F8F5EC;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-sub: #4b5563;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .logo-img {
+            max-width: 160px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            margin: 12px 0 8px 0;
+            font-size: 27px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-style: italic;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+
+        .subtitle {
+            color: var(--text-sub);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .schedule-badge {
+            background-color: #e8f5e9;
+            color: var(--primary-dark);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 12px;
+            border: 1px solid #c8e6c9;
+        }
+
+        .base-info-box {
+            background-color: #f1f8f2;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 15px;
+            border: 1px solid #c8e6c9;
+        }
+
+        .base-name {
+            color: var(--text-main);
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .base-price-tag {
+            color: var(--primary-dark);
+            font-weight: 900;
+            font-size: 19px;
+            margin-top: 5px;
+        }
+
+        .base-mix-desc {
+            color: var(--text-sub);
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .delivery-notice {
+            background-color: #e8f5e9;
+            border: 1.5px dashed var(--primary-color);
+            color: var(--primary-dark);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .ensalada-card-block {
+            background: #ffffff;
+            border: 1px solid #d8e4d9;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+        }
+
+        .ensalada-header-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .btn-eliminar-ensalada {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .section-title {
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 800;
+            margin: 22px 0 10px 0;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-card {
+            border: 1px solid #dfe5df;
+            background: #ffffff;
+            padding: 10px 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .option-card input {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary-color);
+            margin-right: 10px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .option-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .option-price {
+            font-size: 11px;
+            color: #c62828;
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        /* BARRA FRÍA CON CANTIDADES */
+
+        .barra-fria-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .barra-fria-row {
+            border: 1px solid #dfe5df;
+            border-radius: 10px;
+            padding: 9px 10px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .barra-fria-name {
+            font-size: 13px;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .barra-fria-quantity {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .barra-qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-dark);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 20px;
+            padding: 0;
+        }
+
+        .barra-qty-number {
+            min-width: 20px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .barra-fria-extra-info {
+            font-size: 10px;
+            color: var(--text-sub);
+            margin-left: 5px;
+        }
+
+        /* OPCIONES CON EXTRA A UN LADO */
+
+        .option-extra-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .option-extra-row {
+            border: 1px solid #dfe5df;
+            border-radius: 10px;
+            padding: 9px 10px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .main-option {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+            cursor: pointer;
+        }
+
+        .main-option input {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--primary-color);
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .main-option-text {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .extra-side {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border-left: 1px solid #e5e7eb;
+            padding-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .extra-word {
+            font-size: 11px;
+            color: var(--primary-dark);
+            font-weight: 900;
+        }
+
+        .extra-price {
+            font-size: 11px;
+            color: #c62828;
+            font-weight: 900;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .qty-btn {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-dark);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 20px;
+            padding: 0;
+        }
+
+        .qty-number {
+            min-width: 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .btn-add-ensalada {
+            width: 100%;
+            background-color: #f1f8f2;
+            color: var(--primary-dark);
+            border: 1.5px solid #c8e6c9;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            background: white;
+        }
+
+        .payment-box {
+            background: #f9fbf9;
+            border: 1px solid #dfe5df;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .bank-info-card {
+            background: white;
+            border: 1px dashed var(--primary-color);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--primary-dark);
+        }
+
+        .sticky-footer {
+            position: sticky;
+            bottom: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+            margin-top: 25px;
+            border: 1px solid #dfe5df;
+            z-index: 10;
+        }
+
+        .estimated-time-notice {
+            background-color: #e8f5e9;
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #c8e6c9;
+        }
+
+        .total-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            background-color: #1b5e20;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        #avisoAlertaFlotante {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1b5e20;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            z-index: 9999;
+        }
+
+        #avisoCerrado {
+            display: none;
+            background-color: #ffebee;
+            border: 2px solid #d32f2f;
+            color: #b71c1c;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 480px) {
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .main-option-text {
+                font-size: 12px;
+            }
+
+            .extra-word,
+            .extra-price {
+                font-size: 10px;
+            }
+
+            .qty-btn,
+            .barra-qty-btn {
+                width: 25px;
+                height: 25px;
+            }
+
+            .barra-fria-name {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="avisoAlertaFlotante">
+    ¡Tu pedido se está generando para WhatsApp! 🥗📱
+</div>
+
+<div class="container">
+
+    <div class="header">
+
+        <img
+            class="logo-img"
+            src="logo.png"
+            onerror="this.src='logo.jpg';"
+            alt="Verde Mix Salads">
+
+        <h1>“𝑻𝒖 𝑴𝒊𝒙 𝒎á𝒔 𝒇𝒓𝒆𝒔𝒄𝒐 𝒅𝒆𝒍 𝒅í𝒂”</h1>
+
+        <p class="subtitle">
+            ¡Selecciona tus ingredientes favoritos y arma tu ensalada!
+        </p>
+
+        <div class="schedule-badge">
+            🕒 Horario: Lun a Vie 9:00 a.m. a 5:00 p.m.
+            <br>
+            Sábado y Domingo: Descanso
+        </div>
+
+        <div class="base-info-box">
+
+            <div class="base-name">
+                Ensalada Mix
+            </div>
+
+            <div class="base-price-tag">
+                $120.00 MXN c/u
+            </div>
+
+            <div class="base-mix-desc">
+                Incluye la mezcla base: Lechuga, Espinaca y Col Morada
+            </div>
+
+        </div>
+
+        <div class="delivery-notice">
+            🚲 Servicio a domicilio incluido
+        </div>
+
+    </div>
+
+
+    <div id="avisoCerrado">
+
+        <h2 style="margin-top:0;">
+            🔒 COCINA CERRADA
+        </h2>
+
+        <p id="textoCerrado">
+            Nuestro horario es de lunes a viernes de 9:00 a.m. a 5:00 p.m.
+        </p>
+
+    </div>
+
+
+    <form id="pedidoForm">
+
+        <div id="ensaladasContenedor"></div>
+
+
+        <button
+            type="button"
+            class="btn-add-ensalada"
+            onclick="agregarEnsalada()">
+
+            + Agregar otra ensalada al pedido
+
+        </button>
+
+
+        <div
+            class="section-title"
+            style="font-size:18px; border-left:4px solid var(--primary-dark); padding-left:8px;">
+
+            Datos de Entrega
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clienteNombre">
+                Nombre del Cliente *
+            </label>
+
+            <input
+                type="text"
+                id="clienteNombre"
+                placeholder="Tu nombre completo"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clienteTelefono">
+                Teléfono de Contacto *
+            </label>
+
+            <input
+                type="tel"
+                id="clienteTelefono"
+                placeholder="Ej. 6691234567"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clienteColonia">
+                Selecciona tu Colonia o Fraccionamiento *
+            </label>
+
+            <select id="clienteColonia" required>
+
+                <option value="">
+                    -- Selecciona tu zona de cobertura --
+                </option>
+
+                <option value="Infonavit Jabalíes">1. Infonavit Jabalíes</option>
+                <option value="Colonia Burócrata">2. Colonia Burócrata</option>
+                <option value="Infonavit Fovissste">3. Infonavit Fovissste</option>
+                <option value="Fraccionamiento Isstesin">4. Fraccionamiento Isstesin</option>
+                <option value="Costa Azul">5. Costa Azul</option>
+                <option value="Fraccionamiento Las Misiones">6. Fraccionamiento Las Misiones</option>
+                <option value="Fraccionamiento Los Venados">7. Fraccionamiento Los Venados</option>
+                <option value="Colonia Alarcón">8. Colonia Alarcón</option>
+                <option value="Plaza Santa Rosa y alrededores">9. Plaza Santa Rosa y alrededores</option>
+                <option value="Dorados de Villa">10. Dorados de Villa</option>
+                <option value="Francisco Villa">11. Francisco Villa</option>
+                <option value="Los Mangos">12. Los Mangos</option>
+                <option value="Sánchez Celis">13. Sánchez Celis</option>
+                <option value="Chulavista">14. Chulavista</option>
+                <option value="Gran Plaza / Fraccionamiento Alameda">15. Gran Plaza / Fraccionamiento Alameda</option>
+                <option value="Fraccionamiento El Toreo">16. Fraccionamiento El Toreo</option>
+                <option value="Fraccionamiento Reforma">17. Fraccionamiento Reforma</option>
+                <option value="Colonia Benito Juárez">18. Colonia Benito Juárez</option>
+                <option value="Colonia López Mateos">19. Colonia López Mateos</option>
+                <option value="Real del Valle">20. Real del Valle</option>
+                <option value="Real Pacífico">21. Real Pacífico</option>
+                <option value="Prados del Sol">22. Prados del Sol</option>
+                <option value="Terranova">23. Terranova</option>
+                <option value="Villas Marina">24. Villas Marina</option>
+                <option value="Mediterráneo">25. Mediterráneo</option>
+                <option value="Paseo de los Olivos">26. Paseo de los Olivos</option>
+                <option value="Infonavit Playas">27. Infonavit Playas</option>
+                <option value="Sábalo Country">28. Sábalo Country</option>
+                <option value="Marina Mazatlán">29. Marina Mazatlán</option>
+                <option value="Lomas de Mazatlán">30. Lomas de Mazatlán</option>
+                <option value="Zona Dorada">31. Zona Dorada</option>
+                <option value="Fraccionamiento Alameda">32. Fraccionamiento Alameda</option>
+
+                <option value="Portales">Portales</option>
+                <option value="Mango 1">Mango 1</option>
+                <option value="Mango 2">Mango 2</option>
+                <option value="Mango 3">Mango 3</option>
+                <option value="Privanzas">Privanzas</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clienteCalleNum">
+                Calle y Número *
+            </label>
+
+            <input
+                type="text"
+                id="clienteCalleNum"
+                placeholder="Ej. Av. Insurgentes #123"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clienteEntreCalles">
+                Entre qué calles está
+            </label>
+
+            <input
+                type="text"
+                id="clienteEntreCalles"
+                placeholder="Ej. Entre Benito Juárez y Reforma">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clienteReferencia">
+                Referencias de la fachada / casa
+            </label>
+
+            <textarea
+                id="clienteReferencia"
+                rows="2"
+                placeholder="Ej. Casa blanca con portón negro"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clienteComentarios">
+                Comentarios adicionales generales
+            </label>
+
+            <textarea
+                id="clienteComentarios"
+                rows="2"
+                placeholder="Opcional: indicaciones especiales"></textarea>
+
+        </div>
+
+
+        <div class="payment-box">
+
+            <div class="section-title" style="margin-top:0;">
+                Método de Pago *
+            </div>
+
+
+            <div class="options-grid">
+
+                <label class="option-card">
+
+                    <input
+                        type="radio"
+                        name="metodoPago"
+                        value="Efectivo"
+                        checked
+                        onclick="cambiarMetodoPago('Efectivo')">
+
+                    <span class="option-label">
+                        💵 Efectivo
+                    </span>
+
+                </label>
+
+
+                <label class="option-card">
+
+                    <input
+                        type="radio"
+                        name="metodoPago"
+                        value="Transferencia"
+                        onclick="cambiarMetodoPago('Transferencia')">
+
+                    <span class="option-label">
+                        📱 Transferencia
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                id="grupoCambio"
+                style="margin-top:15px; margin-bottom:0;">
+
+                <label for="cambioEfectivo">
+                    ¿Con qué billete vas a pagar? (Opcional)
+                </label>
+
+                <input
+                    type="text"
+                    id="cambioEfectivo"
+                    placeholder="Ej. Pagaré con billete de $200 o $500">
+
+            </div>
+
+
+            <div id="grupoTransferencia" style="display:none;">
+
+                <div class="bank-info-card">
+
+                    <strong>🏦 Datos para tu Transferencia:</strong>
+
+                    <br><br>
+
+                    • <strong>Institución:</strong> Spin By Oxxo
+
+                    <br>
+
+                    • <strong>Titular:</strong>
+                    Ilse Jacqueline Altamirano Villegas
+
+                    <br>
+
+                    • <strong>CLABE:</strong>
+                    728969000017618510
+
+                </div>
+
+
+                <div
+                    class="form-group"
+                    style="margin-top:12px; margin-bottom:0;">
+
+                    <label for="comprobantePago">
+                        📎 Selecciona la foto de tu comprobante de pago *
+                    </label>
+
+                    <input
+                        type="file"
+                        id="comprobantePago"
+                        accept="image/*"
+                        style="background:white; padding:6px;">
+
+                    <small style="display:block; margin-top:6px; color:#666;">
+                        Al abrir WhatsApp, recuerda adjuntar la foto del comprobante.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="sticky-footer">
+
+            <div class="estimated-time-notice">
+                ⏱️ Tiempo de entrega: 30 a 45 minutos
+            </div>
+
+
+            <div class="total-container">
+
+                <span>Total:</span>
+
+                <span
+                    id="precioTotal"
+                    style="color:var(--primary-dark);">
+
+                    $120.00 MXN
+
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-whatsapp"
+                onclick="enviarWhatsApp()">
+
+                Enviar Pedido por WhatsApp 📱
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+const PRECIO_BASE = 120;
+
+const NUMERO_WHATSAPP = "523111170609";
+
+let contadorEnsaladas = 0;
+
+
+/* VERIFICAR HORARIO */
+
+function verificarHorario() {
+
+    const ahora = new Date();
+
+    const diaSemana = ahora.getDay();
+
+    const horaMinutoActual =
+        ahora.getHours() * 60 +
+        ahora.getMinutes();
+
+    const apertura = 9 * 60;
+
+    const cierre = 17 * 60;
+
+    let cerrado = false;
+
+    let motivo = "";
+
+
+    if (
+        diaSemana === 0 ||
+        diaSemana === 6
+    ) {
+
+        cerrado = true;
+
+        motivo =
+            "¡Los sábados y domingos descansamos! Te esperamos de lunes a viernes de 9:00 a.m. a 5:00 p.m.";
+
+    }
+
+    else if (
+        horaMinutoActual < apertura ||
+        horaMinutoActual >= cierre
+    ) {
+
+        cerrado = true;
+
+        motivo =
+            "Nuestro horario de servicio es de lunes a viernes de 9:00 a.m. a 5:00 p.m.";
+
+    }
+
+
+    if (cerrado) {
+
+        document
+            .getElementById("pedidoForm")
+            .style.display = "none";
+
+        document
+            .getElementById("textoCerrado")
+            .textContent = motivo;
+
+        document
+            .getElementById("avisoCerrado")
+            .style.display = "block";
+
+    }
+
+}
+
+
+/* FOLIO */
+
+function obtenerSiguienteFolio() {
+
+    let ultimoFolio =
+        localStorage.getItem(
+            "verdemix_last_folio"
+        );
+
+    let siguienteNum = 1;
+
+
+    if (ultimoFolio) {
+
+        siguienteNum =
+            parseInt(
+                ultimoFolio,
+                10
+            ) + 1;
+
+    }
+
+
+    localStorage.setItem(
+        "verdemix_last_folio",
+        siguienteNum
+    );
+
+
+    return `#VM-${String(
+        siguienteNum
+    ).padStart(3, "0")}`;
+
+}
+
+
+/* AGREGAR ENSALADA */
+
+function agregarEnsalada() {
+
+    contadorEnsaladas++;
+
+    const id =
+        contadorEnsaladas;
+
+
+    const contenedor =
+        document.getElementById(
+            "ensaladasContenedor"
+        );
+
+
+    const card =
+        document.createElement("div");
+
+
+    card.className =
+        "ensalada-card-block";
+
+
+    card.id =
+        `ensalada-card-${id}`;
+
+
+    card.innerHTML = `
+
+        <div class="ensalada-header-title">
+
+            <span>
+                Ensalada #${id}
+            </span>
+
+
+            ${
+                id > 1
+                ? `
+                    <button
+                        type="button"
+                        class="btn-eliminar-ensalada"
+                        onclick="eliminarEnsalada(${id})">
+
+                        Eliminar
+
+                    </button>
+                `
+                : ""
+            }
+
+        </div>
+
+
+        <div class="section-title">
+            1. Selecciona tu Barra Fría
+        </div>
+
+        <div
+            style="
+                font-size:12px;
+                color:#4b5563;
+                background:#f1f8f2;
+                padding:8px;
+                border-radius:8px;
+                margin-bottom:10px;
+                border:1px solid #c8e6c9;
+            ">
+
+            Puedes elegir hasta <strong>5 porciones</strong>.
+            Cada ingrediente puede agregarse máximo <strong>2 veces</strong>.
+
+        </div>
+
+
+        <div class="barra-fria-list">
+
+            ${crearBarraFria(id, "Zanahoria Rallada")}
+            ${crearBarraFria(id, "Jícama")}
+            ${crearBarraFria(id, "Betabel")}
+            ${crearBarraFria(id, "Pasta")}
+            ${crearBarraFria(id, "Pepino")}
+            ${crearBarraFria(id, "Cebolla Morada")}
+            ${crearBarraFria(id, "Jitomate")}
+            ${crearBarraFria(id, "Aceituna Negra")}
+            ${crearBarraFria(id, "Elote")}
+
+        </div>
+
+
+        <div class="section-title">
+            2. Proteína incluida (Selecciona solo 1)
+        </div>
+
+
+        <div class="option-extra-list">
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Pollo a la plancha",
+                30,
+                true
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Pollo BBQ",
+                30
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Pollo Buffalo",
+                30
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Pollo Mango Habanero",
+                30
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Pollo Pimienta Limón",
+                30
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Huevo Cocido (2 pz)",
+                20
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Queso Panela Fresco",
+                30
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Atún",
+                20
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "proteina",
+                "Jamón de Pavo",
+                30
+            )}
+
+        </div>
+
+
+        <div class="section-title">
+            3. Elige tu Aderezo (Solo 1)
+        </div>
+
+
+        <div class="option-extra-list">
+
+            ${crearOpcionConExtra(
+                id,
+                "aderezo",
+                "Aderezo de Cilantro",
+                20,
+                true
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "aderezo",
+                "Ranch",
+                20
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "aderezo",
+                "Ranch Chipotle",
+                20
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "aderezo",
+                "Vinagreta Mostaza Miel",
+                20
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "aderezo",
+                "Vinagreta Limón Pimienta",
+                20
+            )}
+
+        </div>
+
+
+        <label
+            class="option-card"
+            style="margin-top:10px;">
+
+            <input
+                type="radio"
+                name="aderezo_${id}"
+                value="Sin Aderezo">
+
+            <span class="option-label">
+                Sin Aderezo
+            </span>
+
+        </label>
+
+
+        <div class="section-title">
+            4. Elige tu Crocante (Solo 1)
+        </div>
+
+
+        <div class="option-extra-list">
+
+            ${crearOpcionConExtra(
+                id,
+                "crocante",
+                "Queso Parmesano",
+                25,
+                true
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "crocante",
+                "Crotón Queso/Ajo",
+                25
+            )}
+
+            ${crearOpcionConExtra(
+                id,
+                "crocante",
+                "Tiritas de Tortilla",
+                25
+            )}
+
+        </div>
+
+
+        <label
+            class="option-card"
+            style="margin-top:10px;">
+
+            <input
+                type="radio"
+                name="crocante_${id}"
+                value="Sin Crocante">
+
+            <span class="option-label">
+                Sin Crocante
+            </span>
+
+        </label>
+
+
+        <div class="section-title">
+            Cubiertos
+        </div>
+
+
+        <div class="options-grid">
+
+            <label class="option-card">
+
+                <input
+                    type="radio"
+                    name="cubiertos_${id}"
+                    value="Con cubiertos"
+                    checked>
+
+                <span class="option-label">
+                    Con cubiertos
+                </span>
+
+            </label>
+
+
+            <label class="option-card">
+
+                <input
+                    type="radio"
+                    name="cubiertos_${id}"
+                    value="Sin Cubiertos">
+
+                <span class="option-label">
+                    Sin Cubiertos
+                </span>
+
+            </label>
+
+        </div>
+
+    `;
+
+
+    contenedor.appendChild(card);
+
+
+    calcularTotal();
+
+}
+
+
+/* CREAR INGREDIENTE DE BARRA FRÍA */
+
+function crearBarraFria(
+    id,
+    nombre
+) {
+
+    const clave =
+        nombre.replace(
+            /[^a-zA-Z0-9]/g,
+            "_"
+        );
+
+
+    return `
+
+        <div class="barra-fria-row">
+
+            <span class="barra-fria-name">
+                ${nombre}
+            </span>
+
+
+            <div class="barra-fria-quantity">
+
+                <button
+                    type="button"
+                    class="barra-qty-btn"
+                    onclick="cambiarCantidadBarra(
+                        '${id}',
+                        '${clave}',
+                        -1
+                    )">
+
+                    −
+
+                </button>
+
+
+                <span
+                    class="barra-qty-number"
+                    id="barra-${id}-${clave}">
+
+                    0
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="barra-qty-btn"
+                    onclick="cambiarCantidadBarra(
+                        '${id}',
+                        '${clave}',
+                        1
+                    )">
+
+                    +
+
+                </button>
+
+
+                <input
+                    type="hidden"
+                    class="barra-fria-quantity-input"
+                    data-name="${nombre}"
+                    data-key="${clave}"
+                    value="0">
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* CAMBIAR CANTIDAD DE BARRA FRÍA */
+
+function cambiarCantidadBarra(
+    id,
+    clave,
+    cambio
+) {
+
+    const card =
+        document.getElementById(
+            `ensalada-card-${id}`
+        );
+
+
+    const input =
+        card.querySelector(
+            `.barra-fria-quantity-input[data-key="${clave}"]`
+        );
+
+
+    let cantidad =
+        parseInt(input.value) || 0;
+
+
+    let totalPorciones = 0;
+
+
+    card
+        .querySelectorAll(
+            ".barra-fria-quantity-input"
+        )
+        .forEach(item => {
+
+            totalPorciones +=
+                parseInt(item.value) || 0;
+
+        });
+
+
+    if (
+        cambio > 0 &&
+        cantidad >= 2
+    ) {
+
+        alert(
+            "Este ingrediente puede agregarse máximo 2 veces."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        cambio > 0 &&
+        totalPorciones >= 5
+    ) {
+
+        alert(
+            "¡Solo puedes seleccionar un máximo de 5 porciones de Barra Fría!"
+        );
+
+        return;
+
+    }
+
+
+    cantidad += cambio;
+
+
+    if (cantidad < 0) {
+        cantidad = 0;
+    }
+
+
+    if (cantidad > 2) {
+        cantidad = 2;
+    }
+
+
+    input.value =
+        cantidad;
+
+
+    document.getElementById(
+        `barra-${id}-${clave}`
+    ).textContent =
+        cantidad;
+
+
+    calcularTotal();
+
+}
+
+
+/* CREAR OPCIÓN CON EXTRA */
+
+function crearOpcionConExtra(
+    id,
+    tipo,
+    nombre,
+    precioExtra,
+    seleccionado = false
+) {
+
+    const clave =
+        nombre.replace(
+            /[^a-zA-Z0-9]/g,
+            "_"
+        );
+
+
+    return `
+
+        <div class="option-extra-row">
+
+            <label class="main-option">
+
+                <input
+                    type="radio"
+                    name="${tipo}_${id}"
+                    value="${nombre}"
+                    ${seleccionado ? "checked" : ""}>
+
+                <span class="main-option-text">
+                    ${nombre}
+                </span>
+
+            </label>
+
+
+            <div class="extra-side">
+
+                <span class="extra-word">
+                    Extra
+                </span>
+
+
+                <span class="extra-price">
+                    +$${precioExtra}
+                </span>
+
+
+                <div class="quantity-control">
+
+                    <button
+                        type="button"
+                        class="qty-btn"
+                        onclick="cambiarCantidad(
+                            '${id}',
+                            '${tipo}',
+                            '${clave}',
+                            -1
+                        )">
+
+                        −
+
+                    </button>
+
+
+                    <span
+                        class="qty-number"
+                        id="${tipo}-${id}-${clave}">
+
+                        0
+
+                    </span>
+
+
+                    <button
+                        type="button"
+                        class="qty-btn"
+                        onclick="cambiarCantidad(
+                            '${id}',
+                            '${tipo}',
+                            '${clave}',
+                            1
+                        )">
+
+                        +
+
+                    </button>
+
+                </div>
+
+
+                <input
+                    type="hidden"
+                    class="extra-${tipo}"
+                    data-name="${nombre}"
+                    data-price="${precioExtra}"
+                    data-key="${clave}"
+                    value="0">
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* CAMBIAR CANTIDAD DE EXTRA */
+
+function cambiarCantidad(
+    id,
+    tipo,
+    clave,
+    cambio
+) {
+
+    const card =
+        document.getElementById(
+            `ensalada-card-${id}`
+        );
+
+
+    const input =
+        card.querySelector(
+            `.extra-${tipo}[data-key="${clave}"]`
+        );
+
+
+    let cantidad =
+        parseInt(input.value) || 0;
+
+
+    cantidad += cambio;
+
+
+    if (cantidad < 0) {
+        cantidad = 0;
+    }
+
+
+    input.value =
+        cantidad;
+
+
+    document.getElementById(
+        `${tipo}-${id}-${clave}`
+    ).textContent =
+        cantidad;
+
+
+    calcularTotal();
+
+}
+
+
+/* ELIMINAR ENSALADA */
+
+function eliminarEnsalada(id) {
+
+    const card =
+        document.getElementById(
+            `ensalada-card-${id}`
+        );
+
+
+    if (card) {
+
+        card.remove();
+
+        calcularTotal();
+
+    }
+
+}
+
+
+/* MÉTODO DE PAGO */
+
+function cambiarMetodoPago(
+    metodo
+) {
+
+    document
+        .getElementById("grupoCambio")
+        .style.display =
+            metodo === "Efectivo"
+            ? "block"
+            : "none";
+
+
+    document
+        .getElementById("grupoTransferencia")
+        .style.display =
+            metodo === "Transferencia"
+            ? "block"
+            : "none";
+
+}
+
+
+/* CALCULAR TOTAL */
+
+function calcularTotal() {
+
+    let totalComida = 0;
+
+
+    const cards =
+        document.querySelectorAll(
+            ".ensalada-card-block"
+        );
+
+
+    cards.forEach(card => {
+
+        let totalEnsalada =
+            PRECIO_BASE;
+
+
+        [
+            "proteina",
+            "aderezo",
+            "crocante"
+        ].forEach(tipo => {
+
+            card
+                .querySelectorAll(
+                    `.extra-${tipo}`
+                )
+                .forEach(input => {
+
+                    const cantidad =
+                        parseInt(
+                            input.value
+                        ) || 0;
+
+
+                    const precio =
+                        parseFloat(
+                            input.getAttribute(
+                                "data-price"
+                            )
+                        ) || 0;
+
+
+                    totalEnsalada +=
+                        cantidad * precio;
+
+                });
+
+        });
+
+
+        totalComida +=
+            totalEnsalada;
+
+    });
+
+
+    document
+        .getElementById(
+            "precioTotal"
+        )
+        .textContent =
+            `$${totalComida.toFixed(2)} MXN`;
+
+
+    return totalComida;
+
+}
+
+
+/* ENVIAR WHATSAPP */
+
+function enviarWhatsApp() {
+
+    const cards =
+        document.querySelectorAll(
+            ".ensalada-card-block"
+        );
+
+
+    if (cards.length === 0) {
+
+        alert(
+            "Por favor agrega al menos 1 ensalada."
+        );
+
+        return;
+
+    }
+
+
+    const nombre =
+        document
+            .getElementById(
+                "clienteNombre"
+            )
+            .value
+            .trim();
+
+
+    const telefono =
+        document
+            .getElementById(
+                "clienteTelefono"
+            )
+            .value
+            .trim();
+
+
+    const colonia =
+        document
+            .getElementById(
+                "clienteColonia"
+            )
+            .value;
+
+
+    const calleNum =
+        document
+            .getElementById(
+                "clienteCalleNum"
+            )
+            .value
+            .trim();
+
+
+    const entreCalles =
+        document
+            .getElementById(
+                "clienteEntreCalles"
+            )
+            .value
+            .trim()
+        || "No especificado";
+
+
+    const referencia =
+        document
+            .getElementById(
+                "clienteReferencia"
+            )
+            .value
+            .trim()
+        || "Sin referencia";
+
+
+    const comentarios =
+        document
+            .getElementById(
+                "clienteComentarios"
+            )
+            .value
+            .trim()
+        || "Ninguno";
+
+
+    if (
+        !nombre ||
+        !telefono ||
+        !colonia ||
+        !calleNum
+    ) {
+
+        alert(
+            "Por favor completa todos los datos obligatorios."
+        );
+
+        return;
+
+    }
+
+
+    const metodoPago =
+        document.querySelector(
+            'input[name="metodoPago"]:checked'
+        )?.value
+        || "Efectivo";
+
+
+    let detallePago =
+        metodoPago;
+
+
+    if (
+        metodoPago === "Efectivo"
+    ) {
+
+        const cambio =
+            document
+                .getElementById(
+                    "cambioEfectivo"
+                )
+                .value
+                .trim();
+
+
+        if (cambio) {
+
+            detallePago +=
+                ` (Paga con: ${cambio})`;
+
+        }
+
+    }
+
+    else {
+
+        const comprobanteInput =
+            document.getElementById(
+                "comprobantePago"
+            );
+
+
+        if (
+            !comprobanteInput.files ||
+            comprobanteInput.files.length === 0
+        ) {
+
+            alert(
+                "⚠️ Selecciona la foto de tu comprobante de pago."
+            );
+
+            return;
+
+        }
+
+
+        detallePago =
+            "Transferencia";
+
+    }
+
+
+    let ensaladasValidas =
+        true;
+
+
+    cards.forEach(
+        (card, index) => {
+
+            let totalPorcionesBarra =
+                0;
+
+
+            card
+                .querySelectorAll(
+                    ".barra-fria-quantity-input"
+                )
+                .forEach(input => {
+
+                    totalPorcionesBarra +=
+                        parseInt(input.value) || 0;
+
+                });
+
+
+            if (
+                totalPorcionesBarra === 0
+            ) {
+
+                alert(
+                    `Selecciona al menos 1 porción de Barra Fría en la Ensalada #${index + 1}.`
+                );
+
+                ensaladasValidas =
+                    false;
+
+            }
+
+        }
+    );
+
+
+    if (!ensaladasValidas) {
+        return;
+    }
+
+
+    const avisoFlotante =
+        document.getElementById(
+            "avisoAlertaFlotante"
+        );
+
+
+    avisoFlotante.style.display =
+        "block";
+
+
+    setTimeout(() => {
+
+        avisoFlotante.style.display =
+            "none";
+
+    }, 3000);
+
+
+    const folioPedido =
+        obtenerSiguienteFolio();
+
+
+    const ahora =
+        new Date();
+
+
+    const fechaFormateada =
+        ahora.toLocaleDateString(
+            "es-MX",
+            {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+
+    const horaFormateada =
+        ahora.toLocaleTimeString(
+            "es-MX",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+
+    let lineas = [
+
+        "*¡Hola, Verde Mix Salads! Tu pedido es este:*",
+
+        "━━━━━━━━━━━━━━━━━━━━",
+
+        `📌 *Folio:* ${folioPedido}`,
+
+        `📅 *Fecha:* ${fechaFormateada}`,
+
+        `⏰ *Hora:* ${horaFormateada}`,
+
+        "━━━━━━━━━━━━━━━━━━━━",
+
+        "🥗 *DETALLE DEL PEDIDO*"
+
+    ];
+
+
+    cards.forEach(
+        (card, index) => {
+
+            const idCard =
+                card.id.split("-")[2];
+
+
+            const numEnsalada =
+                index + 1;
+
+
+            const barraFria =
+                [];
+
+
+            card
+                .querySelectorAll(
+                    ".barra-fria-quantity-input"
+                )
+                .forEach(input => {
+
+                    const cantidad =
+                        parseInt(
+                            input.value
+                        ) || 0;
+
+
+                    if (cantidad > 0) {
+
+                        barraFria.push(
+                            `${cantidad}x ${input.getAttribute("data-name")}`
+                        );
+
+                    }
+
+                });
+
+
+            const proteina =
+                card.querySelector(
+                    `input[name="proteina_${idCard}"]:checked`
+                )?.value
+                || "No seleccionada";
+
+
+            const aderezo =
+                card.querySelector(
+                    `input[name="aderezo_${idCard}"]:checked`
+                )?.value
+                || "No seleccionado";
+
+
+            const crocante =
+                card.querySelector(
+                    `input[name="crocante_${idCard}"]:checked`
+                )?.value
+                || "No seleccionado";
+
+
+            const cubiertos =
+                card.querySelector(
+                    `input[name="cubiertos_${idCard}"]:checked`
+                )?.value
+                || "Con cubiertos";
+
+
+            lineas.push(
+                `\n*🥗 Ensalada #${numEnsalada}:*`
+            );
+
+
+            lineas.push(
+                `• *Base:* Lechuga, Espinaca y Col Morada`
+            );
+
+
+            lineas.push(
+                `• *Barra Fría:* ${barraFria.join(", ")}`
+            );
+
+
+            lineas.push(
+                `• *Proteína:* ${proteina}`
+            );
+
+
+            agregarExtrasAlMensaje(
+                card,
+                ".extra-proteina",
+                "Proteínas Extra",
+                lineas
+            );
+
+
+            lineas.push(
+                `• *Aderezo:* ${aderezo}`
+            );
+
+
+            agregarExtrasAlMensaje(
+                card,
+                ".extra-aderezo",
+                "Aderezos Extra",
+                lineas
+            );
+
+
+            lineas.push(
+                `• *Crocante:* ${crocante}`
+            );
+
+
+            agregarExtrasAlMensaje(
+                card,
+                ".extra-crocante",
+                "Crocantes Extra",
+                lineas
+            );
+
+
+            lineas.push(
+                `• *Cubiertos:* ${cubiertos}`
+            );
+
+        }
+    );
+
+
+    const total =
+        calcularTotal();
+
+
+    lineas.push("");
+
+
+    lineas.push(
+        `💰 *TOTAL:* $${total.toFixed(2)} MXN`
+    );
+
+
+    lineas.push(
+        "🚲 *Servicio a domicilio:* Incluido"
+    );
+
+
+    lineas.push(
+        `💳 *Forma de pago:* ${detallePago}`
+    );
+
+
+    lineas.push(
+        "⏱️ *Tiempo de entrega:* 30 a 45 minutos"
+    );
+
+
+    lineas.push("");
+
+
+    lineas.push(
+        "📍 *DATOS DE ENTREGA*"
+    );
+
+
+    lineas.push(
+        `• *Cliente:* ${nombre}`
+    );
+
+
+    lineas.push(
+        `• *Teléfono:* ${telefono}`
+    );
+
+
+    lineas.push(
+        `• *Colonia:* ${colonia}`
+    );
+
+
+    lineas.push(
+        `• *Calle y #:* ${calleNum}`
+    );
+
+
+    lineas.push(
+        `• *Entre calles:* ${entreCalles}`
+    );
+
+
+    lineas.push(
+        `• *Referencia:* ${referencia}`
+    );
+
+
+    lineas.push(
+        `• *Comentarios:* ${comentarios}`
+    );
+
+
+    if (
+        metodoPago === "Transferencia"
+    ) {
+
+        lineas.push("");
+
+        lineas.push(
+            "📎 *IMPORTANTE:* Por favor adjunta ahora la foto de tu comprobante de transferencia en este chat de WhatsApp."
+        );
+
+    }
+
+
+    const mensajeTexto =
+        lineas.join("\n");
+
+
+    const urlWhatsApp =
+        `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(
+            mensajeTexto
+        )}`;
+
+
+    setTimeout(() => {
+
+        window.open(
+            urlWhatsApp,
+            "_blank"
+        );
+
+    }, 500);
+
+}
+
+
+/* AGREGAR EXTRAS AL MENSAJE */
+
+function agregarExtrasAlMensaje(
+    card,
+    selector,
+    titulo,
+    lineas
+) {
+
+    const extras = [];
+
+
+    card
+        .querySelectorAll(selector)
+        .forEach(input => {
+
+            const cantidad =
+                parseInt(input.value) || 0;
+
+
+            if (cantidad > 0) {
+
+                extras.push(
+                    `${cantidad}x ${input.getAttribute("data-name")}`
+                );
+
+            }
+
+        });
+
+
+    if (
+        extras.length > 0
+    ) {
+
+        lineas.push(
+            `• *${titulo}:* ${extras.join(", ")}`
+        );
+
+    }
+
+}
+
+
+/* INICIAR */
+
+window.onload = function() {
+
+    verificarHorario();
+
+    agregarEnsalada();
+
+};
+
+</script>
+
+</body>
+</html>
