@@ -610,15 +610,20 @@
             display: block;
         }
 
-        .promo-header-action {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f9fbf9;
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: 1px solid #c8e6c9;
-            margin-bottom: 15px;
+        .promo-bloqueada {
+            opacity: 0.5;
+            pointer-events: none;
+            background: #f9f9f9 !important;
+        }
+
+        .badge-bloqueado {
+            background: #d32f2f;
+            color: white;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 8px;
         }
 
         @media (max-width: 480px) {
@@ -739,29 +744,19 @@
         <div id="tabPromociones" class="tab-content">
             <div class="base-info-box" style="border-color: #f59e0b; background: #fffbeb;">
                 <div class="base-name">🔥 Promociones de la Semana</div>
-                <div class="base-mix-desc">Haz clic en el día de tu preferencia para ver la promoción, armar tu paquete y agregar la cantidad que gustes.</div>
+                <div class="base-mix-desc">Haz clic en el día activo para ver la promoción y armar tu paquete. Solo está disponible el día de hoy.</div>
             </div>
 
             <!-- LUNES -->
-            <div class="promo-day-card">
+            <div class="promo-day-card" id="card-promo-lunes">
                 <div class="promo-day-header" onclick="togglePromoDay('lunes')">
-                    <span>💼 Lunes de Godínez (Precio Especial $100)</span>
+                    <span>💼 Lunes de Godínez (Precio Especial $100) <span id="badge-lunes"></span></span>
                     <span id="arrow-lunes">▼</span>
                 </div>
                 <div class="promo-day-body" id="body-lunes">
                     <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
                         ¡Precio especial de $100 para empezar la semana con energía en la oficina!
                     </div>
-                    
-                    <div class="promo-header-action">
-                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
-                        <div class="quantity-control">
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('lunes', -1)">−</button>
-                            <span class="qty-number" id="qty-promo-lunes">1</span>
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('lunes', 1)">+</button>
-                        </div>
-                    </div>
-
                     <div id="contenedor-promo-lunes"></div>
                     <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('lunes', 'Lunes de Godínez', 100)">
                         + Agregar esta promo al pedido ($100)
@@ -770,25 +765,15 @@
             </div>
 
             <!-- MARTES -->
-            <div class="promo-day-card">
+            <div class="promo-day-card" id="card-promo-martes">
                 <div class="promo-day-header" onclick="togglePromoDay('martes')">
-                    <span>🥗 Martes de Mix Fresco (Precio Especial $100)</span>
+                    <span>🥗 Martes de Mix Fresco (Precio Especial $100) <span id="badge-martes"></span></span>
                     <span id="arrow-martes">▼</span>
                 </div>
                 <div class="promo-day-body" id="body-martes">
                     <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
                         Disfruta tus ingredientes favoritos a sólo $100 con descuento especial de martes.
                     </div>
-
-                    <div class="promo-header-action">
-                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
-                        <div class="quantity-control">
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('martes', -1)">−</button>
-                            <span class="qty-number" id="qty-promo-martes">1</span>
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('martes', 1)">+</button>
-                        </div>
-                    </div>
-
                     <div id="contenedor-promo-martes"></div>
                     <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('martes', 'Martes de Mix Fresco', 100)">
                         + Agregar esta promo al pedido ($100)
@@ -797,25 +782,15 @@
             </div>
 
             <!-- MIÉRCOLES -->
-            <div class="promo-day-card">
+            <div class="promo-day-card" id="card-promo-miercoles">
                 <div class="promo-day-header" onclick="togglePromoDay('miercoles')">
-                    <span>⭐ Miércoles Mitad de Semana (Precio Especial $100)</span>
+                    <span>⭐ Miércoles Mitad de Semana (Precio Especial $100) <span id="badge-miercoles"></span></span>
                     <span id="arrow-miercoles">▼</span>
                 </div>
                 <div class="promo-day-body" id="body-miercoles">
                     <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
                         Recarga pilas a mitad de semana con tu ensalada a sólo $100.
                     </div>
-
-                    <div class="promo-header-action">
-                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
-                        <div class="quantity-control">
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('miercoles', -1)">−</button>
-                            <span class="qty-number" id="qty-promo-miercoles">1</span>
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('miercoles', 1)">+</button>
-                        </div>
-                    </div>
-
                     <div id="contenedor-promo-miercoles"></div>
                     <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('miercoles', 'Miércoles Mitad de Semana', 100)">
                         + Agregar esta promo al pedido ($100)
@@ -824,25 +799,15 @@
             </div>
 
             <!-- JUEVES -->
-            <div class="promo-day-card">
+            <div class="promo-day-card" id="card-promo-jueves">
                 <div class="promo-day-header" onclick="togglePromoDay('jueves')">
-                    <span>🥑 Jueves Saludable (Precio Especial $100)</span>
+                    <span>🥑 Jueves Saludable (Precio Especial $100) <span id="badge-jueves"></span></span>
                     <span id="arrow-jueves">▼</span>
                 </div>
                 <div class="promo-day-body" id="body-jueves">
                     <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
                         Cuídate este jueves con nuestras combinaciones especiales a $100.
                     </div>
-
-                    <div class="promo-header-action">
-                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
-                        <div class="quantity-control">
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('jueves', -1)">−</button>
-                            <span class="qty-number" id="qty-promo-jueves">1</span>
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('jueves', 1)">+</button>
-                        </div>
-                    </div>
-
                     <div id="contenedor-promo-jueves"></div>
                     <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('jueves', 'Jueves Saludable', 100)">
                         + Agregar esta promo al pedido ($100)
@@ -851,25 +816,15 @@
             </div>
 
             <!-- VIERNES (COMBO 2 x $200 ESTRICTO) -->
-            <div class="promo-day-card">
+            <div class="promo-day-card" id="card-promo-viernes">
                 <div class="promo-day-header" onclick="togglePromoDay('viernes')">
-                    <span>🎉 Viernes de Combos (2 x $200)</span>
+                    <span>🎉 Viernes de Combos (2 x $200) <span id="badge-viernes"></span></span>
                     <span id="arrow-viernes">▼</span>
                 </div>
                 <div class="promo-day-body" id="body-viernes">
                     <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
                         Incluye exactamente <strong>2 ensaladas completas</strong> por sólo $200 MXN ($100 c/u). Arma ambas a continuación:
                     </div>
-
-                    <div class="promo-header-action">
-                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de paquetes de 2x$200:</span>
-                        <div class="quantity-control">
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('viernes', -1)">−</button>
-                            <span class="qty-number" id="qty-promo-viernes">1</span>
-                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('viernes', 1)">+</button>
-                        </div>
-                    </div>
-
                     <div id="contenedor-promo-viernes"></div>
                     <button type="button" id="btnAgregarViernes" class="btn-add-ensalada" onclick="agregarComboViernes()">
                         + Agregar Combo de 2 Ensaladas ($200)
@@ -1024,24 +979,6 @@ let contadorPromosDia = 0;
 let pestañaActual = 'menu';
 let cocinaAbierta = true;
 
-// Almacena la cantidad seleccionada para cada promoción por día
-let cantidadesPromo = {
-    lunes: 1,
-    martes: 1,
-    miercoles: 1,
-    jueves: 1,
-    viernes: 1
-};
-
-function cambiarCantidadPromoDia(dia, cambio) {
-    cantidadesPromo[dia] += cambio;
-    if (cantidadesPromo[dia] < 1) {
-        cantidadesPromo[dia] = 1;
-    }
-    document.getElementById(`qty-promo-${dia}`).textContent = cantidadesPromo[dia];
-    calcularTotal();
-}
-
 function toggleInfoBox() {
     const box = document.getElementById("infoContentBox");
     const arrow = document.getElementById("infoArrow");
@@ -1109,6 +1046,38 @@ function verificarHorario() {
     }
 }
 
+// Bloquear días que no correspondan (0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb)
+function configurarDiasPromocion() {
+    const ahora = new Date();
+    const diaActualNum = ahora.getDay(); 
+    
+    const mapaDias = {
+        1: 'lunes',
+        2: 'martes',
+        3: 'miercoles',
+        4: 'jueves',
+        5: 'viernes'
+    };
+
+    const diasSemanaArr = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
+
+    diasSemanaArr.forEach(dia => {
+        const tarjetaCard = document.getElementById(`card-promo-${dia}`);
+        const badgeSpan = document.getElementById(`badge-${dia}`);
+        
+        // Verificamos si coincide con el día de hoy
+        const esHoy = (mapaDias[diaActualNum] === dia);
+
+        if (!esHoy) {
+            tarjetaCard.classList.add("promo-bloqueada");
+            badgeSpan.innerHTML = '<span class="badge-bloqueado">Solo disponible el día de hoy</span>';
+        } else {
+            tarjetaCard.classList.remove("promo-bloqueada");
+            badgeSpan.innerHTML = '';
+        }
+    });
+}
+
 function obtenerSiguienteFolio() {
     let ultimoFolio = localStorage.getItem("verdemix_last_folio");
     let siguienteNum = 1;
@@ -1135,15 +1104,13 @@ function agregarEnsalada() {
 function agregarPromoEnDia(dia, nombrePromo, precioPromo) {
     contadorPromosDia++;
     const id = contadorPromosDia;
-    const multiplicador = cantidadesPromo[dia] || 1;
     const contenedor = document.getElementById(`contenedor-promo-${dia}`);
     const card = document.createElement("div");
     card.className = "ensalada-card-block promo-item-block";
     card.setAttribute("data-promo-nombre", nombrePromo);
-    card.setAttribute("data-multiplicador", multiplicador);
     card.id = `promo-item-${dia}-${id}`;
 
-    card.innerHTML = construirEstructuraEnsalada(`promo-${dia}-${id}`, `${nombrePromo} (Cant: ${multiplicador}) #${id}`, true, precioPromo * multiplicador);
+    card.innerHTML = construirEstructuraEnsalada(`promo-${dia}-${id}`, `${nombrePromo} #${id}`, true, precioPromo);
     contenedor.appendChild(card);
     calcularTotal();
 }
@@ -1152,13 +1119,10 @@ function agregarPromoEnDia(dia, nombrePromo, precioPromo) {
 function agregarComboViernes() {
     contadorPromosDia++;
     const comboId = contadorPromosDia;
-    const multiplicador = cantidadesPromo['viernes'] || 1;
     const contenedor = document.getElementById(`contenedor-promo-viernes`);
     
     const wrapperCombo = document.createElement("div");
-    wrapperCombo.className = "promo-combo-viernes-block promo-item-block";
-    wrapperCombo.setAttribute("data-promo-nombre", "Viernes de Combos (2x$200)");
-    wrapperCombo.setAttribute("data-multiplicador", multiplicador);
+    wrapperCombo.className = "promo-combo-viernes-block";
     wrapperCombo.id = `combo-viernes-${comboId}`;
     wrapperCombo.style.border = "2px dashed var(--primary-color)";
     wrapperCombo.style.borderRadius = "14px";
@@ -1168,7 +1132,7 @@ function agregarComboViernes() {
 
     wrapperCombo.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid #c8e6c9; padding-bottom:8px;">
-            <strong style="color:var(--primary-dark); font-size:15px;">🎁 Paquete Viernes 2 x $200 (Cant: ${multiplicador}) (#${comboId})</strong>
+            <strong style="color:var(--primary-dark); font-size:15px;">🎁 Paquete Viernes 2 x $200 (#${comboId})</strong>
             <button type="button" class="btn-eliminar-ensalada" onclick="eliminarComboViernes(${comboId})">Eliminar Combo</button>
         </div>
         <div id="sub-ensaladas-${comboId}"></div>
@@ -1178,16 +1142,18 @@ function agregarComboViernes() {
 
     const subContenedor = document.getElementById(`sub-ensaladas-${comboId}`);
     
-    // Ensalada 1 del combo ($100 base * multiplicador)
+    // Ensalada 1 del combo ($100 base)
     const card1 = document.createElement("div");
-    card1.className = "ensalada-card-block";
-    card1.innerHTML = construirEstructuraEnsalada(`v1-${comboId}`, `Ensalada 1 del Combo (x${multiplicador})`, false, 100 * multiplicador);
+    card1.className = "ensalada-card-block promo-item-block";
+    card1.setAttribute("data-promo-nombre", "Viernes de Combos - Ensalada combo número uno");
+    card1.innerHTML = construirEstructuraEnsalada(`v1-${comboId}`, `Ensalada combo número uno`, false, 100);
     subContenedor.appendChild(card1);
 
-    // Ensalada 2 del combo ($100 base * multiplicador)
+    // Ensalada 2 del combo ($100 base)
     const card2 = document.createElement("div");
-    card2.className = "ensalada-card-block";
-    card2.innerHTML = construirEstructuraEnsalada(`v2-${comboId}`, `Ensalada 2 del Combo (x${multiplicador})`, false, 100 * multiplicador);
+    card2.className = "ensalada-card-block promo-item-block";
+    card2.setAttribute("data-promo-nombre", "Viernes de Combos - Ensalada combo número dos");
+    card2.innerHTML = construirEstructuraEnsalada(`v2-${comboId}`, `Ensalada combo número dos`, false, 100);
     subContenedor.appendChild(card2);
 
     document.getElementById("btnAgregarViernes").style.display = "none";
@@ -1216,7 +1182,7 @@ function construirEstructuraEnsalada(uniqueId, tituloTexto, permitirEliminar, pr
         </div>
 
         <div class="barra-fria-list">
-            ${crearBarraFria(uniqueId, "Zanahoria Rallada")}
+            ${crearBarraFria(uniqueId, "Zanahoria")}
             ${crearBarraFria(uniqueId, "Jícama")}
             ${crearBarraFria(uniqueId, "Betabel")}
             ${crearBarraFria(uniqueId, "Pasta")}
@@ -1383,6 +1349,7 @@ function calcularTotal() {
     let totalComida = 0;
     let hayItemsSeleccionados = false;
 
+    // Seleccionamos tanto el menú regular como cualquier bloque de promo que esté dentro de las pestañas
     const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
     if (todasLasEnsaladas.length > 0) hayItemsSeleccionados = true;
 
@@ -1470,8 +1437,16 @@ function enviarWhatsApp() {
     ];
 
     todasLasEnsaladas.forEach((card, index) => {
-        let titulo = card.getAttribute("data-promo-nombre") || `Ensalada Regular #${index + 1}`;
-        procesarCardEnMensaje(card, `${titulo} (${index + 1})`, lineas);
+        let tituloCustom = card.getAttribute("data-promo-nombre");
+        let tituloItem = "";
+        
+        if (tituloCustom) {
+            tituloItem = `Pedido ${tituloCustom}`;
+        } else {
+            tituloItem = `Pedido regular (Ensalada Regular #${index + 1})`;
+        }
+        
+        procesarCardEnMensaje(card, tituloItem, lineas);
     });
 
     const total = calcularTotal();
@@ -1553,6 +1528,7 @@ function agregarExtrasAlMensaje(card, selector, titulo, lineas) {
 
 window.onload = function() {
     verificarHorario();
+    configurarDiasPromocion();
     document.getElementById("precioTotal").textContent = "$0.00 MXN";
 };
 
