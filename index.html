@@ -573,6 +573,90 @@
             font-size: 13px;
         }
 
+        /* Estilos de la Ventana Flotante (Modal de Confirmación) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .modal-card {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.3s ease;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .modal-body {
+            font-size: 13px;
+            color: var(--text-main);
+            overflow-y: auto;
+            max-height: 50vh;
+            background: #f9fbf9;
+            border: 1px solid #dfe5df;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            white-space: pre-line;
+            line-height: 1.5;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-modal-cancel {
+            flex: 1;
+            background: #f1f1f1;
+            color: #333;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-modal-confirm {
+            flex: 1;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
         /* Tarjetas de Promociones por Día Estilo Acordeón */
         .promo-day-card {
             background: #ffffff;
@@ -659,6 +743,23 @@
 
 <div id="avisoAlertaFlotante">
     ¡Tu pedido se está generando para WhatsApp! 🥗📱
+</div>
+
+<!-- VENTANA FLOTANTE (MODAL) DE CONFIRMACIÓN -->
+<div id="modalConfirmacion" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">📋 Revisa tu Pedido</div>
+        <div style="font-size: 12px; color: var(--text-sub); text-align: center; margin-bottom: 8px;">
+            Este es un resumen rápido de lo que vas a pedir:
+        </div>
+        <div id="modalResumenTexto" class="modal-body">
+            <!-- Aquí se inyecta el resumen limpio -->
+        </div>
+        <div class="modal-buttons">
+            <button type="button" class="btn-modal-cancel" onclick="cerrarModal()">Regresar a editar</button>
+            <button type="button" class="btn-modal-confirm" onclick="ejecutarEnvioWhatsAppFinal()">Confirmar y Enviar</button>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -815,7 +916,7 @@
                 </div>
             </div>
 
-            <!-- VIERNES (COMBO 2 x $200 ESTRICTO) -->
+            <!-- VIERNES -->
             <div class="promo-day-card" id="card-promo-viernes">
                 <div class="promo-day-header" onclick="togglePromoDay('viernes')">
                     <span>🎉 Viernes de Combos (2 x $200) <span id="badge-viernes"></span></span>
@@ -961,7 +1062,7 @@
                 <span id="precioTotal" style="color:var(--primary-dark);">$0.00 MXN</span>
             </div>
 
-            <button type="button" id="btnEnviarPedido" class="btn-whatsapp" onclick="enviarWhatsApp()">
+            <button type="button" id="btnEnviarPedido" class="btn-whatsapp" onclick="prepararVentanaConfirmacion()">
                 Enviar Pedido por WhatsApp 📱
             </button>
         </div>
@@ -1046,7 +1147,6 @@ function verificarHorario() {
     }
 }
 
-// Bloquear días que no correspondan (0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb)
 function configurarDiasPromocion() {
     const ahora = new Date();
     const diaActualNum = ahora.getDay(); 
@@ -1064,8 +1164,6 @@ function configurarDiasPromocion() {
     diasSemanaArr.forEach(dia => {
         const tarjetaCard = document.getElementById(`card-promo-${dia}`);
         const badgeSpan = document.getElementById(`badge-${dia}`);
-        
-        // Verificamos si coincide con el día de hoy
         const esHoy = (mapaDias[diaActualNum] === dia);
 
         if (!esHoy) {
@@ -1115,7 +1213,6 @@ function agregarPromoEnDia(dia, nombrePromo, precioPromo) {
     calcularTotal();
 }
 
-// Función exclusiva para Viernes: Agrega un paquete de exactamente 2 ensaladas por $200 ($100 c/u)
 function agregarComboViernes() {
     contadorPromosDia++;
     const comboId = contadorPromosDia;
@@ -1142,14 +1239,12 @@ function agregarComboViernes() {
 
     const subContenedor = document.getElementById(`sub-ensaladas-${comboId}`);
     
-    // Ensalada 1 del combo ($100 base)
     const card1 = document.createElement("div");
     card1.className = "ensalada-card-block promo-item-block";
     card1.setAttribute("data-promo-nombre", "Viernes de Combos - Ensalada combo número uno");
     card1.innerHTML = construirEstructuraEnsalada(`v1-${comboId}`, `Ensalada combo número uno`, false, 100);
     subContenedor.appendChild(card1);
 
-    // Ensalada 2 del combo ($100 base)
     const card2 = document.createElement("div");
     card2.className = "ensalada-card-block promo-item-block";
     card2.setAttribute("data-promo-nombre", "Viernes de Combos - Ensalada combo número dos");
@@ -1349,7 +1444,6 @@ function calcularTotal() {
     let totalComida = 0;
     let hayItemsSeleccionados = false;
 
-    // Seleccionamos tanto el menú regular como cualquier bloque de promo que esté dentro de las pestañas
     const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
     if (todasLasEnsaladas.length > 0) hayItemsSeleccionados = true;
 
@@ -1376,14 +1470,14 @@ function calcularTotal() {
     return totalComida;
 }
 
-function enviarWhatsApp() {
+// 1. Abre la ventana flotante (Modal) con el resumen limpio
+function prepararVentanaConfirmacion() {
     if (!cocinaAbierta) {
         alert("🔒 La cocina se encuentra cerrada en este momento. Te esperamos en nuestro horario de Lunes a Viernes de 9:00 a.m. a 5:00 p.m.");
         return;
     }
 
     const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
-    
     if (todasLasEnsaladas.length === 0) {
         alert("Por favor agrega al menos 1 ensalada o promoción.");
         return;
@@ -1393,14 +1487,74 @@ function enviarWhatsApp() {
     const telefono = document.getElementById("clienteTelefono").value.trim();
     const colonia = document.getElementById("clienteColonia").value;
     const calleNum = document.getElementById("clienteCalleNum").value.trim();
-    const entreCalles = document.getElementById("clienteEntreCalles").value.trim() || "No especificado";
-    const referencia = document.getElementById("clienteReferencia").value.trim() || "Sin referencia";
-    const comentarios = document.getElementById("clienteComentarios").value.trim() || "Ninguno";
 
     if (!nombre || !telefono || !colonia || !calleNum) {
         alert("Por favor completa todos los datos obligatorios para el envío.");
         return;
     }
+
+    const metodoPago = document.querySelector('input[name="metodoPago"]:checked')?.value || "Efectivo";
+    if (metodoPago === "Transferencia") {
+        const comprobanteInput = document.getElementById("comprobantePago");
+        if (!comprobanteInput.files || comprobanteInput.files.length === 0) {
+            alert("⚠️ Selecciona la foto de tu comprobante de pago.");
+            return;
+        }
+    }
+
+    // Generar resumen limpio solo con lo esencial
+    let resumenHtml = [];
+    todasLasEnsaladas.forEach((card, index) => {
+        let tituloCustom = card.getAttribute("data-promo-nombre");
+        let tituloItem = tituloCustom ? `${tituloCustom}` : `Ensalada Regular #${index + 1}`;
+        
+        let barraFria = [];
+        card.querySelectorAll(".barra-fria-quantity-input").forEach(input => {
+            const cant = parseInt(input.value) || 0;
+            if (cant > 0) barraFria.push(`${cant}x ${input.getAttribute("data-name")}`);
+        });
+
+        let proteina = "No seleccionada";
+        let aderezo = "No seleccionado";
+        let crocante = "No seleccionado";
+
+        card.querySelectorAll('input[type="radio"]:checked').forEach(r => {
+            if (r.name.startsWith("proteina_")) proteina = r.value;
+            if (r.name.startsWith("aderezo_")) aderezo = r.value;
+            if (r.name.startsWith("crocante_")) crocante = r.value;
+        });
+
+        resumenHtml.push(`• *${tituloItem}*`);
+        resumenHtml.push(`  - Barra: ${barraFria.join(", ") || "Ninguna"}`);
+        resumenHtml.push(`  - Proteína: ${proteina}`);
+        resumenHtml.push(`  - Aderezo: ${aderezo}`);
+        resumenHtml.push(`  - Crocante: ${crocante}\n`);
+    });
+
+    const total = calcularTotal();
+    resumenHtml.push(`💰 *Total a pagar:* $${total.toFixed(2)} MXN`);
+    resumenHtml.push(`📍 *Destino:* ${colonia}, ${calleNum}`);
+
+    document.getElementById("modalResumenTexto").innerText = resumenHtml.join("\n");
+    document.getElementById("modalConfirmacion").style.display = "flex";
+}
+
+function cerrarModal() {
+    document.getElementById("modalConfirmacion").style.display = "none";
+}
+
+// 2. Ejecuta el envío real a WhatsApp tras confirmar en el modal
+function ejecutarEnvioWhatsAppFinal() {
+    cerrarModal();
+
+    const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
+    const nombre = document.getElementById("clienteNombre").value.trim();
+    const telefono = document.getElementById("clienteTelefono").value.trim();
+    const colonia = document.getElementById("clienteColonia").value;
+    const calleNum = document.getElementById("clienteCalleNum").value.trim();
+    const entreCalles = document.getElementById("clienteEntreCalles").value.trim() || "No especificado";
+    const referencia = document.getElementById("clienteReferencia").value.trim() || "Sin referencia";
+    const comentarios = document.getElementById("clienteComentarios").value.trim() || "Ninguno";
 
     const metodoPago = document.querySelector('input[name="metodoPago"]:checked')?.value || "Efectivo";
     let detallePago = metodoPago;
@@ -1409,11 +1563,6 @@ function enviarWhatsApp() {
         const cambio = document.getElementById("cambioEfectivo").value.trim();
         if (cambio) detallePago += ` (Paga con: ${cambio})`;
     } else {
-        const comprobanteInput = document.getElementById("comprobantePago");
-        if (!comprobanteInput.files || comprobanteInput.files.length === 0) {
-            alert("⚠️ Selecciona la foto de tu comprobante de pago.");
-            return;
-        }
         detallePago = "Transferencia";
     }
 
@@ -1438,14 +1587,7 @@ function enviarWhatsApp() {
 
     todasLasEnsaladas.forEach((card, index) => {
         let tituloCustom = card.getAttribute("data-promo-nombre");
-        let tituloItem = "";
-        
-        if (tituloCustom) {
-            tituloItem = `Pedido ${tituloCustom}`;
-        } else {
-            tituloItem = `Pedido regular (Ensalada Regular #${index + 1})`;
-        }
-        
+        let tituloItem = tituloCustom ? `Pedido ${tituloCustom}` : `Pedido regular (Ensalada Regular #${index + 1})`;
         procesarCardEnMensaje(card, tituloItem, lineas);
     });
 
@@ -1514,7 +1656,6 @@ function procesarCardEnMensaje(card, tituloItem, lineas) {
 
 function agregarExtrasAlMensaje(card, selector, titulo, lineas) {
     const extras = [];
-  
     card.querySelectorAll(selector).forEach(input => {
         const cantidad = parseInt(input.value) || 0;
         if (cantidad > 0) {
