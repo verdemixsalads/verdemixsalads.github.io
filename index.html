@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verde Mix Salads</title>
+    <!-- Google Fonts: Poppins y Pacifico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2e7d32;
             --primary-dark: #1b5e20;
-            --bg-color: #EFEAD8;
+            --bg-color: #F4EEDC;
             --card-bg: #ffffff;
             --text-main: #1f2937;
             --text-sub: #4b5563;
@@ -20,7 +24,7 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
@@ -33,17 +37,18 @@
             background: var(--card-bg);
             padding: 25px;
             border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
         .header {
             text-align: center;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .logo-img {
-            max-width: 160px;
+            max-width: 140px;
             height: auto;
             display: block;
             margin: 0 auto 10px auto;
@@ -51,11 +56,10 @@
 
         h1 {
             color: var(--primary-dark);
-            margin: 14px 0 8px 0;
-            font-size: 22px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-style: normal;
-            font-weight: 800;
+            margin: 10px 0 6px 0;
+            font-size: 26px;
+            font-family: 'Pacifico', cursive;
+            font-weight: 400;
             letter-spacing: 0.5px;
             line-height: 1.3;
         }
@@ -66,64 +70,194 @@
             margin: 0;
         }
 
-        .schedule-badge {
-            background-color: #e8f5e9;
-            color: var(--primary-dark);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 13px;
+        .info-dropdown-btn {
+            width: 100%;
+            background-color: #f7f4ea;
+            border: 1px solid #e2dac4;
+            color: var(--text-main);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
             font-weight: 700;
-            display: inline-block;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+            transition: background-color 0.2s;
+        }
+
+        .info-dropdown-btn:hover {
+            background-color: #efe7d2;
+        }
+
+        .info-content-box {
+            display: none;
+            background-color: #faf7f0;
+            border: 1px solid #e2dac4;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .info-content-box.active {
+            display: block;
+        }
+
+        .social-icons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
             margin-top: 12px;
+        }
+
+        .social-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #ffffff;
             border: 1px solid #c8e6c9;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .social-icon-link:hover {
+            transform: scale(1.1);
+            background-color: #e8f5e9;
+        }
+
+        .social-icon-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--primary-dark);
+        }
+
+        .schedule-badge {
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .btn-share {
+            background: #ffffff;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-dark);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-share:hover {
+            background-color: #e8f5e9;
+        }
+
+        .nav-tabs-container {
+            display: flex;
+            gap: 20px;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 22px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 2px;
+        }
+
+        .nav-tab-item {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-sub);
+            padding-bottom: 8px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-tab-item.active {
+            color: var(--primary-dark);
+        }
+
+        .nav-tab-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-dark);
+            border-radius: 2px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .base-info-box {
             background-color: #f1f8f2;
             border-radius: 12px;
             padding: 12px;
-            margin-top: 15px;
+            margin-bottom: 18px;
             border: 1px solid #c8e6c9;
         }
 
         .base-name {
             color: var(--text-main);
             font-weight: 900;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .base-price-tag {
             color: var(--primary-dark);
             font-weight: 900;
-            font-size: 19px;
-            margin-top: 5px;
+            font-size: 18px;
+            margin-top: 3px;
         }
 
         .base-mix-desc {
             color: var(--text-sub);
             font-size: 13px;
-            margin-top: 5px;
+            margin-top: 3px;
         }
 
         .delivery-notice {
             background-color: #e8f5e9;
             border: 1.5px dashed var(--primary-color);
             color: var(--primary-dark);
-            padding: 10px;
+            padding: 9px;
             border-radius: 8px;
             text-align: center;
             font-weight: 700;
             font-size: 13px;
-            margin-top: 12px;
+            margin-bottom: 18px;
         }
 
         .ensalada-card-block {
             background: #ffffff;
             border: 1px solid #d8e4d9;
             border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
         }
 
         .ensalada-header-title {
@@ -133,7 +267,7 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
             margin-bottom: 15px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
         }
 
@@ -141,18 +275,19 @@
             background-color: #ffebee;
             color: #c62828;
             border: 1px solid #ef9a9a;
-            padding: 5px 10px;
+            padding: 4px 10px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
 
         .section-title {
             color: var(--text-main);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
-            margin: 22px 0 10px 0;
+            margin: 18px 0 8px 0;
         }
 
         .options-grid {
@@ -189,13 +324,13 @@
         .barra-fria-list {
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 8px;
         }
 
         .barra-fria-row {
             border: 1px solid #dfe5df;
             border-radius: 10px;
-            padding: 9px 10px;
+            padding: 8px 10px;
             background: #ffffff;
             display: flex;
             align-items: center;
@@ -215,21 +350,29 @@
             gap: 6px;
         }
 
-        .barra-qty-btn {
-            width: 28px;
-            height: 28px;
+        .nice-qty-btn {
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            border: none;
-            background: var(--primary-dark);
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
+            border: 1.5px solid var(--primary-color);
+            background: #f1f8f2;
+            color: var(--primary-dark);
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
-            line-height: 20px;
-            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .barra-qty-number {
+        .nice-qty-btn:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .barra-qty-number, .qty-number {
             min-width: 20px;
             text-align: center;
             font-size: 13px;
@@ -239,13 +382,13 @@
         .option-extra-list {
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 8px;
         }
 
         .option-extra-row {
             border: 1px solid #dfe5df;
             border-radius: 10px;
-            padding: 9px 10px;
+            padding: 8px 10px;
             background: #ffffff;
             display: flex;
             align-items: center;
@@ -261,8 +404,8 @@
         }
 
         .main-option input {
-            width: 17px;
-            height: 17px;
+            width: 16px;
+            height: 16px;
             accent-color: var(--primary-color);
             margin-right: 8px;
             flex-shrink: 0;
@@ -301,27 +444,6 @@
             gap: 5px;
         }
 
-        .qty-btn {
-            width: 27px;
-            height: 27px;
-            border-radius: 50%;
-            border: none;
-            background: var(--primary-dark);
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 20px;
-            padding: 0;
-        }
-
-        .qty-number {
-            min-width: 16px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 800;
-        }
-
         .btn-add-ensalada {
             width: 100%;
             background-color: #f1f8f2;
@@ -332,7 +454,8 @@
             font-size: 14px;
             font-weight: 700;
             cursor: pointer;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
+            font-family: 'Poppins', sans-serif;
         }
 
         .form-group {
@@ -419,52 +542,7 @@
             font-size: 15px;
             font-weight: 800;
             cursor: pointer;
-        }
-
-        /* Footer Social Icons Section */
-        .footer-social-section {
-            text-align: center;
-            margin-top: 35px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-social-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-sub);
-            margin-bottom: 12px;
-        }
-
-        .social-icons-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .social-icon-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #f1f8f2;
-            border: 1px solid #c8e6c9;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            text-decoration: none;
-        }
-
-        .social-icon-link:hover {
-            transform: scale(1.1);
-            background-color: #e8f5e9;
-        }
-
-        .social-icon-link svg {
-            width: 22px;
-            height: 22px;
-            fill: var(--primary-dark);
+            font-family: 'Poppins', sans-serif;
         }
 
         #avisoAlertaFlotante {
@@ -482,15 +560,65 @@
             z-index: 9999;
         }
 
-        #avisoCerrado {
+        #avisoCerradoAviso {
             display: none;
-            background-color: #ffebee;
-            border: 2px solid #d32f2f;
-            color: #b71c1c;
-            padding: 20px;
+            background-color: #fff8e1;
+            border: 2px solid #ffb300;
+            color: #8f6b00;
+            padding: 14px;
             border-radius: 12px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* Tarjetas de Promociones por Día Estilo Acordeón */
+        .promo-day-card {
+            background: #ffffff;
+            border: 1px solid #d8e4d9;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .promo-day-header {
+            background: #f1f8f2;
+            padding: 14px 16px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2dac4;
+        }
+
+        .promo-day-header:hover {
+            background: #e2f0e3;
+        }
+
+        .promo-day-body {
+            display: none;
+            padding: 16px;
+            background: #ffffff;
+        }
+
+        .promo-day-body.active {
+            display: block;
+        }
+
+        .promo-header-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9fbf9;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #c8e6c9;
+            margin-bottom: 15px;
         }
 
         @media (max-width: 480px) {
@@ -501,7 +629,7 @@
                 padding: 16px;
             }
             h1 {
-                font-size: 20px;
+                font-size: 24px;
             }
             .main-option-text {
                 font-size: 12px;
@@ -510,10 +638,10 @@
             .extra-price {
                 font-size: 10px;
             }
-            .qty-btn,
-            .barra-qty-btn {
-                width: 25px;
-                height: 25px;
+            .nice-qty-btn {
+                width: 27px;
+                height: 27px;
+                font-size: 14px;
             }
             .barra-fria-name {
                 font-size: 12px;
@@ -531,82 +659,244 @@
 <div class="container">
 
     <div class="header">
-
         <img
             class="logo-img"
             src="logo.png"
             onerror="this.src='logo.jpg';"
             alt="Verde Mix Salads">
 
-        <h1>Tu Mix más fresco del día</h1>
+        <h1>"Tu mix más fresco del día"</h1>
 
         <p class="subtitle">
             ¡Selecciona tus ingredientes favoritos y arma tu ensalada!
         </p>
 
-        <div class="schedule-badge">
-            🕒 Horario: Lun a Vie 9:00 a.m. a 5:00 p.m.
-            <br>
-            Sábado y Domingo: Descanso
-        </div>
+        <button type="button" class="info-dropdown-btn" onclick="toggleInfoBox()">
+            <span>ℹ️ Información</span>
+            <span id="infoArrow">▼</span>
+        </button>
 
-        <div class="base-info-box">
-            <div class="base-name">
-                Ensalada Mix
+        <div id="infoContentBox" class="info-content-box">
+            <div class="schedule-badge">
+                🕒 <strong>Horarios:</strong><br>
+                Lun a Vie: 9:00 a.m. a 5:00 p.m.<br>
+                Sáb y Dom: Descanso
             </div>
-            <div class="base-price-tag">
-                $120.00 MXN c/u
+
+            <div class="social-icons-container">
+                <a href="https://wa.me/523111170609?text=Hola,%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20sus%20ensaladas." target="_blank" class="social-icon-link" title="Escríbenos por WhatsApp">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1c1UhLPyNt/" target="_blank" class="social-icon-link" title="Visita nuestro Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.615V8z"/></svg>
+                </a>
+                <a href="#" target="_blank" class="social-icon-link" title="Instagram (Próximamente)">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" target="_blank" class="social-icon-link" title="TikTok (Próximamente)">
+                    <svg viewBox="0 0 24 24"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.242V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002-.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.853 4.853 0 0 1-1.003-.104z"/></svg>
+                </a>
             </div>
-            <div class="base-mix-desc">
-                Incluye la mezcla base: Lechuga, Espinaca y Col Morada
+
+            <div>
+                <button type="button" class="btn-share" onclick="compartirPagina()">
+                    🔗 Compartir Página
+                </button>
             </div>
         </div>
-
-        <div class="delivery-notice">
-            🚲 Servicio a domicilio incluido
-        </div>
-
     </div>
 
-    <div id="avisoCerrado">
-        <h2 style="margin-top:0;">
-            🔒 COCINA CERRADA
-        </h2>
-        <p id="textoCerrado">
-            Nuestro horario es de lunes a viernes de 9:00 a.m. a 5:00 p.m.
-        </p>
+    <div id="avisoCerradoAviso">
+        🔒 <strong>COCINA CERRADA</strong><br>
+        Puedes explorar nuestro menú y promociones, pero los pedidos están temporales hasta nuestro horario (Lun a Vie de 9:00 a.m. a 5:00 p.m.).
+    </div>
+
+    <div class="nav-tabs-container">
+        <button type="button" class="nav-tab-item active" onclick="cambiarPestana('menu')">🥗 Menú Regular</button>
+        <button type="button" class="nav-tab-item" onclick="cambiarPestana('promociones')">🔥 Promociones</button>
     </div>
 
     <form id="pedidoForm">
 
-        <div id="ensaladasContenedor"></div>
+        <!-- CONTENIDO 1: MENÚ REGULAR -->
+        <div id="tabMenu" class="tab-content active">
+            <div class="base-info-box">
+                <div class="base-name">Ensalada Mix</div>
+                <div class="base-price-tag">$120.00 MXN c/u</div>
+                <div class="base-mix-desc">Incluye la mezcla base: Lechuga, Espinaca y Col Morada</div>
+            </div>
 
-        <button
-            type="button"
-            class="btn-add-ensalada"
-            onclick="agregarEnsalada()">
-            + Agregar otra ensalada al pedido
-        </button>
+            <div class="delivery-notice">🚲 Servicio a domicilio incluido</div>
 
-        <div
-            class="section-title"
-            style="font-size:18px; border-left:4px solid var(--primary-dark); padding-left:8px;">
+            <div id="ensaladasContenedor"></div>
+
+            <button type="button" class="btn-add-ensalada" onclick="agregarEnsalada()">
+                + Agregar otra ensalada al pedido
+            </button>
+        </div>
+
+        <!-- CONTENIDO 2: PROMOCIONES POR DÍAS (ACORDEÓN) -->
+        <div id="tabPromociones" class="tab-content">
+            <div class="base-info-box" style="border-color: #f59e0b; background: #fffbeb;">
+                <div class="base-name">🔥 Promociones de la Semana</div>
+                <div class="base-mix-desc">Haz clic en el día de tu preferencia para ver la promoción, armar tu paquete y agregar la cantidad que gustes.</div>
+            </div>
+
+            <!-- LUNES -->
+            <div class="promo-day-card">
+                <div class="promo-day-header" onclick="togglePromoDay('lunes')">
+                    <span>💼 Lunes de Godínez (Precio Especial $100)</span>
+                    <span id="arrow-lunes">▼</span>
+                </div>
+                <div class="promo-day-body" id="body-lunes">
+                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                        ¡Precio especial de $100 para empezar la semana con energía en la oficina!
+                    </div>
+                    
+                    <div class="promo-header-action">
+                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
+                        <div class="quantity-control">
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('lunes', -1)">−</button>
+                            <span class="qty-number" id="qty-promo-lunes">1</span>
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('lunes', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div id="contenedor-promo-lunes"></div>
+                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('lunes', 'Lunes de Godínez', 100)">
+                        + Agregar esta promo al pedido ($100)
+                    </button>
+                </div>
+            </div>
+
+            <!-- MARTES -->
+            <div class="promo-day-card">
+                <div class="promo-day-header" onclick="togglePromoDay('martes')">
+                    <span>🥗 Martes de Mix Fresco (Precio Especial $100)</span>
+                    <span id="arrow-martes">▼</span>
+                </div>
+                <div class="promo-day-body" id="body-martes">
+                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                        Disfruta tus ingredientes favoritos a sólo $100 con descuento especial de martes.
+                    </div>
+
+                    <div class="promo-header-action">
+                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
+                        <div class="quantity-control">
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('martes', -1)">−</button>
+                            <span class="qty-number" id="qty-promo-martes">1</span>
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('martes', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div id="contenedor-promo-martes"></div>
+                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('martes', 'Martes de Mix Fresco', 100)">
+                        + Agregar esta promo al pedido ($100)
+                    </button>
+                </div>
+            </div>
+
+            <!-- MIÉRCOLES -->
+            <div class="promo-day-card">
+                <div class="promo-day-header" onclick="togglePromoDay('miercoles')">
+                    <span>⭐ Miércoles Mitad de Semana (Precio Especial $100)</span>
+                    <span id="arrow-miercoles">▼</span>
+                </div>
+                <div class="promo-day-body" id="body-miercoles">
+                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                        Recarga pilas a mitad de semana con tu ensalada a sólo $100.
+                    </div>
+
+                    <div class="promo-header-action">
+                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
+                        <div class="quantity-control">
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('miercoles', -1)">−</button>
+                            <span class="qty-number" id="qty-promo-miercoles">1</span>
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('miercoles', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div id="contenedor-promo-miercoles"></div>
+                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('miercoles', 'Miércoles Mitad de Semana', 100)">
+                        + Agregar esta promo al pedido ($100)
+                    </button>
+                </div>
+            </div>
+
+            <!-- JUEVES -->
+            <div class="promo-day-card">
+                <div class="promo-day-header" onclick="togglePromoDay('jueves')">
+                    <span>🥑 Jueves Saludable (Precio Especial $100)</span>
+                    <span id="arrow-jueves">▼</span>
+                </div>
+                <div class="promo-day-body" id="body-jueves">
+                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                        Cuídate este jueves con nuestras combinaciones especiales a $100.
+                    </div>
+
+                    <div class="promo-header-action">
+                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de este combo:</span>
+                        <div class="quantity-control">
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('jueves', -1)">−</button>
+                            <span class="qty-number" id="qty-promo-jueves">1</span>
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('jueves', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div id="contenedor-promo-jueves"></div>
+                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('jueves', 'Jueves Saludable', 100)">
+                        + Agregar esta promo al pedido ($100)
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIERNES (COMBO 2 x $200 ESTRICTO) -->
+            <div class="promo-day-card">
+                <div class="promo-day-header" onclick="togglePromoDay('viernes')">
+                    <span>🎉 Viernes de Combos (2 x $200)</span>
+                    <span id="arrow-viernes">▼</span>
+                </div>
+                <div class="promo-day-body" id="body-viernes">
+                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                        Incluye exactamente <strong>2 ensaladas completas</strong> por sólo $200 MXN ($100 c/u). Arma ambas a continuación:
+                    </div>
+
+                    <div class="promo-header-action">
+                        <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Cantidad de paquetes de 2x$200:</span>
+                        <div class="quantity-control">
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('viernes', -1)">−</button>
+                            <span class="qty-number" id="qty-promo-viernes">1</span>
+                            <button type="button" class="nice-qty-btn" onclick="cambiarCantidadPromoDia('viernes', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div id="contenedor-promo-viernes"></div>
+                    <button type="button" id="btnAgregarViernes" class="btn-add-ensalada" onclick="agregarComboViernes()">
+                        + Agregar Combo de 2 Ensaladas ($200)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DATOS DE ENTREGA Y PAGO -->
+        <div class="section-title" style="font-size:18px; border-left:4px solid var(--primary-dark); padding-left:8px; margin-top:25px;">
             Datos de Entrega
         </div>
 
         <div class="form-group">
             <label for="clienteNombre">Nombre del Cliente *</label>
-            <input type="text" id="clienteNombre" placeholder="Tu nombre completo" required>
+            <input type="text" id="clienteNombre" placeholder="Tu nombre completo">
         </div>
 
         <div class="form-group">
             <label for="clienteTelefono">Teléfono de Contacto *</label>
-            <input type="tel" id="clienteTelefono" placeholder="Ej. 6691234567" required>
+            <input type="tel" id="clienteTelefono" placeholder="Ej. 6691234567">
         </div>
 
         <div class="form-group">
             <label for="clienteColonia">Selecciona tu Colonia o Fraccionamiento *</label>
-            <select id="clienteColonia" required>
+            <select id="clienteColonia">
                 <option value="">-- Selecciona tu zona de cobertura --</option>
                 <option value="Infonavit Jabalíes">1. Infonavit Jabalíes</option>
                 <option value="Colonia Burócrata">2. Colonia Burócrata</option>
@@ -650,7 +940,7 @@
 
         <div class="form-group">
             <label for="clienteCalleNum">Calle y Número *</label>
-            <input type="text" id="clienteCalleNum" placeholder="Ej. Av. Insurgentes #123" required>
+            <input type="text" id="clienteCalleNum" placeholder="Ej. Av. Insurgentes #123">
         </div>
 
         <div class="form-group">
@@ -669,9 +959,7 @@
         </div>
 
         <div class="payment-box">
-            <div class="section-title" style="margin-top:0;">
-                Método de Pago *
-            </div>
+            <div class="section-title" style="margin-top:0;">Método de Pago *</div>
 
             <div class="options-grid">
                 <label class="option-card">
@@ -693,10 +981,8 @@
                 <div class="bank-info-card">
                     <strong>🏦 Datos para tu Transferencia:</strong>
                     <br><br>
-                    • <strong>Institución:</strong> Spin By Oxxo
-                    <br>
-                    • <strong>Titular:</strong> Ilse Jacqueline Altamirano Villegas
-                    <br>
+                    • <strong>Institución:</strong> Spin By Oxxo<br>
+                    • <strong>Titular:</strong> Ilse Jacqueline Altamirano Villegas<br>
                     • <strong>CLABE:</strong> 728969000017618510
                 </div>
 
@@ -717,38 +1003,15 @@
 
             <div class="total-container">
                 <span>Total:</span>
-                <span id="precioTotal" style="color:var(--primary-dark);">$120.00 MXN</span>
+                <span id="precioTotal" style="color:var(--primary-dark);">$0.00 MXN</span>
             </div>
 
-            <button type="button" class="btn-whatsapp" onclick="enviarWhatsApp()">
+            <button type="button" id="btnEnviarPedido" class="btn-whatsapp" onclick="enviarWhatsApp()">
                 Enviar Pedido por WhatsApp 📱
             </button>
         </div>
 
     </form>
-
-    <!-- Sección de Redes Sociales en la parte inferior -->
-    <div class="footer-social-section">
-        <div class="footer-social-title">¡Síguenos y contáctanos!</div>
-        <div class="social-icons-container">
-            <!-- WhatsApp -->
-            <a href="https://wa.me/523111170609?text=Hola,%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20sus%20ensaladas." target="_blank" class="social-icon-link" title="Escríbenos por WhatsApp">
-                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            </a>
-            <!-- Facebook -->
-            <a href="#" target="_blank" class="social-icon-link" title="Facebook (Próximamente)">
-                <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.615V8z"/></svg>
-            </a>
-            <!-- Instagram -->
-            <a href="#" target="_blank" class="social-icon-link" title="Instagram (Próximamente)">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <!-- TikTok -->
-            <a href="#" target="_blank" class="social-icon-link" title="TikTok (Próximamente)">
-                <svg viewBox="0 0 24 24"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.242V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002-.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.853 4.853 0 0 1-1.003-.104z"/></svg>
-            </a>
-        </div>
-    </div>
 
 </div>
 
@@ -757,6 +1020,71 @@
 const PRECIO_BASE = 120;
 const NUMERO_WHATSAPP = "523111170609";
 let contadorEnsaladas = 0;
+let contadorPromosDia = 0;
+let pestañaActual = 'menu';
+let cocinaAbierta = true;
+
+// Almacena la cantidad seleccionada para cada promoción por día
+let cantidadesPromo = {
+    lunes: 1,
+    martes: 1,
+    miercoles: 1,
+    jueves: 1,
+    viernes: 1
+};
+
+function cambiarCantidadPromoDia(dia, cambio) {
+    cantidadesPromo[dia] += cambio;
+    if (cantidadesPromo[dia] < 1) {
+        cantidadesPromo[dia] = 1;
+    }
+    document.getElementById(`qty-promo-${dia}`).textContent = cantidadesPromo[dia];
+    calcularTotal();
+}
+
+function toggleInfoBox() {
+    const box = document.getElementById("infoContentBox");
+    const arrow = document.getElementById("infoArrow");
+    box.classList.toggle("active");
+    arrow.textContent = box.classList.contains("active") ? "▲" : "▼";
+}
+
+function togglePromoDay(dia) {
+    const body = document.getElementById(`body-${dia}`);
+    const arrow = document.getElementById(`arrow-${dia}`);
+    body.classList.toggle("active");
+    arrow.textContent = body.classList.contains("active") ? "▲" : "▼";
+}
+
+function compartirPagina() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Verde Mix Salads',
+            text: '¡Arma tu ensalada fresca favorita y pídela a domicilio en Mazatlán!',
+            url: window.location.href
+        }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("¡Enlace copiado al portapapeles!");
+    }
+}
+
+function cambiarPestana(pestana) {
+    pestañaActual = pestana;
+    document.getElementById("tabMenu").classList.remove("active");
+    document.getElementById("tabPromociones").classList.remove("active");
+    
+    const botones = document.querySelectorAll(".nav-tab-item");
+    botones.forEach(b => b.classList.remove("active"));
+
+    if (pestana === 'menu') {
+        document.getElementById("tabMenu").classList.add("active");
+        botones[0].classList.add("active");
+    } else {
+        document.getElementById("tabPromociones").classList.add("active");
+        botones[1].classList.add("active");
+    }
+}
 
 function verificarHorario() {
     const ahora = new Date();
@@ -765,20 +1093,19 @@ function verificarHorario() {
     const apertura = 9 * 60;
     const cierre = 17 * 60;
     let cerrado = false;
-    let motivo = "";
 
     if (diaSemana === 0 || diaSemana === 6) {
         cerrado = true;
-        motivo = "¡Los sábados y domingos descansamos! Te esperamos de lunes a viernes de 9:00 a.m. a 5:00 p.m.";
     } else if (horaMinutoActual < apertura || horaMinutoActual >= cierre) {
         cerrado = true;
-        motivo = "Nuestro horario de servicio es de lunes a viernes de 9:00 a.m. a 5:00 p.m.";
     }
 
     if (cerrado) {
-        document.getElementById("pedidoForm").style.display = "none";
-        document.getElementById("textoCerrado").textContent = motivo;
-        document.getElementById("avisoCerrado").style.display = "block";
+        cocinaAbierta = false;
+        document.getElementById("avisoCerradoAviso").style.display = "block";
+        const btnWp = document.getElementById("btnEnviarPedido");
+        btnWp.style.backgroundColor = "#d32f2f";
+        btnWp.textContent = "🔒 Cocina Cerrada (Ver horario en Información)";
     }
 }
 
@@ -800,102 +1127,182 @@ function agregarEnsalada() {
     card.className = "ensalada-card-block";
     card.id = `ensalada-card-${id}`;
 
-    card.innerHTML = `
+    card.innerHTML = construirEstructuraEnsalada(`reg-${id}`, `Ensalada Regular #${id}`, true, PRECIO_BASE);
+    contenedor.appendChild(card);
+    calcularTotal();
+}
+
+function agregarPromoEnDia(dia, nombrePromo, precioPromo) {
+    contadorPromosDia++;
+    const id = contadorPromosDia;
+    const multiplicador = cantidadesPromo[dia] || 1;
+    const contenedor = document.getElementById(`contenedor-promo-${dia}`);
+    const card = document.createElement("div");
+    card.className = "ensalada-card-block promo-item-block";
+    card.setAttribute("data-promo-nombre", nombrePromo);
+    card.setAttribute("data-multiplicador", multiplicador);
+    card.id = `promo-item-${dia}-${id}`;
+
+    card.innerHTML = construirEstructuraEnsalada(`promo-${dia}-${id}`, `${nombrePromo} (Cant: ${multiplicador}) #${id}`, true, precioPromo * multiplicador);
+    contenedor.appendChild(card);
+    calcularTotal();
+}
+
+// Función exclusiva para Viernes: Agrega un paquete de exactamente 2 ensaladas por $200 ($100 c/u)
+function agregarComboViernes() {
+    contadorPromosDia++;
+    const comboId = contadorPromosDia;
+    const multiplicador = cantidadesPromo['viernes'] || 1;
+    const contenedor = document.getElementById(`contenedor-promo-viernes`);
+    
+    const wrapperCombo = document.createElement("div");
+    wrapperCombo.className = "promo-combo-viernes-block promo-item-block";
+    wrapperCombo.setAttribute("data-promo-nombre", "Viernes de Combos (2x$200)");
+    wrapperCombo.setAttribute("data-multiplicador", multiplicador);
+    wrapperCombo.id = `combo-viernes-${comboId}`;
+    wrapperCombo.style.border = "2px dashed var(--primary-color)";
+    wrapperCombo.style.borderRadius = "14px";
+    wrapperCombo.style.padding = "12px";
+    wrapperCombo.style.marginBottom = "20px";
+    wrapperCombo.style.background = "#f9fbf9";
+
+    wrapperCombo.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid #c8e6c9; padding-bottom:8px;">
+            <strong style="color:var(--primary-dark); font-size:15px;">🎁 Paquete Viernes 2 x $200 (Cant: ${multiplicador}) (#${comboId})</strong>
+            <button type="button" class="btn-eliminar-ensalada" onclick="eliminarComboViernes(${comboId})">Eliminar Combo</button>
+        </div>
+        <div id="sub-ensaladas-${comboId}"></div>
+    `;
+
+    contenedor.appendChild(wrapperCombo);
+
+    const subContenedor = document.getElementById(`sub-ensaladas-${comboId}`);
+    
+    // Ensalada 1 del combo ($100 base * multiplicador)
+    const card1 = document.createElement("div");
+    card1.className = "ensalada-card-block";
+    card1.innerHTML = construirEstructuraEnsalada(`v1-${comboId}`, `Ensalada 1 del Combo (x${multiplicador})`, false, 100 * multiplicador);
+    subContenedor.appendChild(card1);
+
+    // Ensalada 2 del combo ($100 base * multiplicador)
+    const card2 = document.createElement("div");
+    card2.className = "ensalada-card-block";
+    card2.innerHTML = construirEstructuraEnsalada(`v2-${comboId}`, `Ensalada 2 del Combo (x${multiplicador})`, false, 100 * multiplicador);
+    subContenedor.appendChild(card2);
+
+    document.getElementById("btnAgregarViernes").style.display = "none";
+    calcularTotal();
+}
+
+function eliminarComboViernes(comboId) {
+    const comboEl = document.getElementById(`combo-viernes-${comboId}`);
+    if (comboEl) {
+        comboEl.remove();
+        document.getElementById("btnAgregarViernes").style.display = "block";
+        calcularTotal();
+    }
+}
+
+function construirEstructuraEnsalada(uniqueId, tituloTexto, permitirEliminar, precioBaseAsignado) {
+    return `
         <div class="ensalada-header-title">
-            <span>Ensalada #${id}</span>
-            ${id > 1 ? `<button type="button" class="btn-eliminar-ensalada" onclick="eliminarEnsalada(${id})">Eliminar</button>` : ""}
+            <span>${tituloTexto}</span>
+            ${permitirEliminar ? `<button type="button" class="btn-eliminar-ensalada" onclick="eliminarBloque('${uniqueId}')">Eliminar</button>` : ""}
         </div>
 
         <div class="section-title">1. Selecciona tu Barra Fría</div>
         <div style="font-size:12px; color:#4b5563; background:#f1f8f2; padding:8px; border-radius:8px; margin-bottom:10px; border:1px solid #c8e6c9;">
-            Puedes elegir hasta <strong>5 porciones</strong>. Cada ingrediente puede agregarse máximo <strong>2 veces</strong>.
+            Puedes elegir hasta <strong>5 porciones</strong>. Cada ingrediente máximo <strong>2 veces</strong>.
         </div>
 
         <div class="barra-fria-list">
-            ${crearBarraFria(id, "Zanahoria Rallada")}
-            ${crearBarraFria(id, "Jícama")}
-            ${crearBarraFria(id, "Betabel")}
-            ${crearBarraFria(id, "Pasta")}
-            ${crearBarraFria(id, "Pepino")}
-            ${crearBarraFria(id, "Cebolla Morada")}
-            ${crearBarraFria(id, "Jitomate")}
-            ${crearBarraFria(id, "Aceituna Negra")}
-            ${crearBarraFria(id, "Elote")}
+            ${crearBarraFria(uniqueId, "Zanahoria Rallada")}
+            ${crearBarraFria(uniqueId, "Jícama")}
+            ${crearBarraFria(uniqueId, "Betabel")}
+            ${crearBarraFria(uniqueId, "Pasta")}
+            ${crearBarraFria(uniqueId, "Pepino")}
+            ${crearBarraFria(uniqueId, "Cebolla Morada")}
+            ${crearBarraFria(uniqueId, "Jitomate")}
+            ${crearBarraFria(uniqueId, "Aceituna Negra")}
+            ${crearBarraFria(uniqueId, "Elote")}
         </div>
 
         <div class="section-title">2. Proteína incluida (Selecciona solo 1)</div>
         <div class="option-extra-list">
-            ${crearOpcionConExtra(id, "proteina", "Pollo a la plancha", 30, true)}
-            ${crearOpcionConExtra(id, "proteina", "Pollo BBQ", 30)}
-            ${crearOpcionConExtra(id, "proteina", "Pollo Buffalo", 30)}
-            ${crearOpcionConExtra(id, "proteina", "Pollo Mango Habanero", 30)}
-            ${crearOpcionConExtra(id, "proteina", "Pollo Pimienta Limón", 30)}
-            ${crearOpcionConExtra(id, "proteina", "Huevo Cocido (2 pz)", 10)}
-            ${crearOpcionConExtra(id, "proteina", "Queso Panela Fresco", 30)}
-            ${crearOpcionConExtra(id, "proteina", "Atún", 35)}
-            ${crearOpcionConExtra(id, "proteina", "Jamón de Pavo", 30)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo a la plancha", 30, true)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo BBQ", 30)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Buffalo", 30)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Mango Habanero", 30)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Pimienta Limón", 30)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Huevo Cocido (2 pz)", 10)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Queso Panela Fresco", 30)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Atún", 35)}
+            ${crearOpcionConExtra(uniqueId, "proteina", "Jamón de Pavo", 30)}
         </div>
 
         <div class="section-title">3. Elige tu Aderezo (Solo 1)</div>
         <div class="option-extra-list">
-            ${crearOpcionConExtra(id, "aderezo", "Aderezo de Cilantro", 20, true)}
-            ${crearOpcionConExtra(id, "aderezo", "Ranch", 20)}
-            ${crearOpcionConExtra(id, "aderezo", "Ranch Chipotle", 20)}
-            ${crearOpcionConExtra(id, "aderezo", "Vinagreta Mostaza Miel", 20)}
-            ${crearOpcionConExtra(id, "aderezo", "Vinagreta Limón Pimienta", 20)}
+            ${crearOpcionConExtra(uniqueId, "aderezo", "Aderezo de Cilantro", 20, true)}
+            ${crearOpcionConExtra(uniqueId, "aderezo", "Ranch", 20)}
+            ${crearOpcionConExtra(uniqueId, "aderezo", "Ranch Chipotle", 20)}
+            ${crearOpcionConExtra(uniqueId, "aderezo", "Vinagreta Mostaza Miel", 20)}
+            ${crearOpcionConExtra(uniqueId, "aderezo", "Vinagreta Limón Pimienta", 20)}
         </div>
 
         <label class="option-card" style="margin-top:10px;">
-            <input type="radio" name="aderezo_${id}" value="Sin Aderezo">
+            <input type="radio" name="aderezo_${uniqueId}" value="Sin Aderezo">
             <span class="option-label">Sin Aderezo</span>
         </label>
 
         <div class="section-title">4. Elige tu Crocante (Solo 1)</div>
         <div class="option-extra-list">
-            ${crearOpcionConExtra(id, "crocante", "Queso Parmesano", 25, true)}
-            ${crearOpcionConExtra(id, "crocante", "Crotón Queso/Ajo", 25)}
-            ${crearOpcionConExtra(id, "crocante", "Tiritas de Tortilla", 25)}
+            ${crearOpcionConExtra(uniqueId, "crocante", "Queso Parmesano", 25, true)}
+            ${crearOpcionConExtra(uniqueId, "crocante", "Crotón Queso/Ajo", 25)}
+            ${crearOpcionConExtra(uniqueId, "crocante", "Tiritas de Tortilla", 25)}
         </div>
 
         <label class="option-card" style="margin-top:10px;">
-            <input type="radio" name="crocante_${id}" value="Sin Crocante">
+            <input type="radio" name="crocante_${uniqueId}" value="Sin Crocante">
             <span class="option-label">Sin Crocante</span>
         </label>
 
         <div class="section-title">Cubiertos</div>
         <div class="options-grid">
             <label class="option-card">
-                <input type="radio" name="cubiertos_${id}" value="Con cubiertos" checked>
+                <input type="radio" name="cubiertos_${uniqueId}" value="Con cubiertos" checked>
                 <span class="option-label">Con cubiertos</span>
             </label>
             <label class="option-card">
-                <input type="radio" name="cubiertos_${id}" value="Sin Cubiertos">
+                <input type="radio" name="cubiertos_${uniqueId}" value="Sin Cubiertos">
                 <span class="option-label">Sin Cubiertos</span>
             </label>
         </div>
+        <input type="hidden" class="input-precio-base" value="${precioBaseAsignado}">
     `;
-
-    contenedor.appendChild(card);
-    calcularTotal();
 }
 
-function crearBarraFria(id, nombre) {
+function crearBarraFria(uniqueId, nombre) {
     const clave = nombre.replace(/[^a-zA-Z0-9]/g, "_");
     return `
         <div class="barra-fria-row">
             <span class="barra-fria-name">${nombre}</span>
             <div class="barra-fria-quantity">
-                <button type="button" class="barra-qty-btn" onclick="cambiarCantidadBarra('${id}', '${clave}', -1)">−</button>
-                <span class="barra-qty-number" id="barra-${id}-${clave}">0</span>
-                <button type="button" class="barra-qty-btn" onclick="cambiarCantidadBarra('${id}', '${clave}', 1)">+</button>
+                <button type="button" class="nice-qty-btn" onclick="cambiarCantidadBarra('${uniqueId}', '${clave}', -1)">−</button>
+                <span class="barra-qty-number" id="barra-${uniqueId}-${clave}">0</span>
+                <button type="button" class="nice-qty-btn" onclick="cambiarCantidadBarra('${uniqueId}', '${clave}', 1)">+</button>
                 <input type="hidden" class="barra-fria-quantity-input" data-name="${nombre}" data-key="${clave}" value="0">
             </div>
         </div>
     `;
 }
 
-function cambiarCantidadBarra(id, clave, cambio) {
-    const card = document.getElementById(`ensalada-card-${id}`);
+function cambiarCantidadBarra(uniqueId, clave, cambio) {
+    let card = document.getElementById(`ensalada-card-${uniqueId.split('-')[1]}`);
+    if (!card) card = document.getElementById(`promo-item-${uniqueId.replace('promo-', '')}`);
+    if (!card && uniqueId.startsWith('v')) {
+        card = event.target.closest('.ensalada-card-block');
+    }
+
     const input = card.querySelector(`.barra-fria-quantity-input[data-key="${clave}"]`);
     let cantidad = parseInt(input.value) || 0;
     let totalPorciones = 0;
@@ -918,25 +1325,25 @@ function cambiarCantidadBarra(id, clave, cambio) {
     if (cantidad > 2) cantidad = 2;
 
     input.value = cantidad;
-    document.getElementById(`barra-${id}-${clave}`).textContent = cantidad;
+    document.getElementById(`barra-${uniqueId}-${clave}`).textContent = cantidad;
     calcularTotal();
 }
 
-function crearOpcionConExtra(id, tipo, nombre, precioExtra, seleccionado = false) {
+function crearOpcionConExtra(uniqueId, tipo, nombre, precioExtra, seleccionado = false) {
     const clave = nombre.replace(/[^a-zA-Z0-9]/g, "_");
     return `
         <div class="option-extra-row">
             <label class="main-option">
-                <input type="radio" name="${tipo}_${id}" value="${nombre}" ${seleccionado ? "checked" : ""}>
+                <input type="radio" name="${tipo}_${uniqueId}" value="${nombre}" ${seleccionado ? "checked" : ""}>
                 <span class="main-option-text">${nombre}</span>
             </label>
             <div class="extra-side">
                 <span class="extra-word">Extra</span>
                 <span class="extra-price">+$${precioExtra}</span>
                 <div class="quantity-control">
-                    <button type="button" class="qty-btn" onclick="cambiarCantidad('${id}', '${tipo}', '${clave}', -1)">−</button>
-                    <span class="qty-number" id="${tipo}-${id}-${clave}">0</span>
-                    <button type="button" class="qty-btn" onclick="cambiarCantidad('${id}', '${tipo}', '${clave}', 1)">+</button>
+                    <button type="button" class="nice-qty-btn" onclick="cambiarCantidad('${uniqueId}', '${tipo}', '${clave}', -1)">−</button>
+                    <span class="qty-number" id="${tipo}-${uniqueId}-${clave}">0</span>
+                    <button type="button" class="nice-qty-btn" onclick="cambiarCantidad('${uniqueId}', '${tipo}', '${clave}', 1)">+</button>
                 </div>
                 <input type="hidden" class="extra-${tipo}" data-name="${nombre}" data-price="${precioExtra}" data-key="${clave}" value="0">
             </div>
@@ -944,19 +1351,23 @@ function crearOpcionConExtra(id, tipo, nombre, precioExtra, seleccionado = false
     `;
 }
 
-function cambiarCantidad(id, tipo, clave, cambio) {
-    const card = document.getElementById(`ensalada-card-${id}`);
+function cambiarCantidad(uniqueId, tipo, clave, cambio) {
+    let card = document.getElementById(`ensalada-card-${uniqueId.split('-')[1]}`);
+    if (!card) card = document.getElementById(`promo-item-${uniqueId.replace('promo-', '')}`);
+    if (!card) card = event.target.closest('.ensalada-card-block');
+
     const input = card.querySelector(`.extra-${tipo}[data-key="${clave}"]`);
     let cantidad = parseInt(input.value) || 0;
     cantidad += cambio;
     if (cantidad < 0) cantidad = 0;
     input.value = cantidad;
-    document.getElementById(`${tipo}-${id}-${clave}`).textContent = cantidad;
+    document.getElementById(`${tipo}-${uniqueId}-${clave}`).textContent = cantidad;
     calcularTotal();
 }
 
-function eliminarEnsalada(id) {
-    const card = document.getElementById(`ensalada-card-${id}`);
+function eliminarBloque(uniqueId) {
+    let card = document.getElementById(`ensalada-card-${uniqueId.split('-')[1]}`);
+    if (!card) card = document.getElementById(`promo-item-${uniqueId.replace('promo-', '')}`);
     if (card) {
         card.remove();
         calcularTotal();
@@ -970,28 +1381,44 @@ function cambiarMetodoPago(metodo) {
 
 function calcularTotal() {
     let totalComida = 0;
-    const cards = document.querySelectorAll(".ensalada-card-block");
+    let hayItemsSeleccionados = false;
 
-    cards.forEach(card => {
-        let totalEnsalada = PRECIO_BASE;
+    const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
+    if (todasLasEnsaladas.length > 0) hayItemsSeleccionados = true;
+
+    todasLasEnsaladas.forEach(card => {
+        const inputPrecioBase = card.querySelector(".input-precio-base");
+        let baseEnsalada = inputPrecioBase ? parseFloat(inputPrecioBase.value) : PRECIO_BASE;
+
         ["proteina", "aderezo", "crocante"].forEach(tipo => {
             card.querySelectorAll(`.extra-${tipo}`).forEach(input => {
                 const cantidad = parseInt(input.value) || 0;
                 const precio = parseFloat(input.getAttribute("data-price")) || 0;
-                totalEnsalada += cantidad * precio;
+                baseEnsalada += cantidad * precio;
             });
         });
-        totalComida += totalEnsalada;
+        totalComida += baseEnsalada;
     });
 
-    document.getElementById("precioTotal").textContent = `$${totalComida.toFixed(2)} MXN`;
+    if (!hayItemsSeleccionados) {
+        document.getElementById("precioTotal").textContent = "$0.00 MXN";
+    } else {
+        document.getElementById("precioTotal").textContent = `$${totalComida.toFixed(2)} MXN`;
+    }
+
     return totalComida;
 }
 
 function enviarWhatsApp() {
-    const cards = document.querySelectorAll(".ensalada-card-block");
-    if (cards.length === 0) {
-        alert("Por favor agrega al menos 1 ensalada.");
+    if (!cocinaAbierta) {
+        alert("🔒 La cocina se encuentra cerrada en este momento. Te esperamos en nuestro horario de Lunes a Viernes de 9:00 a.m. a 5:00 p.m.");
+        return;
+    }
+
+    const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
+    
+    if (todasLasEnsaladas.length === 0) {
+        alert("Por favor agrega al menos 1 ensalada o promoción.");
         return;
     }
 
@@ -1004,7 +1431,7 @@ function enviarWhatsApp() {
     const comentarios = document.getElementById("clienteComentarios").value.trim() || "Ninguno";
 
     if (!nombre || !telefono || !colonia || !calleNum) {
-        alert("Por favor completa todos los datos obligatorios.");
+        alert("Por favor completa todos los datos obligatorios para el envío.");
         return;
     }
 
@@ -1022,20 +1449,6 @@ function enviarWhatsApp() {
         }
         detallePago = "Transferencia";
     }
-
-    let ensaladasValidas = true;
-    cards.forEach((card, index) => {
-        let totalPorcionesBarra = 0;
-        card.querySelectorAll(".barra-fria-quantity-input").forEach(input => {
-            totalPorcionesBarra += parseInt(input.value) || 0;
-        });
-        if (totalPorcionesBarra === 0) {
-            alert(`Selecciona al menos 1 porción de Barra Fría en la Ensalada #${index + 1}.`);
-            ensaladasValidas = false;
-        }
-    });
-
-    if (!ensaladasValidas) return;
 
     const avisoFlotante = document.getElementById("avisoAlertaFlotante");
     avisoFlotante.style.display = "block";
@@ -1056,33 +1469,9 @@ function enviarWhatsApp() {
         "🥗 *DETALLE DEL PEDIDO*"
     ];
 
-    cards.forEach((card, index) => {
-        const idCard = card.id.split("-")[2];
-        const numEnsalada = index + 1;
-        const barraFria = [];
-
-        card.querySelectorAll(".barra-fria-quantity-input").forEach(input => {
-            const cantidad = parseInt(input.value) || 0;
-            if (cantidad > 0) {
-                barraFria.push(`${cantidad}x ${input.getAttribute("data-name")}`);
-            }
-        });
-
-        const proteina = card.querySelector(`input[name="proteina_${idCard}"]:checked`)?.value || "No seleccionada";
-        const aderezo = card.querySelector(`input[name="aderezo_${idCard}"]:checked`)?.value || "No seleccionado";
-        const crocante = card.querySelector(`input[name="crocante_${idCard}"]:checked`)?.value || "No seleccionado";
-        const cubiertos = card.querySelector(`input[name="cubiertos_${idCard}"]:checked`)?.value || "Con cubiertos";
-
-        lineas.push(`\n*🥗 Ensalada #${numEnsalada}:*`);
-        lineas.push(`• *Base:* Lechuga, Espinaca y Col Morada`);
-        lineas.push(`• *Barra Fría:* ${barraFria.join(", ")}`);
-        lineas.push(`• *Proteína:* ${proteina}`);
-        agregarExtrasAlMensaje(card, ".extra-proteina", "Proteínas Extra", lineas);
-        lineas.push(`• *Aderezo:* ${aderezo}`);
-        agregarExtrasAlMensaje(card, ".extra-aderezo", "Aderezos Extra", lineas);
-        lineas.push(`• *Crocante:* ${crocante}`);
-        agregarExtrasAlMensaje(card, ".extra-crocante", "Crocantes Extra", lineas);
-        lineas.push(`• *Cubiertos:* ${cubiertos}`);
+    todasLasEnsaladas.forEach((card, index) => {
+        let titulo = card.getAttribute("data-promo-nombre") || `Ensalada Regular #${index + 1}`;
+        procesarCardEnMensaje(card, `${titulo} (${index + 1})`, lineas);
     });
 
     const total = calcularTotal();
@@ -1114,8 +1503,43 @@ function enviarWhatsApp() {
     }, 500);
 }
 
+function procesarCardEnMensaje(card, tituloItem, lineas) {
+    const barraFria = [];
+    card.querySelectorAll(".barra-fria-quantity-input").forEach(input => {
+        const cantidad = parseInt(input.value) || 0;
+        if (cantidad > 0) {
+            barraFria.push(`${cantidad}x ${input.getAttribute("data-name")}`);
+        }
+    });
+
+    const radios = card.querySelectorAll('input[type="radio"]:checked');
+    let proteina = "No seleccionada";
+    let aderezo = "No seleccionado";
+    let crocante = "No seleccionado";
+    let cubiertos = "Con cubiertos";
+
+    radios.forEach(r => {
+        if (r.name.startsWith("proteina_")) proteina = r.value;
+        if (r.name.startsWith("aderezo_")) aderezo = r.value;
+        if (r.name.startsWith("crocante_")) crocante = r.value;
+        if (r.name.startsWith("cubiertos_")) cubiertos = r.value;
+    });
+
+    lineas.push(`\n*🥗 ${tituloItem}:*`);
+    lineas.push(`• *Base:* Lechuga, Espinaca y Col Morada`);
+    lineas.push(`• *Barra Fría:* ${barraFria.join(", ") || "Ninguna"}`);
+    lineas.push(`• *Proteína:* ${proteina}`);
+    agregarExtrasAlMensaje(card, ".extra-proteina", "Proteínas Extra", lineas);
+    lineas.push(`• *Aderezo:* ${aderezo}`);
+    agregarExtrasAlMensaje(card, ".extra-aderezo", "Aderezos Extra", lineas);
+    lineas.push(`• *Crocante:* ${crocante}`);
+    agregarExtrasAlMensaje(card, ".extra-crocante", "Crocantes Extra", lineas);
+    lineas.push(`• *Cubiertos:* ${cubiertos}`);
+}
+
 function agregarExtrasAlMensaje(card, selector, titulo, lineas) {
     const extras = [];
+  
     card.querySelectorAll(selector).forEach(input => {
         const cantidad = parseInt(input.value) || 0;
         if (cantidad > 0) {
@@ -1129,7 +1553,7 @@ function agregarExtrasAlMensaje(card, selector, titulo, lineas) {
 
 window.onload = function() {
     verificarHorario();
-    agregarEnsalada();
+    document.getElementById("precioTotal").textContent = "$0.00 MXN";
 };
 
 </script>
