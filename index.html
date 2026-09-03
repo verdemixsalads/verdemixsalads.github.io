@@ -549,12 +549,33 @@
             font-size: 12px;
             color: var(--text-sub);
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* Barra flotante fija dentro del modal para ver el total acumulado en vivo */
+        .live-total-bar {
+            background: #1b5e20;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .live-total-bar span:last-child {
+            font-size: 18px;
+            font-weight: 900;
+            color: #a3e635;
         }
 
         .modal-scroll-body {
             overflow-y: auto;
-            max-height: 70vh;
+            max-height: 62vh;
             padding-right: 4px;
         }
 
@@ -691,7 +712,13 @@
         <div class="modal-header" id="modalTituloArmar">Arma tu Ensalada</div>
         <div class="modal-subtitle" id="modalSubtituloArmar">Selecciona tus ingredientes y datos de entrega paso a paso</div>
         
-        <div class="modal-scroll-body" id="modalContenidoDinamico">
+        <!-- Barra fija con el total en tiempo real -->
+        <div class="live-total-bar">
+            <span>Total Parcial:</span>
+            <span id="liveTotalText">$120.00 MXN</span>
+        </div>
+
+        <div class="modal-scroll-body" id="modalContenidoDinamico" onchange="calcularTotalEnVivo()" onclick="calcularTotalEnVivo()">
             <!-- Aquí se inyecta dinámicamente todo: Ingredientes, Datos de entrega y Pago -->
         </div>
 
@@ -1016,6 +1043,7 @@ function abrirModalArmarRegular() {
     document.getElementById("modalSubtituloArmar").textContent = "Precio: $120.00 MXN | Selecciona ingredientes y datos de entrega";
     document.getElementById("modalContenidoDinamico").innerHTML = construirEstructuraEnsaladaCompleta("reg-1", PRECIO_BASE) + construirEstructuraFormularioEntregaPago();
     document.getElementById("modalArmarPedido").style.display = "flex";
+    calcularTotalEnVivo();
 }
 
 function abrirModalArmarPromo(dia, nombrePromo, precioPromo) {
@@ -1025,6 +1053,7 @@ function abrirModalArmarPromo(dia, nombrePromo, precioPromo) {
     document.getElementById("modalSubtituloArmar").textContent = `Precio especial: $${precioPromo}.00 MXN | Selecciona tus ingredientes`;
     document.getElementById("modalContenidoDinamico").innerHTML = construirEstructuraEnsaladaCompleta(`promo-${dia}`, precioPromo) + construirEstructuraFormularioEntregaPago();
     document.getElementById("modalArmarPedido").style.display = "flex";
+    calcularTotalEnVivo();
 }
 
 function abrirModalArmarComboViernes() {
@@ -1043,6 +1072,7 @@ function abrirModalArmarComboViernes() {
     htmlCombo += construirEstructuraFormularioEntregaPago();
     document.getElementById("modalContenidoDinamico").innerHTML = htmlCombo;
     document.getElementById("modalArmarPedido").style.display = "flex";
+    calcularTotalEnVivo();
 }
 
 function cerrarModalArmar() {
@@ -1060,6 +1090,33 @@ function cambiarMetodoPagoModal(metodo) {
     if (grupoCambio && grupoTransf) {
         grupoCambio.style.display = metodo === "Efectivo" ? "block" : "none";
         grupoTransf.style.display = metodo === "Transferencia" ? "block" : "none";
+    }
+}
+
+// Función para calcular y actualizar el total en vivo mientras el cliente selecciona
+function calcularTotalEnVivo() {
+    const bloques = document.querySelectorAll(".ensalada-card-block");
+    if (bloques.length === 0) return;
+
+    let totalParcial = 0;
+
+    bloques.forEach(card => {
+        let precioBase = parseFloat(card.getAttribute("data-precio-base")) || 120;
+
+        ["proteina", "aderezo", "crocante"].forEach(tipo => {
+            card.querySelectorAll(`.extra-${tipo}`).forEach(input => {
+                const cant = parseInt(input.value) || 0;
+                const precioExtra = parseFloat(input.getAttribute("data-price")) || 0;
+                precioBase += cant * precioExtra;
+            });
+        });
+
+        totalParcial += precioBase;
+    });
+
+    const spanTotal = document.getElementById("liveTotalText");
+    if (spanTotal) {
+        spanTotal.textContent = `$${totalParcial.toFixed(2)} MXN`;
     }
 }
 
@@ -1105,7 +1162,7 @@ function construirEstructuraEnsaladaCompleta(uniqueId, precioBaseAsignado) {
                 ${crearOpcionConExtra(uniqueId, "aderezo", "Vinagreta Limón Pimienta", 20)}
             </div>
             <label class="option-card" style="margin-top:8px;">
-                <input type="radio" name="aderezo_${uniqueId}" value="Sin Aderezo">
+                <input type="radio" name="aderezo_${uniqueId}" value="Sin Aderezo" onclick="calcularTotalEnVivo()">
                 <span class="option-label">Sin Aderezo</span>
             </label>
 
@@ -1116,7 +1173,7 @@ function construirEstructuraEnsaladaCompleta(uniqueId, precioBaseAsignado) {
                 ${crearOpcionConExtra(uniqueId, "crocante", "Tiritas de Tortilla", 25)}
             </div>
             <label class="option-card" style="margin-top:8px;">
-                <input type="radio" name="crocante_${uniqueId}" value="Sin Crocante">
+                <input type="radio" name="crocante_${uniqueId}" value="Sin Crocante" onclick="calcularTotalEnVivo()">
                 <span class="option-label">Sin Crocante</span>
             </label>
         </div>
@@ -1163,6 +1220,7 @@ function cambiarCantidadBarraModal(uniqueId, clave, cambio) {
 
     input.value = cantidad;
     document.getElementById(`barra-${uniqueId}-${clave}`).textContent = cantidad;
+    calcularTotalEnVivo();
 }
 
 function crearOpcionConExtra(uniqueId, tipo, nombre, precioExtra, seleccionado = false) {
@@ -1170,7 +1228,7 @@ function crearOpcionConExtra(uniqueId, tipo, nombre, precioExtra, seleccionado =
     return `
         <div class="option-extra-row">
             <label class="main-option">
-                <input type="radio" name="${tipo}_${uniqueId}" value="${nombre}" ${seleccionado ? "checked" : ""}>
+                <input type="radio" name="${tipo}_${uniqueId}" value="${nombre}" ${seleccionado ? "checked" : ""} onclick="calcularTotalEnVivo()">
                 <span class="main-option-text">${nombre}</span>
             </label>
             <div class="extra-side">
@@ -1195,6 +1253,7 @@ function cambiarCantidadExtraModal(uniqueId, tipo, clave, cambio) {
     if (cantidad < 0) cantidad = 0;
     input.value = cantidad;
     document.getElementById(`${tipo}-${uniqueId}-${clave}`).textContent = cantidad;
+    calcularTotalEnVivo();
 }
 
 function construirEstructuraFormularioEntregaPago() {
@@ -1400,7 +1459,7 @@ function prepararResumenFinal() {
         // Construir HTML visual para el modal de resumen
         htmlResumenVisual += `<div style="margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:8px;">`;
         htmlResumenVisual += `<strong>${tituloItem}</strong><br>`;
-        htmlResumenVisual-> `Barra fría: ${barraFria.join(", ") || "Ninguna"}<br>`;
+        htmlResumenVisual += `Barra fría: ${barraFria.join(", ") || "Ninguna"}<br>`;
         htmlResumenVisual += `Proteína: ${proteina}<br>`;
         htmlResumenVisual += `Aderezo: ${aderezo}<br>`;
         htmlResumenVisual += `Crocante: ${crocante}`;
