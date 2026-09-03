@@ -1449,22 +1449,47 @@ function prepararResumenFinal() {
             if (r.name.startsWith("crocante_")) crocante = r.value;
         });
 
+        // Capturar extras específicos para el mensaje y resumen visual
+        let extrasProteinaArr = [];
+        card.querySelectorAll(".extra-proteina").forEach(inp => {
+            let c = parseInt(inp.value) || 0;
+            if (c > 0) extrasProteinaArr.push(`${c}x ${inp.getAttribute("data-name")}`);
+        });
+
+        let extrasAderezoArr = [];
+        card.querySelectorAll(".extra-aderezo").forEach(inp => {
+            let c = parseInt(inp.value) || 0;
+            if (c > 0) extrasAderezoArr.push(`${c}x ${inp.getAttribute("data-name")}`);
+        });
+
+        let extrasCrocanteArr = [];
+        card.querySelectorAll(".extra-crocante").forEach(inp => {
+            let c = parseInt(inp.value) || 0;
+            if (c > 0) extrasCrocanteArr.push(`${c}x ${inp.getAttribute("data-name")}`);
+        });
+
         detalleEnsaladasMensaje.push(`\n*🥗 ${tituloItem}:*`);
         detalleEnsaladasMensaje.push(`• *Base:* Lechuga, Espinaca y Col Morada`);
         detalleEnsaladasMensaje.push(`• *Barra Fría:* ${barraFria.join(", ") || "Ninguna"}`);
         detalleEnsaladasMensaje.push(`• *Proteína:* ${proteina}`);
-        agregarExtrasTexto(card, ".extra-proteina", "Proteínas Extra", detalleEnsaladasMensaje);
+        if (extrasProteinaArr.length > 0) {
+            detalleEnsaladasMensaje.push(`  └ *Extras Proteína:* ${extrasProteinaArr.join(", ")}`);
+        }
         detalleEnsaladasMensaje.push(`• *Aderezo:* ${aderezo}`);
-        agregarExtrasTexto(card, ".extra-aderezo", "Aderezos Extra", detalleEnsaladasMensaje);
+        if (extrasAderezoArr.length > 0) {
+            detalleEnsaladasMensaje.push(`  └ *Extras Aderezo:* ${extrasAderezoArr.join(", ")}`);
+        }
         detalleEnsaladasMensaje.push(`• *Crocante:* ${crocante}`);
-        agregarExtrasTexto(card, ".extra-crocante", "Crocantes Extra", detalleEnsaladasMensaje);
+        if (extrasCrocanteArr.length > 0) {
+            detalleEnsaladasMensaje.push(`  └ *Extras Crocante:* ${extrasCrocanteArr.join(", ")}`);
+        }
 
         htmlResumenVisual += `<div style="margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:8px;">`;
         htmlResumenVisual += `<strong>${tituloItem}</strong><br>`;
         htmlResumenVisual += `Barra fría: ${barraFria.join(", ") || "Ninguna"}<br>`;
-        htmlResumenVisual += `Proteína: ${proteina}<br>`;
-        htmlResumenVisual += `Aderezo: ${aderezo}<br>`;
-        htmlResumenVisual += `Crocante: ${crocante}`;
+        htmlResumenVisual += `Proteína: ${proteina} ${extrasProteinaArr.length > 0 ? '(+ Extras: ' + extrasProteinaArr.join(', ') + ')' : ''}<br>`;
+        htmlResumenVisual += `Aderezo: ${aderezo} ${extrasAderezoArr.length > 0 ? '(+ Extras: ' + extrasAderezoArr.join(', ') + ')' : ''}<br>`;
+        htmlResumenVisual += `Crocante: ${crocante} ${extrasCrocanteArr.length > 0 ? '(+ Extras: ' + extrasCrocanteArr.join(', ') + ')' : ''}`;
         htmlResumenVisual += `</div>`;
     });
 
@@ -1500,6 +1525,7 @@ function prepararResumenFinal() {
             <strong>Cliente:</strong> ${nombre}<br>
             <strong>Teléfono:</strong> ${telefono}<br>
             <strong>Dirección:</strong> ${colonia}, Calle: ${calleNum}<br>
+            <strong>Comentarios adicionales:</strong> ${comentarios}<br>
             <strong>Método de Pago:</strong> ${detallePago}
         </div>
         <div style="margin-top:12px; font-size:16px; font-weight:800; color:var(--primary-dark); text-align:right; border-top:2px solid #d8e4d9; padding-top:8px;">
@@ -1550,11 +1576,10 @@ function enviarPedidoWhatsAppDefinitivo() {
     lineas.push(`• *Cliente:* ${datosPedidoTemporal.nombre}`);
     lineas.push(`• *Teléfono:* ${datosPedidoTemporal.telefono}`);
     lineas.push(`• *Colonia:* ${datosPedidoTemporal.colonia}`);
-    lineas5push = `• *Calle y #:* ${datosPedidoTemporal.calleNum}`; // note: keeping clean syntax
     lineas.push(`• *Calle y #:* ${datosPedidoTemporal.calleNum}`);
     lineas.push(`• *Entre calles:* ${datosPedidoTemporal.entreCalles}`);
     lineas.push(`• *Referencia:* ${datosPedidoTemporal.referencia}`);
-    lineas.push(`• *Comentarios:* ${datosPedidoTemporal.comentarios}`);
+    lineas.push(`• *Comentarios adicionales:* ${datosPedidoTemporal.comentarios}`);
 
     if (datosPedidoTemporal.metodoPago.includes("Transferencia")) {
         lineas.push("");
@@ -1567,19 +1592,6 @@ function enviarPedidoWhatsAppDefinitivo() {
     setTimeout(() => {
         window.open(urlWhatsApp, "_blank");
     }, 500);
-}
-
-function agregarExtrasTexto(card, selector, titulo, lineas) {
-    const extras = [];
-    card.querySelectorAll(selector).forEach(input => {
-        const cantidad = parseInt(input.value) || 0;
-        if (cantidad > 0) {
-            extras.push(`${cantidad}x ${input.getAttribute("data-name")}`);
-        }
-    });
-    if (extras.length > 0) {
-        lineas.push(`• *${titulo}:* ${extras.join(", ")}`);
-    }
 }
 
 window.onload = function() {
