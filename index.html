@@ -215,72 +215,61 @@
         .base-info-box {
             background-color: #f1f8f2;
             border-radius: 12px;
-            padding: 12px;
+            padding: 16px;
             margin-bottom: 18px;
             border: 1px solid #c8e6c9;
+            text-align: center;
         }
 
         .base-name {
             color: var(--text-main);
             font-weight: 900;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .base-price-tag {
             color: var(--primary-dark);
             font-weight: 900;
-            font-size: 18px;
-            margin-top: 3px;
+            font-size: 20px;
+            margin-top: 5px;
         }
 
         .base-mix-desc {
             color: var(--text-sub);
             font-size: 13px;
-            margin-top: 3px;
+            margin-top: 5px;
         }
 
         .delivery-notice {
             background-color: #e8f5e9;
             border: 1.5px dashed var(--primary-color);
             color: var(--primary-dark);
-            padding: 9px;
+            padding: 10px;
             border-radius: 8px;
             text-align: center;
             font-weight: 700;
             font-size: 13px;
-            margin-bottom: 18px;
-        }
-
-        .ensalada-card-block {
-            background: #ffffff;
-            border: 1px solid #d8e4d9;
-            border-radius: 14px;
-            padding: 18px;
             margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
         }
 
-        .ensalada-header-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+        .btn-main-action {
+            width: 100%;
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
             font-size: 16px;
             font-weight: 800;
-        }
-
-        .btn-eliminar-ensalada {
-            background-color: #ffebee;
-            color: #c62828;
-            border: 1px solid #ef9a9a;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 700;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 12px rgba(27,94,32,0.2);
+            transition: background-color 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .btn-main-action:hover {
+            background-color: #144517;
         }
 
         .section-title {
@@ -444,20 +433,6 @@
             gap: 5px;
         }
 
-        .btn-add-ensalada {
-            width: 100%;
-            background-color: #f1f8f2;
-            color: var(--primary-dark);
-            border: 1.5px solid #c8e6c9;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-bottom: 22px;
-            font-family: 'Poppins', sans-serif;
-        }
-
         .form-group {
             margin-bottom: 14px;
         }
@@ -499,52 +474,6 @@
             color: var(--primary-dark);
         }
 
-        .sticky-footer {
-            position: sticky;
-            bottom: 10px;
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.10);
-            margin-top: 25px;
-            border: 1px solid #dfe5df;
-            z-index: 10;
-        }
-
-        .estimated-time-notice {
-            background-color: #e8f5e9;
-            color: var(--primary-dark);
-            font-size: 12px;
-            font-weight: 700;
-            text-align: center;
-            padding: 8px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            border: 1px solid #c8e6c9;
-        }
-
-        .total-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 17px;
-            font-weight: 800;
-        }
-
-        .btn-whatsapp {
-            width: 100%;
-            background-color: #1b5e20;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-        }
-
         #avisoAlertaFlotante {
             display: none;
             position: fixed;
@@ -573,7 +502,7 @@
             font-size: 13px;
         }
 
-        /* Estilos de la Ventana Flotante (Modal de Confirmación) */
+        /* Ventana Flotante (Modal) con Color Marfil / Marfil Claro (--bg-color o #F4EEDC) */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -581,24 +510,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 10000;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 10px;
         }
 
         .modal-card {
-            background: white;
+            background: #F4EEDC;
             width: 100%;
-            max-width: 480px;
-            border-radius: 16px;
+            max-width: 540px;
+            border-radius: 20px;
             padding: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
             animation: modalFadeIn 0.3s ease;
-            max-height: 90vh;
+            max-height: 92vh;
             display: flex;
             flex-direction: column;
+            border: 1px solid #e2dac4;
         }
 
         @keyframes modalFadeIn {
@@ -607,39 +537,42 @@
         }
 
         .modal-header {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--primary-dark);
-            margin-bottom: 12px;
+            margin-bottom: 4px;
             text-align: center;
+            font-family: 'Pacifico', cursive;
         }
 
-        .modal-body {
-            font-size: 13px;
-            color: var(--text-main);
-            overflow-y: auto;
-            max-height: 50vh;
-            background: #f9fbf9;
-            border: 1px solid #dfe5df;
-            padding: 14px;
-            border-radius: 10px;
+        .modal-subtitle {
+            font-size: 12px;
+            color: var(--text-sub);
+            text-align: center;
             margin-bottom: 16px;
-            white-space: pre-line;
-            line-height: 1.5;
+        }
+
+        .modal-scroll-body {
+            overflow-y: auto;
+            max-height: 70vh;
+            padding-right: 4px;
         }
 
         .modal-buttons {
             display: flex;
             gap: 10px;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #e2dac4;
         }
 
         .btn-modal-cancel {
             flex: 1;
-            background: #f1f1f1;
-            color: #333;
-            border: none;
+            background: #ffffff;
+            color: var(--text-main);
+            border: 1px solid #dcdcdc;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 700;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
@@ -651,7 +584,7 @@
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 700;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
@@ -694,20 +627,27 @@
             display: block;
         }
 
-        .promo-bloqueada {
-            opacity: 0.5;
-            pointer-events: none;
-            background: #f9f9f9 !important;
-        }
-
-        .badge-bloqueado {
-            background: #d32f2f;
+        .badge-promo-hoy {
+            background: var(--primary-dark);
             color: white;
             font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
             margin-left: 8px;
+            display: inline-block;
+        }
+
+        .badge-bloqueado-aviso {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
         @media (max-width: 480px) {
@@ -745,19 +685,19 @@
     ¡Tu pedido se está generando para WhatsApp! 🥗📱
 </div>
 
-<!-- VENTANA FLOTANTE (MODAL) DE CONFIRMACIÓN -->
-<div id="modalConfirmacion" class="modal-overlay">
+<!-- VENTANA FLOTANTE (MODAL) PARA ARMAR ENSALADA / PEDIDO / DATOS -->
+<div id="modalArmarPedido" class="modal-overlay">
     <div class="modal-card">
-        <div class="modal-header">📋 Revisa tu Pedido</div>
-        <div style="font-size: 12px; color: var(--text-sub); text-align: center; margin-bottom: 8px;">
-            Este es un resumen rápido de lo que vas a pedir:
+        <div class="modal-header" id="modalTituloArmar">Arma tu Ensalada</div>
+        <div class="modal-subtitle" id="modalSubtituloArmar">Selecciona tus ingredientes y datos de entrega paso a paso</div>
+        
+        <div class="modal-scroll-body" id="modalContenidoDinamico">
+            <!-- Aquí se inyecta dinámicamente todo: Ingredientes, Datos de entrega y Pago -->
         </div>
-        <div id="modalResumenTexto" class="modal-body">
-            <!-- Aquí se inyecta el resumen limpio -->
-        </div>
+
         <div class="modal-buttons">
-            <button type="button" class="btn-modal-cancel" onclick="cerrarModal()">Regresar a editar</button>
-            <button type="button" class="btn-modal-confirm" onclick="ejecutarEnvioWhatsAppFinal()">Confirmar y Enviar</button>
+            <button type="button" class="btn-modal-cancel" onclick="cerrarModalArmar()">Cancelar</button>
+            <button type="button" class="btn-modal-confirm" id="btnModalAccionFinal" onclick="procesarEnvioFinal()">Enviar Pedido por WhatsApp 📱</button>
         </div>
     </div>
 </div>
@@ -813,8 +753,8 @@
     </div>
 
     <div id="avisoCerradoAviso">
-        🔒 <strong>COCINA CERRADA</strong><br>
-        Puedes explorar nuestro menú y promociones, pero los pedidos están temporales hasta nuestro horario (Lun a Vie de 9:00 a.m. a 5:00 p.m.).
+        🔒 <strong>Cocina cerrada</strong><br>
+        "Aquí te dejamos el Menú, nos vemos mañana en el siguiente horario de 9am a 5pm para cumplir tu antojo."
     </div>
 
     <div class="nav-tabs-container">
@@ -822,252 +762,114 @@
         <button type="button" class="nav-tab-item" onclick="cambiarPestana('promociones')">🔥 Promociones</button>
     </div>
 
-    <form id="pedidoForm">
+    <!-- CONTENIDO 1: MENÚ REGULAR -->
+    <div id="tabMenu" class="tab-content active">
+        <div class="base-info-box">
+            <div class="base-name">Ensalada Mix</div>
+            <div class="base-price-tag">$120.00 MXN c/u</div>
+            <div class="base-mix-desc">Incluye la mezcla base: Lechuga, Espinaca y Col Morada</div>
+        </div>
 
-        <!-- CONTENIDO 1: MENÚ REGULAR -->
-        <div id="tabMenu" class="tab-content active">
-            <div class="base-info-box">
-                <div class="base-name">Ensalada Mix</div>
-                <div class="base-price-tag">$120.00 MXN c/u</div>
-                <div class="base-mix-desc">Incluye la mezcla base: Lechuga, Espinaca y Col Morada</div>
+        <div class="delivery-notice">🚲 Servicio a domicilio incluido</div>
+
+        <button type="button" class="btn-main-action" onclick="abrirModalArmarRegular()">
+            Haz tu ensalada
+        </button>
+    </div>
+
+    <!-- CONTENIDO 2: PROMOCIONES POR DÍAS (ACORDEÓN) -->
+    <div id="tabPromociones" class="tab-content">
+        <div class="base-info-box" style="border-color: #f59e0b; background: #fffbeb;">
+            <div class="base-name">🔥 Promociones de la Semana</div>
+            <div class="base-mix-desc">Explora nuestros paquetes especiales de cada día de la semana.</div>
+        </div>
+
+        <!-- LUNES -->
+        <div class="promo-day-card" id="card-promo-lunes">
+            <div class="promo-day-header" onclick="togglePromoDay('lunes')">
+                <span>💼 Lunes de Godínez (Precio Especial $100) <span id="badge-lunes"></span></span>
+                <span id="arrow-lunes">▼</span>
             </div>
-
-            <div class="delivery-notice">🚲 Servicio a domicilio incluido</div>
-
-            <div id="ensaladasContenedor"></div>
-
-            <button type="button" class="btn-add-ensalada" onclick="agregarEnsalada()">
-                + Agregar otra ensalada al pedido
-            </button>
-        </div>
-
-        <!-- CONTENIDO 2: PROMOCIONES POR DÍAS (ACORDEÓN) -->
-        <div id="tabPromociones" class="tab-content">
-            <div class="base-info-box" style="border-color: #f59e0b; background: #fffbeb;">
-                <div class="base-name">🔥 Promociones de la Semana</div>
-                <div class="base-mix-desc">Haz clic en el día activo para ver la promoción y armar tu paquete. Solo está disponible el día de hoy.</div>
-            </div>
-
-            <!-- LUNES -->
-            <div class="promo-day-card" id="card-promo-lunes">
-                <div class="promo-day-header" onclick="togglePromoDay('lunes')">
-                    <span>💼 Lunes de Godínez (Precio Especial $100) <span id="badge-lunes"></span></span>
-                    <span id="arrow-lunes">▼</span>
+            <div class="promo-day-body" id="body-lunes">
+                <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                    ¡Precio especial de $100 para empezar la semana con energía en la oficina!
                 </div>
-                <div class="promo-day-body" id="body-lunes">
-                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
-                        ¡Precio especial de $100 para empezar la semana con energía en la oficina!
-                    </div>
-                    <div id="contenedor-promo-lunes"></div>
-                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('lunes', 'Lunes de Godínez', 100)">
-                        + Agregar esta promo al pedido ($100)
-                    </button>
-                </div>
-            </div>
-
-            <!-- MARTES -->
-            <div class="promo-day-card" id="card-promo-martes">
-                <div class="promo-day-header" onclick="togglePromoDay('martes')">
-                    <span>🥗 Martes de Mix Fresco (Precio Especial $100) <span id="badge-martes"></span></span>
-                    <span id="arrow-martes">▼</span>
-                </div>
-                <div class="promo-day-body" id="body-martes">
-                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
-                        Disfruta tus ingredientes favoritos a sólo $100 con descuento especial de martes.
-                    </div>
-                    <div id="contenedor-promo-martes"></div>
-                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('martes', 'Martes de Mix Fresco', 100)">
-                        + Agregar esta promo al pedido ($100)
-                    </button>
-                </div>
-            </div>
-
-            <!-- MIÉRCOLES -->
-            <div class="promo-day-card" id="card-promo-miercoles">
-                <div class="promo-day-header" onclick="togglePromoDay('miercoles')">
-                    <span>⭐ Miércoles Mitad de Semana (Precio Especial $100) <span id="badge-miercoles"></span></span>
-                    <span id="arrow-miercoles">▼</span>
-                </div>
-                <div class="promo-day-body" id="body-miercoles">
-                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
-                        Recarga pilas a mitad de semana con tu ensalada a sólo $100.
-                    </div>
-                    <div id="contenedor-promo-miercoles"></div>
-                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('miercoles', 'Miércoles Mitad de Semana', 100)">
-                        + Agregar esta promo al pedido ($100)
-                    </button>
-                </div>
-            </div>
-
-            <!-- JUEVES -->
-            <div class="promo-day-card" id="card-promo-jueves">
-                <div class="promo-day-header" onclick="togglePromoDay('jueves')">
-                    <span>🥑 Jueves Saludable (Precio Especial $100) <span id="badge-jueves"></span></span>
-                    <span id="arrow-jueves">▼</span>
-                </div>
-                <div class="promo-day-body" id="body-jueves">
-                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
-                        Cuídate este jueves con nuestras combinaciones especiales a $100.
-                    </div>
-                    <div id="contenedor-promo-jueves"></div>
-                    <button type="button" class="btn-add-ensalada" onclick="agregarPromoEnDia('jueves', 'Jueves Saludable', 100)">
-                        + Agregar esta promo al pedido ($100)
-                    </button>
-                </div>
-            </div>
-
-            <!-- VIERNES -->
-            <div class="promo-day-card" id="card-promo-viernes">
-                <div class="promo-day-header" onclick="togglePromoDay('viernes')">
-                    <span>🎉 Viernes de Combos (2 x $200) <span id="badge-viernes"></span></span>
-                    <span id="arrow-viernes">▼</span>
-                </div>
-                <div class="promo-day-body" id="body-viernes">
-                    <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
-                        Incluye exactamente <strong>2 ensaladas completas</strong> por sólo $200 MXN ($100 c/u). Arma ambas a continuación:
-                    </div>
-                    <div id="contenedor-promo-viernes"></div>
-                    <button type="button" id="btnAgregarViernes" class="btn-add-ensalada" onclick="agregarComboViernes()">
-                        + Agregar Combo de 2 Ensaladas ($200)
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- DATOS DE ENTREGA Y PAGO -->
-        <div class="section-title" style="font-size:18px; border-left:4px solid var(--primary-dark); padding-left:8px; margin-top:25px;">
-            Datos de Entrega
-        </div>
-
-        <div class="form-group">
-            <label for="clienteNombre">Nombre del Cliente *</label>
-            <input type="text" id="clienteNombre" placeholder="Tu nombre completo">
-        </div>
-
-        <div class="form-group">
-            <label for="clienteTelefono">Teléfono de Contacto *</label>
-            <input type="tel" id="clienteTelefono" placeholder="Ej. 6691234567">
-        </div>
-
-        <div class="form-group">
-            <label for="clienteColonia">Selecciona tu Colonia o Fraccionamiento *</label>
-            <select id="clienteColonia">
-                <option value="">-- Selecciona tu zona de cobertura --</option>
-                <option value="Infonavit Jabalíes">1. Infonavit Jabalíes</option>
-                <option value="Colonia Burócrata">2. Colonia Burócrata</option>
-                <option value="Infonavit Fovissste">3. Infonavit Fovissste</option>
-                <option value="Fraccionamiento Isstesin">4. Fraccionamiento Isstesin</option>
-                <option value="Costa Azul">5. Costa Azul</option>
-                <option value="Fraccionamiento Las Misiones">6. Fraccionamiento Las Misiones</option>
-                <option value="Fraccionamiento Los Venados">7. Fraccionamiento Los Venados</option>
-                <option value="Colonia Alarcón">8. Colonia Alarcón</option>
-                <option value="Plaza Santa Rosa y alrededores">9. Plaza Santa Rosa y alrededores</option>
-                <option value="Dorados de Villa">10. Dorados de Villa</option>
-                <option value="Francisco Villa">11. Francisco Villa</option>
-                <option value="Los Mangos">12. Los Mangos</option>
-                <option value="Sánchez Celis">13. Sánchez Celis</option>
-                <option value="Chulavista">14. Chulavista</option>
-                <option value="Gran Plaza / Fraccionamiento Alameda">15. Gran Plaza / Fraccionamiento Alameda</option>
-                <option value="Fraccionamiento El Toreo">16. Fraccionamiento El Toreo</option>
-                <option value="Fraccionamiento Reforma">17. Fraccionamiento Reforma</option>
-                <option value="Colonia Benito Juárez">18. Colonia Benito Juárez</option>
-                <option value="Colonia López Mateos">19. Colonia López Mateos</option>
-                <option value="Real del Valle">20. Real del Valle</option>
-                <option value="Real Pacífico">21. Real Pacífico</option>
-                <option value="Prados del Sol">22. Prados del Sol</option>
-                <option value="Terranova">23. Terranova</option>
-                <option value="Villas Marina">24. Villas Marina</option>
-                <option value="Mediterráneo">25. Mediterráneo</option>
-                <option value="Paseo de los Olivos">26. Paseo de los Olivos</option>
-                <option value="Infonavit Playas">27. Infonavit Playas</option>
-                <option value="Sábalo Country">28. Sábalo Country</option>
-                <option value="Marina Mazatlán">29. Marina Mazatlán</option>
-                <option value="Lomas de Mazatlán">30. Lomas de Mazatlán</option>
-                <option value="Zona Dorada">31. Zona Dorada</option>
-                <option value="Fraccionamiento Alameda">32. Fraccionamiento Alameda</option>
-                <option value="Portales">Portales</option>
-                <option value="Mango 1">Mango 1</option>
-                <option value="Mango 2">Mango 2</option>
-                <option value="Mango 3">Mango 3</option>
-                <option value="Privanzas">Privanzas</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="clienteCalleNum">Calle y Número *</label>
-            <input type="text" id="clienteCalleNum" placeholder="Ej. Av. Insurgentes #123">
-        </div>
-
-        <div class="form-group">
-            <label for="clienteEntreCalles">Entre qué calles está</label>
-            <input type="text" id="clienteEntreCalles" placeholder="Ej. Entre Benito Juárez y Reforma">
-        </div>
-
-        <div class="form-group">
-            <label for="clienteReferencia">Referencias de la fachada / casa</label>
-            <textarea id="clienteReferencia" rows="2" placeholder="Ej. Casa blanca con portón negro"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="clienteComentarios">Comentarios adicionales generales</label>
-            <textarea id="clienteComentarios" rows="2" placeholder="Opcional: indicaciones especiales"></textarea>
-        </div>
-
-        <div class="payment-box">
-            <div class="section-title" style="margin-top:0;">Método de Pago *</div>
-
-            <div class="options-grid">
-                <label class="option-card">
-                    <input type="radio" name="metodoPago" value="Efectivo" checked onclick="cambiarMetodoPago('Efectivo')">
-                    <span class="option-label">💵 Efectivo</span>
-                </label>
-                <label class="option-card">
-                    <input type="radio" name="metodoPago" value="Transferencia" onclick="cambiarMetodoPago('Transferencia')">
-                    <span class="option-label">📱 Transferencia</span>
-                </label>
-            </div>
-
-            <div class="form-group" id="grupoCambio" style="margin-top:15px; margin-bottom:0;">
-                <label for="cambioEfectivo">¿Con qué billete vas a pagar? (Opcional)</label>
-                <input type="text" id="cambioEfectivo" placeholder="Ej. Pagaré con billete de $200 o $500">
-            </div>
-
-            <div id="grupoTransferencia" style="display:none;">
-                <div class="bank-info-card">
-                    <strong>🏦 Datos para tu Transferencia:</strong>
-                    <br><br>
-                    • <strong>Institución:</strong> Spin By Oxxo<br>
-                    • <strong>Titular:</strong> Ilse Jacqueline Altamirano Villegas<br>
-                    • <strong>CLABE:</strong> 728969000017618510
-                </div>
-
-                <div class="form-group" style="margin-top:12px; margin-bottom:0;">
-                    <label for="comprobantePago">📎 Selecciona la foto de tu comprobante de pago *</label>
-                    <input type="file" id="comprobantePago" accept="image/*" style="background:white; padding:6px;">
-                    <small style="display:block; margin-top:6px; color:#666;">
-                        Al abrir WhatsApp, recuerda adjuntar la foto del comprobante.
-                    </small>
-                </div>
+                <div id="div-bloqueo-lunes"></div>
+                <button type="button" class="btn-main-action" id="btn-accion-lunes" onclick="abrirModalArmarPromo('lunes', 'Lunes de Godínez', 100)">
+                    Haz tu promo Lunes de Godínez ($100)
+                </button>
             </div>
         </div>
 
-        <div class="sticky-footer">
-            <div class="estimated-time-notice">
-                ⏱️ Tiempo de entrega: 30 a 45 minutos
+        <!-- MARTES -->
+        <div class="promo-day-card" id="card-promo-martes">
+            <div class="promo-day-header" onclick="togglePromoDay('martes')">
+                <span>🥗 Martes de Mix Fresco (Precio Especial $100) <span id="badge-martes"></span></span>
+                <span id="arrow-martes">▼</span>
             </div>
-
-            <div class="total-container">
-                <span>Total:</span>
-                <span id="precioTotal" style="color:var(--primary-dark);">$0.00 MXN</span>
+            <div class="promo-day-body" id="body-martes">
+                <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                    Disfruta tus ingredientes favoritos a sólo $100 con descuento especial de martes.
+                </div>
+                <div id="div-bloqueo-martes"></div>
+                <button type="button" class="btn-main-action" id="btn-accion-martes" onclick="abrirModalArmarPromo('martes', 'Martes de Mix Fresco', 100)">
+                    Haz tu promo Martes de Mix Fresco ($100)
+                </button>
             </div>
-
-            <button type="button" id="btnEnviarPedido" class="btn-whatsapp" onclick="prepararVentanaConfirmacion()">
-                Enviar Pedido por WhatsApp 📱
-            </button>
         </div>
 
-    </form>
+        <!-- MIÉRCOLES -->
+        <div class="promo-day-card" id="card-promo-miercoles">
+            <div class="promo-day-header" onclick="togglePromoDay('miercoles')">
+                <span>⭐ Miércoles Mitad de Semana (Precio Especial $100) <span id="badge-miercoles"></span></span>
+                <span id="arrow-miercoles">▼</span>
+            </div>
+            <div class="promo-day-body" id="body-miercoles">
+                <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                    Recarga pilas a mitad de semana con tu ensalada a sólo $100.
+                </div>
+                <div id="div-bloqueo-miercoles"></div>
+                <button type="button" class="btn-main-action" id="btn-accion-miercoles" onclick="abrirModalArmarPromo('miercoles', 'Miércoles Mitad de Semana', 100)">
+                    Haz tu promo Miércoles Mitad de Semana ($100)
+                </button>
+            </div>
+        </div>
+
+        <!-- JUEVES -->
+        <div class="promo-day-card" id="card-promo-jueves">
+            <div class="promo-day-header" onclick="togglePromoDay('jueves')">
+                <span>⭐ Jueves Saludable (Precio Especial $100) <span id="badge-jueves"></span></span>
+                <span id="arrow-jueves">▼</span>
+            </div>
+            <div class="promo-day-body" id="body-jueves">
+                <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                    Cuídate este jueves con nuestras combinaciones especiales a $100.
+                </div>
+                <div id="div-bloqueo-jueves"></div>
+                <button type="button" class="btn-main-action" id="btn-accion-jueves" onclick="abrirModalArmarPromo('jueves', 'Jueves Saludable', 100)">
+                    Haz tu promo Jueves Saludable ($100)
+                </button>
+            </div>
+        </div>
+
+        <!-- VIERNES -->
+        <div class="promo-day-card" id="card-promo-viernes">
+            <div class="promo-day-header" onclick="togglePromoDay('viernes')">
+                <span>🎉 Viernes de Combos (2 x $200) <span id="badge-viernes"></span></span>
+                <span id="arrow-viernes">▼</span>
+            </div>
+            <div class="promo-day-body" id="body-viernes">
+                <div style="font-size:13px; color:var(--text-sub); margin-bottom:12px;">
+                    Incluye exactamente <strong>2 ensaladas completas</strong> por sólo $200 MXN ($100 c/u).
+                </div>
+                <div id="div-bloqueo-viernes"></div>
+                <button type="button" class="btn-main-action" id="btn-accion-viernes" onclick="abrirModalArmarComboViernes()">
+                    Haz tu Combo Viernes de Combos ($200)
+                </button>
+            </div>
+        </div>
+
+    </div>
 
 </div>
 
@@ -1075,10 +877,10 @@
 
 const PRECIO_BASE = 120;
 const NUMERO_WHATSAPP = "523111170609";
-let contadorEnsaladas = 0;
-let contadorPromosDia = 0;
 let pestañaActual = 'menu';
 let cocinaAbierta = true;
+let tipoModalActual = 'regular'; // 'regular', 'promo', 'viernes'
+let promoActualDia = '';
 
 function toggleInfoBox() {
     const box = document.getElementById("infoContentBox");
@@ -1141,9 +943,6 @@ function verificarHorario() {
     if (cerrado) {
         cocinaAbierta = false;
         document.getElementById("avisoCerradoAviso").style.display = "block";
-        const btnWp = document.getElementById("btnEnviarPedido");
-        btnWp.style.backgroundColor = "#d32f2f";
-        btnWp.textContent = "🔒 Cocina Cerrada (Ver horario en Información)";
     }
 }
 
@@ -1159,19 +958,23 @@ function configurarDiasPromocion() {
         5: 'viernes'
     };
 
+    const diaHoyStr = mapaDias[diaActualNum] || '';
     const diasSemanaArr = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
 
     diasSemanaArr.forEach(dia => {
-        const tarjetaCard = document.getElementById(`card-promo-${dia}`);
         const badgeSpan = document.getElementById(`badge-${dia}`);
-        const esHoy = (mapaDias[diaActualNum] === dia);
+        const btnAccion = document.getElementById(`btn-accion-${dia}`);
+        const divBloqueo = document.getElementById(`div-bloqueo-${dia}`);
+        const esHoy = (diaHoyStr === dia);
 
-        if (!esHoy) {
-            tarjetaCard.classList.add("promo-bloqueada");
-            badgeSpan.innerHTML = '<span class="badge-bloqueado">Solo disponible el día de hoy</span>';
+        if (esHoy) {
+            badgeSpan.innerHTML = '<span class="badge-promo-hoy">★ Promo hoy</span>';
+            btnAccion.style.display = "block";
+            divBloqueo.innerHTML = "";
         } else {
-            tarjetaCard.classList.remove("promo-bloqueada");
             badgeSpan.innerHTML = '';
+            btnAccion.style.display = "none";
+            divBloqueo.innerHTML = `<div class="badge-bloqueado-aviso">🔒 Esta promoción estará disponible el día que corresponda. Hoy puedes verla pero no pedirla.</div>`;
         }
     });
 }
@@ -1186,159 +989,112 @@ function obtenerSiguienteFolio() {
     return `#VM-${String(siguienteNum).padStart(3, "0")}`;
 }
 
-function agregarEnsalada() {
-    contadorEnsaladas++;
-    const id = contadorEnsaladas;
-    const contenedor = document.getElementById("ensaladasContenedor");
-    const card = document.createElement("div");
-    card.className = "ensalada-card-block";
-    card.id = `ensalada-card-${id}`;
-
-    card.innerHTML = construirEstructuraEnsalada(`reg-${id}`, `Ensalada Regular #${id}`, true, PRECIO_BASE);
-    contenedor.appendChild(card);
-    calcularTotal();
+// Control de Ventanas Modales Paso a Paso
+function abrirModalArmarRegular() {
+    tipoModalActual = 'regular';
+    document.getElementById("modalTituloArmar").textContent = "Arma tu Ensalada Regular";
+    document.getElementById("modalSubtituloArmar").textContent = "Precio: $120.00 MXN | Selecciona ingredientes y datos de entrega";
+    document.getElementById("modalContenidoDinamico").innerHTML = construirEstructuraEnsaladaCompleta("reg-1", PRECIO_BASE) + construirEstructuraFormularioEntregaPago();
+    document.getElementById("modalArmarPedido").style.display = "flex";
 }
 
-function agregarPromoEnDia(dia, nombrePromo, precioPromo) {
-    contadorPromosDia++;
-    const id = contadorPromosDia;
-    const contenedor = document.getElementById(`contenedor-promo-${dia}`);
-    const card = document.createElement("div");
-    card.className = "ensalada-card-block promo-item-block";
-    card.setAttribute("data-promo-nombre", nombrePromo);
-    card.id = `promo-item-${dia}-${id}`;
-
-    card.innerHTML = construirEstructuraEnsalada(`promo-${dia}-${id}`, `${nombrePromo} #${id}`, true, precioPromo);
-    contenedor.appendChild(card);
-    calcularTotal();
+function abrirModalArmarPromo(dia, nombrePromo, precioPromo) {
+    tipoModalActual = 'promo';
+    promoActualDia = nombrePromo;
+    document.getElementById("modalTituloArmar").textContent = nombrePromo;
+    document.getElementById("modalSubtituloArmar").textContent = `Precio especial: $${precioPromo}.00 MXN | Selecciona tus ingredientes`;
+    document.getElementById("modalContenidoDinamico").innerHTML = construirEstructuraEnsaladaCompleta(`promo-${dia}`, precioPromo) + construirEstructuraFormularioEntregaPago();
+    document.getElementById("modalArmarPedido").style.display = "flex";
 }
 
-function agregarComboViernes() {
-    contadorPromosDia++;
-    const comboId = contadorPromosDia;
-    const contenedor = document.getElementById(`contenedor-promo-viernes`);
+function abrirModalArmarComboViernes() {
+    tipoModalActual = 'viernes';
+    document.getElementById("modalTituloArmar").textContent = "Viernes de Combos (2 x $200)";
+    document.getElementById("modalSubtituloArmar").textContent = "Arma tus 2 ensaladas del combo y tus datos de entrega";
     
-    const wrapperCombo = document.createElement("div");
-    wrapperCombo.className = "promo-combo-viernes-block";
-    wrapperCombo.id = `combo-viernes-${comboId}`;
-    wrapperCombo.style.border = "2px dashed var(--primary-color)";
-    wrapperCombo.style.borderRadius = "14px";
-    wrapperCombo.style.padding = "12px";
-    wrapperCombo.style.marginBottom = "20px";
-    wrapperCombo.style.background = "#f9fbf9";
-
-    wrapperCombo.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid #c8e6c9; padding-bottom:8px;">
-            <strong style="color:var(--primary-dark); font-size:15px;">🎁 Paquete Viernes 2 x $200 (#${comboId})</strong>
-            <button type="button" class="btn-eliminar-ensalada" onclick="eliminarComboViernes(${comboId})">Eliminar Combo</button>
-        </div>
-        <div id="sub-ensaladas-${comboId}"></div>
+    let htmlCombo = `
+        <div style="font-weight:800; color:var(--primary-dark); margin-bottom:10px; font-size:15px;">🥗 Ensalada 1 del Combo</div>
+        ${construirEstructuraEnsaladaCompleta("v1", 100)}
+        <hr style="border:0; border-top:1px dashed #c8e6c9; margin:20px 0;">
+        <div style="font-weight:800; color:var(--primary-dark); margin-bottom:10px; font-size:15px;">🥗 Ensalada 2 del Combo</div>
+        ${construirEstructuraEnsaladaCompleta("v2", 100)}
+        <hr style="border:0; border-top:1px dashed #c8e6c9; margin:20px 0;">
     `;
-
-    contenedor.appendChild(wrapperCombo);
-
-    const subContenedor = document.getElementById(`sub-ensaladas-${comboId}`);
-    
-    const card1 = document.createElement("div");
-    card1.className = "ensalada-card-block promo-item-block";
-    card1.setAttribute("data-promo-nombre", "Viernes de Combos - Ensalada combo número uno");
-    card1.innerHTML = construirEstructuraEnsalada(`v1-${comboId}`, `Ensalada combo número uno`, false, 100);
-    subContenedor.appendChild(card1);
-
-    const card2 = document.createElement("div");
-    card2.className = "ensalada-card-block promo-item-block";
-    card2.setAttribute("data-promo-nombre", "Viernes de Combos - Ensalada combo número dos");
-    card2.innerHTML = construirEstructuraEnsalada(`v2-${comboId}`, `Ensalada combo número dos`, false, 100);
-    subContenedor.appendChild(card2);
-
-    document.getElementById("btnAgregarViernes").style.display = "none";
-    calcularTotal();
+    htmlCombo += construirEstructuraFormularioEntregaPago();
+    document.getElementById("modalContenidoDinamico").innerHTML = htmlCombo;
+    document.getElementById("modalArmarPedido").style.display = "flex";
 }
 
-function eliminarComboViernes(comboId) {
-    const comboEl = document.getElementById(`combo-viernes-${comboId}`);
-    if (comboEl) {
-        comboEl.remove();
-        document.getElementById("btnAgregarViernes").style.display = "block";
-        calcularTotal();
+function cerrarModalArmar() {
+    document.getElementById("modalArmarPedido").style.display = "none";
+}
+
+function cambiarMetodoPagoModal(metodo) {
+    const grupoCambio = document.getElementById("modalGrupoCambio");
+    const grupoTransf = document.getElementById("modalGrupoTransferencia");
+    if (grupoCambio && grupoTransf) {
+        grupoCambio.style.display = metodo === "Efectivo" ? "block" : "none";
+        grupoTransf.style.display = metodo === "Transferencia" ? "block" : "none";
     }
 }
 
-function construirEstructuraEnsalada(uniqueId, tituloTexto, permitirEliminar, precioBaseAsignado) {
+// Estructuras HTML para inyectar en el Modal
+function construirEstructuraEnsaladaCompleta(uniqueId, precioBaseAsignado) {
     return `
-        <div class="ensalada-header-title">
-            <span>${tituloTexto}</span>
-            ${permitirEliminar ? `<button type="button" class="btn-eliminar-ensalada" onclick="eliminarBloque('${uniqueId}')">Eliminar</button>` : ""}
-        </div>
+        <div class="ensalada-card-block" id="block-${uniqueId}" data-precio-base="${precioBaseAsignado}" style="background:#ffffff; border:1px solid #d8e4d9; border-radius:14px; padding:15px; margin-bottom:15px;">
+            <div class="section-title" style="margin-top:0;">1. Selecciona tu Barra Fría (Máximo 5 porciones)</div>
+            <div style="font-size:11px; color:#4b5563; background:#f1f8f2; padding:6px; border-radius:6px; margin-bottom:10px;">
+                Máximo 2 porciones por cada ingrediente.
+            </div>
+            <div class="barra-fria-list">
+                ${crearBarraFria(uniqueId, "Zanahoria")}
+                ${crearBarraFria(uniqueId, "Jícama")}
+                ${crearBarraFria(uniqueId, "Betabel")}
+                ${crearBarraFria(uniqueId, "Pasta")}
+                ${crearBarraFria(uniqueId, "Pepino")}
+                ${crearBarraFria(uniqueId, "Cebolla Morada")}
+                ${crearBarraFria(uniqueId, "Jitomate")}
+                ${crearBarraFria(uniqueId, "Aceituna Negra")}
+                ${crearBarraFria(uniqueId, "Elote")}
+            </div>
 
-        <div class="section-title">1. Selecciona tu Barra Fría</div>
-        <div style="font-size:12px; color:#4b5563; background:#f1f8f2; padding:8px; border-radius:8px; margin-bottom:10px; border:1px solid #c8e6c9;">
-            Puedes elegir hasta <strong>5 porciones</strong>. Cada ingrediente máximo <strong>2 veces</strong>.
-        </div>
+            <div class="section-title">2. Proteína incluida (Selecciona 1)</div>
+            <div class="option-extra-list">
+                ${crearOpcionConExtra(uniqueId, "proteina", "Pollo a la plancha", 30, true)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Pollo BBQ", 30)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Buffalo", 30)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Mango Habanero", 30)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Pimienta Limón", 30)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Huevo Cocido (2 pz)", 10)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Queso Panela Fresco", 30)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Atún", 35)}
+                ${crearOpcionConExtra(uniqueId, "proteina", "Jamón de Pavo", 30)}
+            </div>
 
-        <div class="barra-fria-list">
-            ${crearBarraFria(uniqueId, "Zanahoria")}
-            ${crearBarraFria(uniqueId, "Jícama")}
-            ${crearBarraFria(uniqueId, "Betabel")}
-            ${crearBarraFria(uniqueId, "Pasta")}
-            ${crearBarraFria(uniqueId, "Pepino")}
-            ${crearBarraFria(uniqueId, "Cebolla Morada")}
-            ${crearBarraFria(uniqueId, "Jitomate")}
-            ${crearBarraFria(uniqueId, "Aceituna Negra")}
-            ${crearBarraFria(uniqueId, "Elote")}
-        </div>
-
-        <div class="section-title">2. Proteína incluida (Selecciona solo 1)</div>
-        <div class="option-extra-list">
-            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo a la plancha", 30, true)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo BBQ", 30)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Buffalo", 30)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Mango Habanero", 30)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Pollo Pimienta Limón", 30)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Huevo Cocido (2 pz)", 10)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Queso Panela Fresco", 30)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Atún", 35)}
-            ${crearOpcionConExtra(uniqueId, "proteina", "Jamón de Pavo", 30)}
-        </div>
-
-        <div class="section-title">3. Elige tu Aderezo (Solo 1)</div>
-        <div class="option-extra-list">
-            ${crearOpcionConExtra(uniqueId, "aderezo", "Aderezo de Cilantro", 20, true)}
-            ${crearOpcionConExtra(uniqueId, "aderezo", "Ranch", 20)}
-            ${crearOpcionConExtra(uniqueId, "aderezo", "Ranch Chipotle", 20)}
-            ${crearOpcionConExtra(uniqueId, "aderezo", "Vinagreta Mostaza Miel", 20)}
-            ${crearOpcionConExtra(uniqueId, "aderezo", "Vinagreta Limón Pimienta", 20)}
-        </div>
-
-        <label class="option-card" style="margin-top:10px;">
-            <input type="radio" name="aderezo_${uniqueId}" value="Sin Aderezo">
-            <span class="option-label">Sin Aderezo</span>
-        </label>
-
-        <div class="section-title">4. Elige tu Crocante (Solo 1)</div>
-        <div class="option-extra-list">
-            ${crearOpcionConExtra(uniqueId, "crocante", "Queso Parmesano", 25, true)}
-            ${crearOpcionConExtra(uniqueId, "crocante", "Crotón Queso/Ajo", 25)}
-            ${crearOpcionConExtra(uniqueId, "crocante", "Tiritas de Tortilla", 25)}
-        </div>
-
-        <label class="option-card" style="margin-top:10px;">
-            <input type="radio" name="crocante_${uniqueId}" value="Sin Crocante">
-            <span class="option-label">Sin Crocante</span>
-        </label>
-
-        <div class="section-title">Cubiertos</div>
-        <div class="options-grid">
-            <label class="option-card">
-                <input type="radio" name="cubiertos_${uniqueId}" value="Con cubiertos" checked>
-                <span class="option-label">Con cubiertos</span>
+            <div class="section-title">3. Elige tu Aderezo (Selecciona 1)</div>
+            <div class="option-extra-list">
+                ${crearOpcionConExtra(uniqueId, "aderezo", "Aderezo de Cilantro", 20, true)}
+                ${crearOpcionConExtra(uniqueId, "aderezo", "Ranch", 20)}
+                ${crearOpcionConExtra(uniqueId, "aderezo", "Ranch Chipotle", 20)}
+                ${crearOpcionConExtra(uniqueId, "aderezo", "Vinagreta Mostaza Miel", 20)}
+                ${crearOpcionConExtra(uniqueId, "aderezo", "Vinagreta Limón Pimienta", 20)}
+            </div>
+            <label class="option-card" style="margin-top:8px;">
+                <input type="radio" name="aderezo_${uniqueId}" value="Sin Aderezo">
+                <span class="option-label">Sin Aderezo</span>
             </label>
-            <label class="option-card">
-                <input type="radio" name="cubiertos_${uniqueId}" value="Sin Cubiertos">
-                <span class="option-label">Sin Cubiertos</span>
+
+            <div class="section-title">4. Elige tu Crocante (Selecciona 1)</div>
+            <div class="option-extra-list">
+                ${crearOpcionConExtra(uniqueId, "crocante", "Queso Parmesano", 25, true)}
+                ${crearOpcionConExtra(uniqueId, "crocante", "Crotón Queso/Ajo", 25)}
+                ${crearOpcionConExtra(uniqueId, "crocante", "Tiritas de Tortilla", 25)}
+            </div>
+            <label class="option-card" style="margin-top:8px;">
+                <input type="radio" name="crocante_${uniqueId}" value="Sin Crocante">
+                <span class="option-label">Sin Crocante</span>
             </label>
         </div>
-        <input type="hidden" class="input-precio-base" value="${precioBaseAsignado}">
     `;
 }
 
@@ -1348,22 +1104,17 @@ function crearBarraFria(uniqueId, nombre) {
         <div class="barra-fria-row">
             <span class="barra-fria-name">${nombre}</span>
             <div class="barra-fria-quantity">
-                <button type="button" class="nice-qty-btn" onclick="cambiarCantidadBarra('${uniqueId}', '${clave}', -1)">−</button>
+                <button type="button" class="nice-qty-btn" onclick="cambiarCantidadBarraModal('${uniqueId}', '${clave}', -1)">−</button>
                 <span class="barra-qty-number" id="barra-${uniqueId}-${clave}">0</span>
-                <button type="button" class="nice-qty-btn" onclick="cambiarCantidadBarra('${uniqueId}', '${clave}', 1)">+</button>
+                <button type="button" class="nice-qty-btn" onclick="cambiarCantidadBarraModal('${uniqueId}', '${clave}', 1)">+</button>
                 <input type="hidden" class="barra-fria-quantity-input" data-name="${nombre}" data-key="${clave}" value="0">
             </div>
         </div>
     `;
 }
 
-function cambiarCantidadBarra(uniqueId, clave, cambio) {
-    let card = document.getElementById(`ensalada-card-${uniqueId.split('-')[1]}`);
-    if (!card) card = document.getElementById(`promo-item-${uniqueId.replace('promo-', '')}`);
-    if (!card && uniqueId.startsWith('v')) {
-        card = event.target.closest('.ensalada-card-block');
-    }
-
+function cambiarCantidadBarraModal(uniqueId, clave, cambio) {
+    const card = document.getElementById(`block-${uniqueId}`);
     const input = card.querySelector(`.barra-fria-quantity-input[data-key="${clave}"]`);
     let cantidad = parseInt(input.value) || 0;
     let totalPorciones = 0;
@@ -1387,7 +1138,6 @@ function cambiarCantidadBarra(uniqueId, clave, cambio) {
 
     input.value = cantidad;
     document.getElementById(`barra-${uniqueId}-${clave}`).textContent = cantidad;
-    calcularTotal();
 }
 
 function crearOpcionConExtra(uniqueId, tipo, nombre, precioExtra, seleccionado = false) {
@@ -1402,9 +1152,9 @@ function crearOpcionConExtra(uniqueId, tipo, nombre, precioExtra, seleccionado =
                 <span class="extra-word">Extra</span>
                 <span class="extra-price">+$${precioExtra}</span>
                 <div class="quantity-control">
-                    <button type="button" class="nice-qty-btn" onclick="cambiarCantidad('${uniqueId}', '${tipo}', '${clave}', -1)">−</button>
+                    <button type="button" class="nice-qty-btn" onclick="cambiarCantidadExtraModal('${uniqueId}', '${tipo}', '${clave}', -1)">−</button>
                     <span class="qty-number" id="${tipo}-${uniqueId}-${clave}">0</span>
-                    <button type="button" class="nice-qty-btn" onclick="cambiarCantidad('${uniqueId}', '${tipo}', '${clave}', 1)">+</button>
+                    <button type="button" class="nice-qty-btn" onclick="cambiarCantidadExtraModal('${uniqueId}', '${tipo}', '${clave}', 1)">+</button>
                 </div>
                 <input type="hidden" class="extra-${tipo}" data-name="${nombre}" data-price="${precioExtra}" data-key="${clave}" value="0">
             </div>
@@ -1412,103 +1162,190 @@ function crearOpcionConExtra(uniqueId, tipo, nombre, precioExtra, seleccionado =
     `;
 }
 
-function cambiarCantidad(uniqueId, tipo, clave, cambio) {
-    let card = document.getElementById(`ensalada-card-${uniqueId.split('-')[1]}`);
-    if (!card) card = document.getElementById(`promo-item-${uniqueId.replace('promo-', '')}`);
-    if (!card) card = event.target.closest('.ensalada-card-block');
-
+function cambiarCantidadExtraModal(uniqueId, tipo, clave, cambio) {
+    const card = document.getElementById(`block-${uniqueId}`);
     const input = card.querySelector(`.extra-${tipo}[data-key="${clave}"]`);
     let cantidad = parseInt(input.value) || 0;
     cantidad += cambio;
     if (cantidad < 0) cantidad = 0;
     input.value = cantidad;
     document.getElementById(`${tipo}-${uniqueId}-${clave}`).textContent = cantidad;
-    calcularTotal();
 }
 
-function eliminarBloque(uniqueId) {
-    let card = document.getElementById(`ensalada-card-${uniqueId.split('-')[1]}`);
-    if (!card) card = document.getElementById(`promo-item-${uniqueId.replace('promo-', '')}`);
-    if (card) {
-        card.remove();
-        calcularTotal();
-    }
+function construirEstructuraFormularioEntregaPago() {
+    return `
+        <div style="background:#ffffff; border:1px solid #d8e4d9; border-radius:14px; padding:15px; margin-top:10px;">
+            <div class="section-title" style="margin-top:0; font-size:16px; border-left:4px solid var(--primary-dark); padding-left:8px;">
+                Datos de Entrega y Pago
+            </div>
+
+            <div class="form-group">
+                <label for="mNombre">Nombre del Cliente *</label>
+                <input type="text" id="mNombre" placeholder="Tu nombre completo">
+            </div>
+
+            <div class="form-group">
+                <label for="mTelefono">Teléfono de Contacto *</label>
+                <input type="tel" id="mTelefono" placeholder="Ej. 6691234567">
+            </div>
+
+            <div class="form-group">
+                <label for="mColonia">Selecciona tu Colonia o Fraccionamiento *</label>
+                <select id="mColonia">
+                    <option value="">-- Selecciona tu zona de cobertura --</option>
+                    <option value="Infonavit Jabalíes">1. Infonavit Jabalíes</option>
+                    <option value="Colonia Burócrata">2. Colonia Burócrata</option>
+                    <option value="Infonavit Fovissste">3. Infonavit Fovissste</option>
+                    <option value="Fraccionamiento Isstesin">4. Fraccionamiento Isstesin</option>
+                    <option value="Costa Azul">5. Costa Azul</option>
+                    <option value="Fraccionamiento Las Misiones">6. Fraccionamiento Las Misiones</option>
+                    <option value="Fraccionamiento Los Venados">7. Fraccionamiento Los Venados</option>
+                    <option value="Colonia Alarcón">8. Colonia Alarcón</option>
+                    <option value="Plaza Santa Rosa y alrededores">9. Plaza Santa Rosa y alrededores</option>
+                    <option value="Dorados de Villa">10. Dorados de Villa</option>
+                    <option value="Francisco Villa">11. Francisco Villa</option>
+                    <option value="Los Mangos">12. Los Mangos</option>
+                    <option value="Sánchez Celis">13. Sánchez Celis</option>
+                    <option value="Chulavista">14. Chulavista</option>
+                    <option value="Gran Plaza / Fraccionamiento Alameda">15. Gran Plaza / Fraccionamiento Alameda</option>
+                    <option value="Fraccionamiento El Toreo">16. Fraccionamiento El Toreo</option>
+                    <option value="Fraccionamiento Reforma">17. Fraccionamiento Reforma</option>
+                    <option value="Colonia Benito Juárez">18. Colonia Benito Juárez</option>
+                    <option value="Colonia López Mateos">19. Colonia López Mateos</option>
+                    <option value="Real del Valle">20. Real del Valle</option>
+                    <option value="Real Pacífico">21. Real Pacífico</option>
+                    <option value="Prados del Sol">22. Prados del Sol</option>
+                    <option value="Terranova">23. Terranova</option>
+                    <option value="Villas Marina">24. Villas Marina</option>
+                    <option value="Mediterráneo">25. Mediterráneo</option>
+                    <option value="Paseo de los Olivos">26. Paseo de los Olivos</option>
+                    <option value="Infonavit Playas">27. Infonavit Playas</option>
+                    <option value="Sábalo Country">28. Sábalo Country</option>
+                    <option value="Marina Mazatlán">29. Marina Mazatlán</option>
+                    <option value="Lomas de Mazatlán">30. Lomas de Mazatlán</option>
+                    <option value="Zona Dorada">31. Zona Dorada</option>
+                    <option value="Portales">Portales</option>
+                    <option value="Mango 1">Mango 1</option>
+                    <option value="Mango 2">Mango 2</option>
+                    <option value="Mango 3">Mango 3</option>
+                    <option value="Privanzas">Privanzas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mCalleNum">Calle y Número *</label>
+                <input type="text" id="mCalleNum" placeholder="Ej. Av. Insurgentes #123">
+            </div>
+
+            <div class="form-group">
+                <label for="mEntreCalles">Entre qué calles está</label>
+                <input type="text" id="mEntreCalles" placeholder="Ej. Entre Benito Juárez y Reforma">
+            </div>
+
+            <div class="form-group">
+                <label for="mReferencia">Referencias de la fachada / casa</label>
+                <textarea id="mReferencia" rows="2" placeholder="Ej. Casa blanca con portón negro"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="mComentarios">Comentarios adicionales</label>
+                <textarea id="mComentarios" rows="2" placeholder="Opcional: indicaciones especiales"></textarea>
+            </div>
+
+            <div class="payment-box">
+                <div class="section-title" style="margin-top:0;">Método de Pago *</div>
+                <div class="options-grid">
+                    <label class="option-card">
+                        <input type="radio" name="mMetodoPago" value="Efectivo" checked onclick="cambiarMetodoPagoModal('Efectivo')">
+                        <span class="option-label">💵 Efectivo</span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="mMetodoPago" value="Transferencia" onclick="cambiarMetodoPagoModal('Transferencia')">
+                        <span class="option-label">📱 Transferencia</span>
+                    </label>
+                </div>
+
+                <div class="form-group" id="modalGrupoCambio" style="margin-top:15px; margin-bottom:0;">
+                    <label for="mCambioEfectivo">¿Con qué billete vas a pagar? (Opcional)</label>
+                    <input type="text" id="mCambioEfectivo" placeholder="Ej. Pagaré con billete de $200 o $500">
+                </div>
+
+                <div id="modalGrupoTransferencia" style="display:none;">
+                    <div class="bank-info-card">
+                        <strong>🏦 Datos para tu Transferencia:</strong><br><br>
+                        • <strong>Institución:</strong> Spin By Oxxo<br>
+                        • <strong>Titular:</strong> Ilse Jacqueline Altamirano Villegas<br>
+                        • <strong>CLABE:</strong> 728969000017618510
+                    </div>
+                    <div class="form-group" style="margin-top:12px; margin-bottom:0;">
+                        <label for="mComprobantePago">📎 Selecciona la foto de tu comprobante de pago *</label>
+                        <input type="file" id="mComprobantePago" accept="image/*" style="background:white; padding:6px;">
+                        <small style="display:block; margin-top:6px; color:#666;">
+                            Al abrir WhatsApp, recuerda adjuntar la foto del comprobante.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
-function cambiarMetodoPago(metodo) {
-    document.getElementById("grupoCambio").style.display = metodo === "Efectivo" ? "block" : "none";
-    document.getElementById("grupoTransferencia").style.display = metodo === "Transferencia" ? "block" : "none";
-}
-
-function calcularTotal() {
-    let totalComida = 0;
-    let hayItemsSeleccionados = false;
-
-    const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
-    if (todasLasEnsaladas.length > 0) hayItemsSeleccionados = true;
-
-    todasLasEnsaladas.forEach(card => {
-        const inputPrecioBase = card.querySelector(".input-precio-base");
-        let baseEnsalada = inputPrecioBase ? parseFloat(inputPrecioBase.value) : PRECIO_BASE;
-
-        ["proteina", "aderezo", "crocante"].forEach(tipo => {
-            card.querySelectorAll(`.extra-${tipo}`).forEach(input => {
-                const cantidad = parseInt(input.value) || 0;
-                const precio = parseFloat(input.getAttribute("data-price")) || 0;
-                baseEnsalada += cantidad * precio;
-            });
-        });
-        totalComida += baseEnsalada;
-    });
-
-    if (!hayItemsSeleccionados) {
-        document.getElementById("precioTotal").textContent = "$0.00 MXN";
-    } else {
-        document.getElementById("precioTotal").textContent = `$${totalComida.toFixed(2)} MXN`;
-    }
-
-    return totalComida;
-}
-
-// 1. Abre la ventana flotante (Modal) con el resumen limpio
-function prepararVentanaConfirmacion() {
+// Procesar el envío final a WhatsApp desde el modal
+function procesarEnvioFinal() {
     if (!cocinaAbierta) {
         alert("🔒 La cocina se encuentra cerrada en este momento. Te esperamos en nuestro horario de Lunes a Viernes de 9:00 a.m. a 5:00 p.m.");
         return;
     }
 
-    const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
-    if (todasLasEnsaladas.length === 0) {
-        alert("Por favor agrega al menos 1 ensalada o promoción.");
-        return;
-    }
-
-    const nombre = document.getElementById("clienteNombre").value.trim();
-    const telefono = document.getElementById("clienteTelefono").value.trim();
-    const colonia = document.getElementById("clienteColonia").value;
-    const calleNum = document.getElementById("clienteCalleNum").value.trim();
+    const nombre = document.getElementById("mNombre").value.trim();
+    const telefono = document.getElementById("mTelefono").value.trim();
+    const colonia = document.getElementById("mColonia").value;
+    const calleNum = document.getElementById("mCalleNum").value.trim();
 
     if (!nombre || !telefono || !colonia || !calleNum) {
-        alert("Por favor completa todos los datos obligatorios para el envío.");
+        alert("Por favor completa todos los datos obligatorios de entrega.");
         return;
     }
 
-    const metodoPago = document.querySelector('input[name="metodoPago"]:checked')?.value || "Efectivo";
+    const metodoPago = document.querySelector('input[name="mMetodoPago"]:checked')?.value || "Efectivo";
     if (metodoPago === "Transferencia") {
-        const comprobanteInput = document.getElementById("comprobantePago");
-        if (!comprobanteInput.files || comprobanteInput.files.length === 0) {
+        const comp = document.getElementById("mComprobantePago");
+        if (!comp.files || comp.files.length === 0) {
             alert("⚠️ Selecciona la foto de tu comprobante de pago.");
             return;
         }
     }
 
-    // Generar resumen limpio solo con lo esencial
-    let resumenHtml = [];
-    todasLasEnsaladas.forEach((card, index) => {
-        let tituloCustom = card.getAttribute("data-promo-nombre");
-        let tituloItem = tituloCustom ? `${tituloCustom}` : `Ensalada Regular #${index + 1}`;
-        
-        let barraFria = [];
+    // Recolectar bloques de ensaladas dentro del modal
+    const bloques = document.querySelectorAll(".ensalada-card-block");
+    let totalCalculado = 0;
+    let detalleEnsaladasMensaje = [];
+
+    bloques.forEach((card, index) => {
+        let precioBase = parseFloat(card.getAttribute("data-precio-base")) || 120;
+        let tituloItem = "";
+
+        if (tipoModalActual === 'regular') {
+            tituloItem = `Ensalada Regular #${index + 1}`;
+        } else if (tipoModalActual === 'promo') {
+            tituloItem = `${promoActualDia} #${index + 1}`;
+        } else if (tipoModalActual === 'viernes') {
+            tituloItem = `Viernes de Combos - Ensalada ${index + 1}`;
+        }
+
+        // Calcular extras y extras de barra fría si aplican
+        ["proteina", "aderezo", "crocante"].forEach(tipo => {
+            card.querySelectorAll(`.extra-${tipo}`).forEach(input => {
+                const cant = parseInt(input.value) || 0;
+                const precioExtra = parseFloat(input.getAttribute("data-price")) || 0;
+                precioBase += cant * precioExtra;
+            });
+        });
+
+        totalCalculado += precioBase;
+
+        // Armar detalle de texto de esta ensalada
+        const barraFria = [];
         card.querySelectorAll(".barra-fria-quantity-input").forEach(input => {
             const cant = parseInt(input.value) || 0;
             if (cant > 0) barraFria.push(`${cant}x ${input.getAttribute("data-name")}`);
@@ -1524,47 +1361,30 @@ function prepararVentanaConfirmacion() {
             if (r.name.startsWith("crocante_")) crocante = r.value;
         });
 
-        resumenHtml.push(`• *${tituloItem}*`);
-        resumenHtml.push(`  - Barra: ${barraFria.join(", ") || "Ninguna"}`);
-        resumenHtml.push(`  - Proteína: ${proteina}`);
-        resumenHtml.push(`  - Aderezo: ${aderezo}`);
-        resumenHtml.push(`  - Crocante: ${crocante}\n`);
+        detalleEnsaladasMensaje.push(`\n*🥗 ${tituloItem}:*`);
+        detalleEnsaladasMensaje.push(`• *Base:* Lechuga, Espinaca y Col Morada`);
+        detalleEnsaladasMensaje.push(`• *Barra Fría:* ${barraFria.join(", ") || "Ninguna"}`);
+        detalleEnsaladasMensaje.push(`• *Proteína:* ${proteina}`);
+        agregarExtrasTexto(card, ".extra-proteina", "Proteínas Extra", detalleEnsaladasMensaje);
+        detalleEnsaladasMensaje.push(`• *Aderezo:* ${aderezo}`);
+        agregarExtrasTexto(card, ".extra-aderezo", "Aderezos Extra", detalleEnsaladasMensaje);
+        detalleEnsaladasMensaje.push(`• *Crocante:* ${crocante}`);
+        agregarExtrasTexto(card, ".extra-crocante", "Crocantes Extra", detalleEnsaladasMensaje);
     });
 
-    const total = calcularTotal();
-    resumenHtml.push(`💰 *Total a pagar:* $${total.toFixed(2)} MXN`);
-    resumenHtml.push(`📍 *Destino:* ${colonia}, ${calleNum}`);
+    const entreCalles = document.getElementById("mEntreCalles").value.trim() || "No especificado";
+    const referencia = document.getElementById("mReferencia").value.trim() || "Sin referencia";
+    const comentarios = document.getElementById("mComentarios").value.trim() || "Ninguno";
 
-    document.getElementById("modalResumenTexto").innerText = resumenHtml.join("\n");
-    document.getElementById("modalConfirmacion").style.display = "flex";
-}
-
-function cerrarModal() {
-    document.getElementById("modalConfirmacion").style.display = "none";
-}
-
-// 2. Ejecuta el envío real a WhatsApp tras confirmar en el modal
-function ejecutarEnvioWhatsAppFinal() {
-    cerrarModal();
-
-    const todasLasEnsaladas = document.querySelectorAll(".ensalada-card-block");
-    const nombre = document.getElementById("clienteNombre").value.trim();
-    const telefono = document.getElementById("clienteTelefono").value.trim();
-    const colonia = document.getElementById("clienteColonia").value;
-    const calleNum = document.getElementById("clienteCalleNum").value.trim();
-    const entreCalles = document.getElementById("clienteEntreCalles").value.trim() || "No especificado";
-    const referencia = document.getElementById("clienteReferencia").value.trim() || "Sin referencia";
-    const comentarios = document.getElementById("clienteComentarios").value.trim() || "Ninguno";
-
-    const metodoPago = document.querySelector('input[name="metodoPago"]:checked')?.value || "Efectivo";
     let detallePago = metodoPago;
-
     if (metodoPago === "Efectivo") {
-        const cambio = document.getElementById("cambioEfectivo").value.trim();
+        const cambio = document.getElementById("mCambioEfectivo").value.trim();
         if (cambio) detallePago += ` (Paga con: ${cambio})`;
     } else {
         detallePago = "Transferencia";
     }
+
+    cerrarModalArmar();
 
     const avisoFlotante = document.getElementById("avisoAlertaFlotante");
     avisoFlotante.style.display = "block";
@@ -1585,15 +1405,10 @@ function ejecutarEnvioWhatsAppFinal() {
         "🥗 *DETALLE DEL PEDIDO*"
     ];
 
-    todasLasEnsaladas.forEach((card, index) => {
-        let tituloCustom = card.getAttribute("data-promo-nombre");
-        let tituloItem = tituloCustom ? `Pedido ${tituloCustom}` : `Pedido regular (Ensalada Regular #${index + 1})`;
-        procesarCardEnMensaje(card, tituloItem, lineas);
-    });
+    lineas = lineas.concat(detalleEnsaladasMensaje);
 
-    const total = calcularTotal();
     lineas.push("");
-    lineas.push(`💰 *TOTAL:* $${total.toFixed(2)} MXN`);
+    lineas.push(`💰 *TOTAL:* $${totalCalculado.toFixed(2)} MXN`);
     lineas.push("🚲 *Servicio a domicilio:* Incluido");
     lineas.push(`💳 *Forma de pago:* ${detallePago}`);
     lineas.push("⏱️ *Tiempo de entrega:* 30 a 45 minutos");
@@ -1620,41 +1435,7 @@ function ejecutarEnvioWhatsAppFinal() {
     }, 500);
 }
 
-function procesarCardEnMensaje(card, tituloItem, lineas) {
-    const barraFria = [];
-    card.querySelectorAll(".barra-fria-quantity-input").forEach(input => {
-        const cantidad = parseInt(input.value) || 0;
-        if (cantidad > 0) {
-            barraFria.push(`${cantidad}x ${input.getAttribute("data-name")}`);
-        }
-    });
-
-    const radios = card.querySelectorAll('input[type="radio"]:checked');
-    let proteina = "No seleccionada";
-    let aderezo = "No seleccionado";
-    let crocante = "No seleccionado";
-    let cubiertos = "Con cubiertos";
-
-    radios.forEach(r => {
-        if (r.name.startsWith("proteina_")) proteina = r.value;
-        if (r.name.startsWith("aderezo_")) aderezo = r.value;
-        if (r.name.startsWith("crocante_")) crocante = r.value;
-        if (r.name.startsWith("cubiertos_")) cubiertos = r.value;
-    });
-
-    lineas.push(`\n*🥗 ${tituloItem}:*`);
-    lineas.push(`• *Base:* Lechuga, Espinaca y Col Morada`);
-    lineas.push(`• *Barra Fría:* ${barraFria.join(", ") || "Ninguna"}`);
-    lineas.push(`• *Proteína:* ${proteina}`);
-    agregarExtrasAlMensaje(card, ".extra-proteina", "Proteínas Extra", lineas);
-    lineas.push(`• *Aderezo:* ${aderezo}`);
-    agregarExtrasAlMensaje(card, ".extra-aderezo", "Aderezos Extra", lineas);
-    lineas.push(`• *Crocante:* ${crocante}`);
-    agregarExtrasAlMensaje(card, ".extra-crocante", "Crocantes Extra", lineas);
-    lineas.push(`• *Cubiertos:* ${cubiertos}`);
-}
-
-function agregarExtrasAlMensaje(card, selector, titulo, lineas) {
+function agregarExtrasTexto(card, selector, titulo, lineas) {
     const extras = [];
     card.querySelectorAll(selector).forEach(input => {
         const cantidad = parseInt(input.value) || 0;
@@ -1670,7 +1451,6 @@ function agregarExtrasAlMensaje(card, selector, titulo, lineas) {
 window.onload = function() {
     verificarHorario();
     configurarDiasPromocion();
-    document.getElementById("precioTotal").textContent = "$0.00 MXN";
 };
 
 </script>
