@@ -7,7 +7,7 @@
     <!-- Google Fonts: Poppins y Pacifico -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wgth@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2e7d32;
@@ -51,7 +51,14 @@
             max-width: 140px;
             height: auto;
             display: block;
-            margin: 0 auto 10px auto;
+            margin: 0 auto 5px auto;
+        }
+
+        .location-subtitle {
+            font-size: 13px;
+            color: #388e3c;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         h1 {
@@ -754,6 +761,8 @@
             src="logo.png"
             onerror="this.src='logo.jpg';"
             alt="Verde Mix Salads">
+        
+        <div class="location-subtitle">Mazatlán, Sinaloa México</div>
 
         <h1>"Tu mix más fresco del día"</h1>
 
@@ -802,11 +811,11 @@
     </div>
 
     <div class="nav-tabs-container">
-        <button type="button" class="nav-tab-item active" onclick="cambiarPestana('menu')">🥗 Menú Regular</button>
+        <button type="button" class="nav-tab-item active" onclick="cambiarPestana('menu')">🥗 Menú</button>
         <button type="button" class="nav-tab-item" onclick="cambiarPestana('promociones')">🔥 Promociones</button>
     </div>
 
-    <!-- CONTENIDO 1: MENÚ REGULAR -->
+    <!-- CONTENIDO 1: MENÚ -->
     <div id="tabMenu" class="tab-content active">
         <div class="base-info-box">
             <div class="base-name">Ensalada Mix</div>
@@ -926,7 +935,6 @@ let cocinaAbierta = true;
 let tipoModalActual = 'regular'; // 'regular', 'promo', 'viernes'
 let promoActualDia = '';
 
-// Variables globales temporales para almacenar el pedido antes de confirmar
 let datosPedidoTemporal = null;
 
 function toggleInfoBox() {
@@ -1036,7 +1044,6 @@ function obtenerSiguienteFolio() {
     return `#VM-${String(siguienteNum).padStart(3, "0")}`;
 }
 
-// Control de Ventanas Modales Paso a Paso
 function abrirModalArmarRegular() {
     tipoModalActual = 'regular';
     document.getElementById("modalTituloArmar").textContent = "Arma tu Ensalada Regular";
@@ -1093,7 +1100,6 @@ function cambiarMetodoPagoModal(metodo) {
     }
 }
 
-// Función para calcular y actualizar el total en vivo mientras el cliente selecciona
 function calcularTotalEnVivo() {
     const bloques = document.querySelectorAll(".ensalada-card-block");
     if (bloques.length === 0) return;
@@ -1120,7 +1126,6 @@ function calcularTotalEnVivo() {
     }
 }
 
-// Estructuras HTML para inyectar en el Modal
 function construirEstructuraEnsaladaCompleta(uniqueId, precioBaseAsignado) {
     return `
         <div class="ensalada-card-block" id="block-${uniqueId}" data-precio-base="${precioBaseAsignado}" style="background:#ffffff; border:1px solid #d8e4d9; border-radius:14px; padding:15px; margin-bottom:15px;">
@@ -1374,7 +1379,6 @@ function construirEstructuraFormularioEntregaPago() {
     `;
 }
 
-// Paso 1: Validar datos y mostrar la ventana flotante de resumen
 function prepararResumenFinal() {
     if (!cocinaAbierta) {
         alert("🔒 La cocina se encuentra cerrada en este momento. Te esperamos en nuestro horario de Lunes a Viernes de 9:00 a.m. a 5:00 p.m.");
@@ -1400,7 +1404,6 @@ function prepararResumenFinal() {
         }
     }
 
-    // Recolectar bloques de ensaladas dentro del modal
     const bloques = document.querySelectorAll(".ensalada-card-block");
     let totalCalculado = 0;
     let detalleEnsaladasMensaje = [];
@@ -1418,7 +1421,6 @@ function prepararResumenFinal() {
             tituloItem = `Viernes de Combos - Ensalada ${index + 1}`;
         }
 
-        // Calcular extras
         ["proteina", "aderezo", "crocante"].forEach(tipo => {
             card.querySelectorAll(`.extra-${tipo}`).forEach(input => {
                 const cant = parseInt(input.value) || 0;
@@ -1429,7 +1431,6 @@ function prepararResumenFinal() {
 
         totalCalculado += precioBase;
 
-        // Armar detalle de texto de esta ensalada
         const barraFria = [];
         card.querySelectorAll(".barra-fria-quantity-input").forEach(input => {
             const cant = parseInt(input.value) || 0;
@@ -1456,7 +1457,6 @@ function prepararResumenFinal() {
         detalleEnsaladasMensaje.push(`• *Crocante:* ${crocante}`);
         agregarExtrasTexto(card, ".extra-crocante", "Crocantes Extra", detalleEnsaladasMensaje);
 
-        // Construir HTML visual para el modal de resumen
         htmlResumenVisual += `<div style="margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:8px;">`;
         htmlResumenVisual += `<strong>${tituloItem}</strong><br>`;
         htmlResumenVisual += `Barra fría: ${barraFria.join(", ") || "Ninguna"}<br>`;
@@ -1478,7 +1478,6 @@ function prepararResumenFinal() {
         detallePago = "Transferencia";
     }
 
-    // Guardar temporalmente los datos estructurados para el envío final a WhatsApp
     datosPedidoTemporal = {
         nombre,
         telefono,
@@ -1492,7 +1491,6 @@ function prepararResumenFinal() {
         detalleEnsaladasMensaje
     };
 
-    // Inyectar contenido en la ventana flotante de resumen
     const contenedorResumenHtml = `
         <div style="font-weight:700; color:var(--primary-dark); margin-bottom:8px; font-size:14px;">📋 Detalle de tus Ensaladas:</div>
         ${htmlResumenVisual}
@@ -1509,12 +1507,10 @@ function prepararResumenFinal() {
 
     document.getElementById("modalContenidoResumen").innerHTML = contenedorResumenHtml;
 
-    // Ocultar modal de armado y mostrar modal de resumen
     document.getElementById("modalArmarPedido").style.display = "none";
     document.getElementById("modalResumenFinal").style.display = "flex";
 }
 
-// Paso 2: Confirmar desde el resumen y enviar a WhatsApp de manera definitiva
 function enviarPedidoWhatsAppDefinitivo() {
     if (!datosPedidoTemporal) return;
 
