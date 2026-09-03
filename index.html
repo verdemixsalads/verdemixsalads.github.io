@@ -64,12 +64,13 @@
         h1 {
             color: var(--primary-dark);
             margin: 10px 0 6px 0;
-            font-size: 32px;
+            font-size: 20px;
             font-family: 'Pacifico', cursive;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.2px;
             line-height: 1.3;
             text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            white-space: nowrap;
         }
 
         .subtitle {
@@ -687,7 +688,7 @@
                 padding: 16px;
             }
             h1 {
-                font-size: 28px;
+                font-size: 18px;
             }
             .main-option-text {
                 font-size: 12px;
@@ -1549,6 +1550,7 @@ function enviarPedidoWhatsAppDefinitivo() {
     lineas.push(`• *Cliente:* ${datosPedidoTemporal.nombre}`);
     lineas.push(`• *Teléfono:* ${datosPedidoTemporal.telefono}`);
     lineas.push(`• *Colonia:* ${datosPedidoTemporal.colonia}`);
+    lineas5push = `• *Calle y #:* ${datosPedidoTemporal.calleNum}`; // note: keeping clean syntax
     lineas.push(`• *Calle y #:* ${datosPedidoTemporal.calleNum}`);
     lineas.push(`• *Entre calles:* ${datosPedidoTemporal.entreCalles}`);
     lineas.push(`• *Referencia:* ${datosPedidoTemporal.referencia}`);
