@@ -502,7 +502,7 @@
             font-size: 13px;
         }
 
-        /* Ventana Flotante (Modal) con Color Marfil / Marfil Claro (--bg-color o #F4EEDC) */
+        /* Ventana Flotante (Modal) con Color Marfil / Marfil Claro */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -697,7 +697,24 @@
 
         <div class="modal-buttons">
             <button type="button" class="btn-modal-cancel" onclick="cerrarModalArmar()">Cancelar</button>
-            <button type="button" class="btn-modal-confirm" id="btnModalAccionFinal" onclick="procesarEnvioFinal()">Enviar Pedido por WhatsApp 📱</button>
+            <button type="button" class="btn-modal-confirm" id="btnModalAccionFinal" onclick="prepararResumenFinal()">Ver Resumen del Pedido 📝</button>
+        </div>
+    </div>
+</div>
+
+<!-- VENTANA FLOTANTE (MODAL) PARA EL RESUMEN FINAL ANTES DE ENVIAR -->
+<div id="modalResumenFinal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">¡Este es el resumen de tu pedido!</div>
+        <div class="modal-subtitle">Revisa que todo esté correcto antes de enviarlo a WhatsApp</div>
+        
+        <div class="modal-scroll-body" id="modalContenidoResumen" style="background: #ffffff; padding: 15px; border-radius: 12px; border: 1px solid #d8e4d9; font-size: 13px; line-height: 1.5;">
+            <!-- Aquí se inyectará el resumen detallado -->
+        </div>
+
+        <div class="modal-buttons">
+            <button type="button" class="btn-modal-cancel" onclick="cerrarModalResumen()">Modificar Pedido</button>
+            <button type="button" class="btn-modal-confirm" onclick="enviarPedidoWhatsAppDefinitivo()">Confirmar y Enviar 📱</button>
         </div>
     </div>
 </div>
@@ -882,6 +899,9 @@ let cocinaAbierta = true;
 let tipoModalActual = 'regular'; // 'regular', 'promo', 'viernes'
 let promoActualDia = '';
 
+// Variables globales temporales para almacenar el pedido antes de confirmar
+let datosPedidoTemporal = null;
+
 function toggleInfoBox() {
     const box = document.getElementById("infoContentBox");
     const arrow = document.getElementById("infoArrow");
@@ -1027,6 +1047,11 @@ function abrirModalArmarComboViernes() {
 
 function cerrarModalArmar() {
     document.getElementById("modalArmarPedido").style.display = "none";
+}
+
+function cerrarModalResumen() {
+    document.getElementById("modalResumenFinal").style.display = "none";
+    document.getElementById("modalArmarPedido").style.display = "flex";
 }
 
 function cambiarMetodoPagoModal(metodo) {
@@ -1290,8 +1315,8 @@ function construirEstructuraFormularioEntregaPago() {
     `;
 }
 
-// Procesar el envío final a WhatsApp desde el modal
-function procesarEnvioFinal() {
+// Paso 1: Validar datos y mostrar la ventana flotante de resumen
+function prepararResumenFinal() {
     if (!cocinaAbierta) {
         alert("🔒 La cocina se encuentra cerrada en este momento. Te esperamos en nuestro horario de Lunes a Viernes de 9:00 a.m. a 5:00 p.m.");
         return;
@@ -1320,6 +1345,7 @@ function procesarEnvioFinal() {
     const bloques = document.querySelectorAll(".ensalada-card-block");
     let totalCalculado = 0;
     let detalleEnsaladasMensaje = [];
+    let htmlResumenVisual = "";
 
     bloques.forEach((card, index) => {
         let precioBase = parseFloat(card.getAttribute("data-precio-base")) || 120;
@@ -1333,7 +1359,7 @@ function procesarEnvioFinal() {
             tituloItem = `Viernes de Combos - Ensalada ${index + 1}`;
         }
 
-        // Calcular extras y extras de barra fría si aplican
+        // Calcular extras
         ["proteina", "aderezo", "crocante"].forEach(tipo => {
             card.querySelectorAll(`.extra-${tipo}`).forEach(input => {
                 const cant = parseInt(input.value) || 0;
@@ -1370,6 +1396,15 @@ function procesarEnvioFinal() {
         agregarExtrasTexto(card, ".extra-aderezo", "Aderezos Extra", detalleEnsaladasMensaje);
         detalleEnsaladasMensaje.push(`• *Crocante:* ${crocante}`);
         agregarExtrasTexto(card, ".extra-crocante", "Crocantes Extra", detalleEnsaladasMensaje);
+
+        // Construir HTML visual para el modal de resumen
+        htmlResumenVisual += `<div style="margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:8px;">`;
+        htmlResumenVisual += `<strong>${tituloItem}</strong><br>`;
+        htmlResumenVisual-> `Barra fría: ${barraFria.join(", ") || "Ninguna"}<br>`;
+        htmlResumenVisual += `Proteína: ${proteina}<br>`;
+        htmlResumenVisual += `Aderezo: ${aderezo}<br>`;
+        htmlResumenVisual += `Crocante: ${crocante}`;
+        htmlResumenVisual += `</div>`;
     });
 
     const entreCalles = document.getElementById("mEntreCalles").value.trim() || "No especificado";
@@ -1384,7 +1419,48 @@ function procesarEnvioFinal() {
         detallePago = "Transferencia";
     }
 
-    cerrarModalArmar();
+    // Guardar temporalmente los datos estructurados para el envío final a WhatsApp
+    datosPedidoTemporal = {
+        nombre,
+        telefono,
+        colonia,
+        calleNum,
+        entreCalles,
+        referencia,
+        comentarios,
+        metodoPago: detallePago,
+        totalCalculado,
+        detalleEnsaladasMensaje
+    };
+
+    // Inyectar contenido en la ventana flotante de resumen
+    const contenedorResumenHtml = `
+        <div style="font-weight:700; color:var(--primary-dark); margin-bottom:8px; font-size:14px;">📋 Detalle de tus Ensaladas:</div>
+        ${htmlResumenVisual}
+        <div style="margin-top:10px; font-size:13px;">
+            <strong>Cliente:</strong> ${nombre}<br>
+            <strong>Teléfono:</strong> ${telefono}<br>
+            <strong>Dirección:</strong> ${colonia}, Calle: ${calleNum}<br>
+            <strong>Método de Pago:</strong> ${detallePago}
+        </div>
+        <div style="margin-top:12px; font-size:16px; font-weight:800; color:var(--primary-dark); text-align:right; border-top:2px solid #d8e4d9; padding-top:8px;">
+            Total a Pagar: $${totalCalculado.toFixed(2)} MXN
+        </div>
+    `;
+
+    document.getElementById("modalContenidoResumen").innerHTML = contenedorResumenHtml;
+
+    // Ocultar modal de armado y mostrar modal de resumen
+    document.getElementById("modalArmarPedido").style.display = "none";
+    document.getElementById("modalResumenFinal").style.display = "flex";
+}
+
+// Paso 2: Confirmar desde el resumen y enviar a WhatsApp de manera definitiva
+function enviarPedidoWhatsAppDefinitivo() {
+    if (!datosPedidoTemporal) return;
+
+    cerrarModalResumen();
+    document.getElementById("modalArmarPedido").style.display = "none";
 
     const avisoFlotante = document.getElementById("avisoAlertaFlotante");
     avisoFlotante.style.display = "block";
@@ -1405,24 +1481,24 @@ function procesarEnvioFinal() {
         "🥗 *DETALLE DEL PEDIDO*"
     ];
 
-    lineas = lineas.concat(detalleEnsaladasMensaje);
+    lineas = lineas.concat(datosPedidoTemporal.detalleEnsaladasMensaje);
 
     lineas.push("");
-    lineas.push(`💰 *TOTAL:* $${totalCalculado.toFixed(2)} MXN`);
+    lineas.push(`💰 *TOTAL:* $${datosPedidoTemporal.totalCalculado.toFixed(2)} MXN`);
     lineas.push("🚲 *Servicio a domicilio:* Incluido");
-    lineas.push(`💳 *Forma de pago:* ${detallePago}`);
+    lineas.push(`💳 *Forma de pago:* ${datosPedidoTemporal.metodoPago}`);
     lineas.push("⏱️ *Tiempo de entrega:* 30 a 45 minutos");
     lineas.push("");
     lineas.push("📍 *DATOS DE ENTREGA*");
-    lineas.push(`• *Cliente:* ${nombre}`);
-    lineas.push(`• *Teléfono:* ${telefono}`);
-    lineas.push(`• *Colonia:* ${colonia}`);
-    lineas.push(`• *Calle y #:* ${calleNum}`);
-    lineas.push(`• *Entre calles:* ${entreCalles}`);
-    lineas.push(`• *Referencia:* ${referencia}`);
-    lineas.push(`• *Comentarios:* ${comentarios}`);
+    lineas.push(`• *Cliente:* ${datosPedidoTemporal.nombre}`);
+    lineas.push(`• *Teléfono:* ${datosPedidoTemporal.telefono}`);
+    lineas.push(`• *Colonia:* ${datosPedidoTemporal.colonia}`);
+    lineas.push(`• *Calle y #:* ${datosPedidoTemporal.calleNum}`);
+    lineas.push(`• *Entre calles:* ${datosPedidoTemporal.entreCalles}`);
+    lineas.push(`• *Referencia:* ${datosPedidoTemporal.referencia}`);
+    lineas.push(`• *Comentarios:* ${datosPedidoTemporal.comentarios}`);
 
-    if (metodoPago === "Transferencia") {
+    if (datosPedidoTemporal.metodoPago.includes("Transferencia")) {
         lineas.push("");
         lineas.push("📎 *IMPORTANTE:* Por favor adjunta ahora la foto de tu comprobante de transferencia en este chat de WhatsApp.");
     }
