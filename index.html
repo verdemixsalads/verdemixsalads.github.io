@@ -4,22 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verde Mix Salads</title>
-    <link rel="icon" id="favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%97%3C/text%3E%3C/svg%3E">
-    <script>
-    // Favicon: usa el mismo logo de la página (logo.png, o logo.jpg si no existe); si ninguno carga, queda el emoji 🥗
-    (function () {
-        var link = document.getElementById("favicon");
-        var emoji = link.href;
-        var opciones = ["logo.png", "logo.jpg"];
-        (function probar(i) {
-            if (i >= opciones.length) { link.href = emoji; return; }
-            var img = new Image();
-            img.onload = function () { link.removeAttribute("type"); link.href = opciones[i]; };
-            img.onerror = function () { probar(i + 1); };
-            img.src = opciones[i];
-        })(0);
-    })();
-    </script>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
     <meta name="theme-color" content="#2e7d32">
     <!-- Google Fonts: Poppins y Pacifico -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
