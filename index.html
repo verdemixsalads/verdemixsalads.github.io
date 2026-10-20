@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verde Mix Salads</title>
+    <link rel="icon" id="favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%97%3C/text%3E%3C/svg%3E">
+    <script>
+    // Favicon: usa el mismo logo de la página (logo.png, o logo.jpg si no existe); si ninguno carga, queda el emoji 🥗
+    (function () {
+        var link = document.getElementById("favicon");
+        var emoji = link.href;
+        var opciones = ["logo.png", "logo.jpg"];
+        (function probar(i) {
+            if (i >= opciones.length) { link.href = emoji; return; }
+            var img = new Image();
+            img.onload = function () { link.removeAttribute("type"); link.href = opciones[i]; };
+            img.onerror = function () { probar(i + 1); };
+            img.src = opciones[i];
+        })(0);
+    })();
+    </script>
+    <meta name="theme-color" content="#2e7d32">
     <!-- Google Fonts: Poppins y Pacifico -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1170,13 +1187,44 @@
                 </details>
                 <details class="faq-item">
                     <summary>¿Puedo cancelar o cambiar mi pedido?</summary>
-                    <div class="faq-answer">Preparamos todo al momento, por lo que una vez enviado y confirmado por WhatsApp no se aceptan cambios, cancelaciones ni devoluciones. Consulta los Términos de servicio al final de la página.</div>
+                    <div class="faq-answer">Preparamos todo al momento, por lo que una vez enviado y confirmado por WhatsApp no se aceptan cambios, cancelaciones ni devoluciones. Consulta los Términos de servicio en la sección “Información legal” de este mismo menú.</div>
                 </details>
-                <div style="text-align:center; margin-top:10px; font-size:12px;">
-                    <a href="#seccionLegal" onclick="abrirLegal('legal-privacidad')" style="color:var(--primary-dark); font-weight:700;">Aviso de privacidad</a> ·
-                    <a href="#seccionLegal" onclick="abrirLegal('legal-cobertura')" style="color:var(--primary-dark); font-weight:700;">Cobertura y despacho</a> ·
-                    <a href="#seccionLegal" onclick="abrirLegal('legal-terminos')" style="color:var(--primary-dark); font-weight:700;">Términos</a>
-                </div>
+            </div>
+
+            <div class="legal-section" id="seccionLegal">
+                <div class="legal-section-title">📄 Información legal</div>
+                <details class="legal-item" id="legal-privacidad">
+                    <summary>Aviso de privacidad</summary>
+                    <div class="legal-body">
+                        <p><strong>Responsable:</strong> Verde Mix Salads es responsable del tratamiento de tus datos personales.</p>
+                        <p><strong>Datos que recabamos:</strong> nombre, teléfono de contacto, domicilio o zona de entrega y los detalles de tu pedido.</p>
+                        <p><strong>Finalidad:</strong> preparar y entregar tu pedido, confirmarlo por WhatsApp y darte seguimiento o atención. No usamos tus datos para fines distintos.</p>
+                        <p><strong>Transferencia:</strong> no vendemos ni compartimos tus datos con terceros, salvo lo necesario para la entrega o por obligación legal.</p>
+                        <p><strong>Derechos ARCO:</strong> puedes solicitar el acceso, rectificación, cancelación u oposición al uso de tus datos escribiéndonos por WhatsApp.</p>
+                        <p><strong>Cambios:</strong> cualquier modificación a este aviso se publicará en esta página.</p>
+                    </div>
+                </details>
+                <details class="legal-item" id="legal-cobertura">
+                    <summary>Política de cobertura y despacho</summary>
+                    <div class="legal-body">
+                        <p><strong>Cobertura:</strong> entregamos únicamente en las colonias que aparecen en el selector de zona. Si la tuya no aparece, por ahora queda fuera de nuestra cobertura.</p>
+                        <p><strong>Horario de pedidos:</strong> lunes a viernes, de 9:00 a. m. a 5:00 p. m. Sábado y domingo descansamos.</p>
+                        <p><strong>Tiempo de entrega:</strong> estimado de 30 a 45 minutos; puede variar por demanda o clima.</p>
+                        <p><strong>Entrega:</strong> procura estar atento a tu teléfono. Si no logramos contactarte, el pedido puede cancelarse sin reembolso.</p>
+                        <p><strong>Pedidos programados:</strong> indícalos en las notas o por WhatsApp, siempre dentro de nuestro horario.</p>
+                    </div>
+                </details>
+                <details class="legal-item" id="legal-terminos">
+                    <summary>Términos de servicio</summary>
+                    <div class="legal-body">
+                        <p><strong>Pedidos:</strong> tu pedido queda confirmado cuando lo enviamos y lo confirmamos contigo por WhatsApp.</p>
+                        <p><strong>Cambios y cancelaciones:</strong> preparamos todo al momento, por lo que una vez confirmado no se aceptan cambios, cancelaciones ni devoluciones.</p>
+                        <p><strong>Precios:</strong> se muestran en pesos mexicanos (MXN) y pueden cambiar sin previo aviso.</p>
+                        <p><strong>Formas de pago:</strong> efectivo o transferencia.</p>
+                        <p><strong>Alergias:</strong> si tienes alguna alergia o restricción alimentaria, avísanos en las notas del pedido.</p>
+                        <p><strong>Aceptación:</strong> al enviar tu pedido aceptas estos términos, la política de cobertura y el aviso de privacidad.</p>
+                    </div>
+                </details>
             </div>
         </div>
     </div>
@@ -1189,7 +1237,7 @@
 
     <div id="avisoCerradoAviso">
         🔒 <strong>COCINA CERRADA</strong><br>
-        <span id="textoHorarioCerrado">Hoy te esperamos de 9:00 a. m. a 5:00 p. m.</span>
+        <span id="textoHorarioCerrado">Nos vemos mañana, de 9 a. m. a 5 p. m.</span>
     </div>
 
     <div class="nav-tabs-container">
@@ -1451,6 +1499,8 @@
 
 
 
+
+
 <script>
 
 const PRECIO_BASE = 120;
@@ -1505,10 +1555,16 @@ function cambiarPestana(pestana) {
 }
 
 function abrirLegal(id) {
+    if (window.event && window.event.preventDefault) window.event.preventDefault();
     const el = document.getElementById(id);
     if (!el) return;
+    const box = document.getElementById("infoContentBox");
+    if (!box.classList.contains("active")) {
+        box.classList.add("active");
+        document.getElementById("infoArrow").textContent = "▲";
+    }
     el.open = true;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function actualizarRelojCierre() {
@@ -1552,13 +1608,15 @@ function verificarHorario() {
 
     if (diaSemana === 0 || diaSemana === 6) {
         cerrado = true;
-        mensaje = "Los pedidos están cerrados el fin de semana. Abrimos el lunes a las 9:00 a. m.";
+        mensaje = "Nos vemos el lunes, de 9 a. m. a 5 p. m.";
     } else if (horaMinutoActual >= cierre) {
         cerrado = true;
-        mensaje = "Mañana abrimos a partir de las 9:00 a. m. y cerramos a las 5:00 p. m. ¡Te esperamos!";
+        mensaje = (diaSemana === 5)
+            ? "Nos vemos el lunes, de 9 a. m. a 5 p. m."
+            : "Nos vemos mañana, de 9 a. m. a 5 p. m.";
     } else if (horaMinutoActual < apertura) {
         cerrado = true;
-        mensaje = "Hoy te esperamos de 9:00 a. m. a 5:00 p. m. 🥗";
+        mensaje = "Te esperamos hoy con tu Verde Mix fresco, de 9 a. m. a 5 p. m.";
     }
 
     cocinaAbierta = !cerrado;
@@ -1903,11 +1961,11 @@ function prepararVentanaConfirmacion() {
         verificarHorario();
         const diaAhora = new Date().getDay();
         const horaAhora = new Date().getHours() * 60 + new Date().getMinutes();
-        const mensajeCerrado = (diaAhora === 0 || diaAhora === 6)
-            ? "🔒 Cocina cerrada. Abrimos el lunes a partir de las 9:00 a. m. y cerramos a las 5:00 p. m. ¡Te esperamos!"
+        const mensajeCerrado = (diaAhora === 0 || diaAhora === 6 || diaAhora === 5 && horaAhora >= 17 * 60)
+            ? "🔒 Cocina cerrada. Nos vemos el lunes, de 9 a. m. a 5 p. m."
             : (horaAhora >= 17 * 60
-                ? "🔒 Cocina cerrada. Mañana abrimos a partir de las 9:00 a. m. y cerramos a las 5:00 p. m. ¡Te esperamos!"
-                : "🔒 Cocina cerrada. Hoy abrimos a partir de las 9:00 a. m. y cerramos a las 5:00 p. m. ¡Te esperamos!");
+                ? "🔒 Cocina cerrada. Nos vemos mañana, de 9 a. m. a 5 p. m."
+                : "🔒 Cocina cerrada. Te esperamos hoy con tu Verde Mix fresco, de 9 a. m. a 5 p. m.");
         alert(mensajeCerrado);
         return;
     }
